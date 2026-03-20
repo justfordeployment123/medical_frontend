@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   CSS Custom Properties — Design Tokens
+   ========================================================= */
+@layer base {
+  :root {
+    --color-bg-primary:    #020617;
+    --color-bg-secondary:  #0b1120;
+    --color-accent:        #7dd3fc;
+    --color-accent-glow:   rgba(125, 211, 252, 0.15);
+    --color-accent-border: rgba(125, 211, 252, 0.3);
+    --color-text-primary:  #ffffff;
+    --color-text-muted:    #94a3b8;
+    --color-glass-bg:      rgba(255, 255, 255, 0.04);
+    --color-glass-border:  rgba(255, 255, 255, 0.10);
+    --nav-height: 72px;
+  }
+
+  /* Base resets & defaults */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #93deff;
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent) var(--color-bg-secondary);
+  }
+
+  /* Keyframe: dot blink */
+  @keyframes dot-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.2; }
+  }
+}
+
+/* =========================================================
+   Component Utilities
+   ========================================================= */
+@layer components {
+  /* Glass card */
+  .glass-card {
+    background: var(--color-glass-bg);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 1.5rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px var(--color-accent-glow);
+  }
+
+  /* Scroll-reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Dot blink animation */
+  .dot-blink {
+    animation: dot-blink 1.5s ease-in-out infinite;
+  }
+
+  /* Layout utilities */
+  .section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .section--alt {
+    background-color: var(--color-bg-secondary);
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .page-hero {
+    padding-top: calc(var(--nav-height) + 5rem);
+  }
+}
+
+/* =========================================================
+   Extra Utilities
+   ========================================================= */
+@layer utilities {
+  .text-muted {
+    color: var(--color-text-muted);
+  }
+
+  .bg-glass {
+    background: var(--color-glass-bg);
+  }
+
+  .border-glass {
+    border-color: var(--color-glass-border);
+  }
+
+  .border-accent {
+    border-color: var(--color-accent-border);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 24px var(--color-accent-glow);
+  }
+}
