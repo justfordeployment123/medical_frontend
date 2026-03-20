@@ -7,16 +7,18 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  corePlugins: {
+    container: false,
+  },
   theme: {
     extend: {
       colors: {
-        'bg-primary': '#020617',
-        'bg-secondary': '#0b1120',
+        'primary': '#020617',
+        'secondary': '#0b1120',
         'accent': '#7dd3fc',
         'accent-glow': 'rgba(125,211,252,0.15)',
         'accent-border': 'rgba(125,211,252,0.3)',
-        'text-primary': '#ffffff',
-        'text-muted': '#94a3b8',
+        'muted': '#94a3b8',
         'glass-bg': 'rgba(255,255,255,0.04)',
         'glass-border': 'rgba(255,255,255,0.10)',
       },

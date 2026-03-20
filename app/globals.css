@@ -7,23 +7,16 @@
    ========================================================= */
 @layer base {
   :root {
-    --color-bg-primary:    #020617;
-    --color-bg-secondary:  #0b1120;
+    --color-primary:       #020617;
+    --color-secondary:     #0b1120;
     --color-accent:        #7dd3fc;
     --color-accent-glow:   rgba(125, 211, 252, 0.15);
     --color-accent-border: rgba(125, 211, 252, 0.3);
     --color-text-primary:  #ffffff;
-    --color-text-muted:    #94a3b8;
+    --color-muted:         #94a3b8;
     --color-glass-bg:      rgba(255, 255, 255, 0.04);
     --color-glass-border:  rgba(255, 255, 255, 0.10);
     --nav-height: 72px;
-  }
-
-  /* Base resets & defaults */
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
   }
 
   html {
@@ -31,11 +24,13 @@
   }
 
   body {
-    background-color: var(--color-bg-primary);
+    background-color: var(--color-primary);
     color: var(--color-text-primary);
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent) var(--color-secondary);
   }
 
   /* Custom scrollbar */
@@ -45,7 +40,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--color-bg-secondary);
+    background: var(--color-secondary);
   }
 
   ::-webkit-scrollbar-thumb {
@@ -55,12 +50,6 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: #93deff;
-  }
-
-  /* Firefox */
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-accent) var(--color-bg-secondary);
   }
 
   /* Keyframe: dot blink */
@@ -113,7 +102,7 @@
   }
 
   .section--alt {
-    background-color: var(--color-bg-secondary);
+    background-color: var(--color-secondary);
   }
 
   .container {
@@ -127,6 +116,7 @@
 
   .page-hero {
     padding-top: calc(var(--nav-height) + 5rem);
+    padding-bottom: 5rem;
   }
 }
 
@@ -135,7 +125,7 @@
    ========================================================= */
 @layer utilities {
   .text-muted {
-    color: var(--color-text-muted);
+    color: var(--color-muted);
   }
 
   .bg-glass {
