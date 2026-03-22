@@ -1,40 +1,47 @@
+'use client'
+
 import Button from '@/components/ui/Button'
-import GlassCard from '@/components/ui/GlassCard'
 import SectionHeading from '@/components/ui/SectionHeading'
 import AnimatedSection from '@/components/ui/AnimatedSection'
+import Particles from '@/components/ui/Particles'
+import LiveCounter from '@/components/ui/LiveCounter'
+import CyclingText from '@/components/ui/CyclingText'
+import ProblemRow from '@/components/ui/ProblemRow'
+import StepItem from '@/components/ui/StepItem'
 
-const problems = [
+const problemRows = [
   {
-    title: 'Missed Calls & Enquiries',
-    body: 'Every unanswered call or slow reply is a lost opportunity. Businesses miss revenue simply because they cannot respond fast enough.',
+    problem: 'Missed calls and lost enquiries',
+    solution: 'AI Receptionist answers 24/7 — zero missed leads, instant response',
   },
   {
-    title: 'Repetitive Admin Tasks',
-    body: 'Hours are wasted on data entry, scheduling, and manual updates that add no strategic value to your business.',
+    problem: 'Repetitive admin work consuming your team',
+    solution: 'AI Admin Assistant saves 10–25 hrs per employee per week',
   },
   {
-    title: 'Slow Response Times',
-    body: 'Customers expect instant answers. Delays in follow-up damage trust and cause potential clients to look elsewhere.',
+    problem: 'Slow responses to inbound leads',
+    solution: 'Instant lead engagement within seconds of every enquiry',
   },
   {
-    title: 'Disconnected Systems',
-    body: 'Teams juggle multiple tools that do not talk to each other, creating silos, duplication, and constant manual hand-offs.',
+    problem: 'Disconnected software systems creating silos',
+    solution: 'Backend automation syncs all your tools automatically',
   },
   {
-    title: 'Manual Follow-Ups',
-    body: 'Leads and clients fall through the cracks because there is no automated system to nurture relationships at scale.',
+    problem: 'Constant manual follow-ups falling through cracks',
+    solution: 'Automated follow-up sequences, fully personalised at scale',
   },
   {
-    title: 'Onboarding Inefficiencies',
-    body: 'New clients and staff take too long to get up to speed due to fragmented processes and inconsistent documentation.',
+    problem: 'Onboarding and training inefficiencies',
+    solution: 'AI Onboarding Assistant guides new hires instantly from day one',
   },
 ]
 
 const services = [
   {
     tag: 'Tier 1',
+    badge: 'Quick Wins',
     title: 'AI Automations',
-    tagline: 'Quick wins that deliver immediate efficiency gains.',
+    tagline: 'Immediate efficiency gains.',
     description:
       'We identify the highest-impact repetitive tasks in your business and replace them with intelligent automation — fast.',
     bullets: [
@@ -43,11 +50,13 @@ const services = [
       'Internal productivity agents',
       'Workflow notifications & triggers',
     ],
+    featured: false,
   },
   {
     tag: 'Tier 2',
+    badge: 'Most Popular',
     title: 'AI Systems',
-    tagline: 'Strategic AI implementations that transform operations.',
+    tagline: 'Operational transformation.',
     description:
       'End-to-end automation systems that connect your tools, workflows, and teams into a single intelligent operation.',
     bullets: [
@@ -56,11 +65,13 @@ const services = [
       'Internal workflow automation',
       'Customer support AI systems',
     ],
+    featured: true,
   },
   {
     tag: 'Tier 3',
+    badge: 'Enterprise',
     title: 'Custom AI',
-    tagline: 'Fully bespoke AI solutions built around your organisation.',
+    tagline: 'Fully bespoke AI solutions.',
     description:
       'A complete AI transformation engagement — from deep process audit to custom agent development and ongoing optimisation.',
     bullets: [
@@ -69,6 +80,7 @@ const services = [
       'Custom AI agent development',
       'System integration & ongoing support',
     ],
+    featured: false,
   },
 ]
 
@@ -87,22 +99,22 @@ const steps = [
   {
     num: '01',
     title: 'Discovery Call',
-    body: 'We learn about your business, current workflows, and the biggest time-draining tasks your team faces.',
+    body: 'We analyse your workflows and identify the biggest automation opportunities for your specific business.',
   },
   {
     num: '02',
     title: 'System Design',
-    body: 'We map out a custom automation architecture tailored to your tools, team structure, and business goals.',
+    body: 'We design a custom AI solution tailored precisely to your processes, tools, and team structure.',
   },
   {
     num: '03',
     title: 'Implementation',
-    body: 'We build and deploy your AI systems — integrating with your existing stack with minimal disruption.',
+    body: 'The system is built, integrated, and deployed into your existing stack with minimal disruption.',
   },
   {
     num: '04',
     title: 'Optimisation',
-    body: 'After launch we monitor performance, refine outputs, and continuously improve your automation systems.',
+    body: 'We monitor performance and continuously refine the system as your business grows.',
   },
 ]
 
@@ -110,83 +122,152 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-primary">
+      <section
+        className="relative flex min-h-screen items-center justify-center overflow-hidden"
+        style={{ background: '#020617' }}
+      >
+        {/* Particles */}
+        <Particles className="absolute inset-0 z-0" count={75} />
+
         {/* Grid overlay */}
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.04]"
+          className="pointer-events-none absolute inset-0 z-[1]"
           style={{
+            opacity: 0.04,
             backgroundImage:
               'linear-gradient(rgba(125,211,252,1) 1px, transparent 1px), linear-gradient(90deg, rgba(125,211,252,1) 1px, transparent 1px)',
             backgroundSize: '60px 60px',
           }}
         />
+
         {/* Radial glow */}
         <div
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 z-[2]"
           style={{
             background:
-              'radial-gradient(ellipse 70% 50% at 50% 40%, rgba(125,211,252,0.12) 0%, transparent 70%)',
+              'radial-gradient(ellipse 80% 55% at 50% 40%, rgba(125,211,252,0.11) 0%, transparent 70%)',
           }}
         />
 
-        <div className="container relative z-10 py-32 text-center">
+        <div className="container relative z-10 py-36 text-center">
+          {/* Industry cycling label */}
           <AnimatedSection>
-            <p className="flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent mb-6">
-              <span className="dot-blink" />
-              AI Automation Consultancy
+            <p
+              className="flex flex-wrap items-center justify-center gap-2 text-xs font-semibold uppercase tracking-widest mb-5"
+              style={{ color: '#94a3b8' }}
+            >
+              <span
+                className="dot-blink"
+                style={{
+                  display: 'inline-block',
+                  width: 6,
+                  height: 6,
+                  borderRadius: '50%',
+                  background: '#7dd3fc',
+                }}
+              />
+              AI Automation built for&nbsp;
+              <CyclingText />
             </p>
           </AnimatedSection>
 
+          {/* Main headline */}
           <AnimatedSection delay={1}>
-            <h1 className="mx-auto max-w-4xl text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-white mb-6">
-              AI systems that eliminate{' '}
-              <span className="text-accent">repetitive work.</span>
+            <h1
+              className="mx-auto max-w-4xl font-extrabold leading-tight text-white mb-6"
+              style={{ fontSize: 'clamp(2.4rem, 6vw, 4.5rem)' }}
+            >
+              AI systems that{' '}
+              <span
+                className="text-accent"
+                style={{ animation: 'glitch 0.45s ease 1.8s 1 forwards' }}
+              >
+                eliminate
+              </span>{' '}
+              repetitive work.
             </h1>
           </AnimatedSection>
 
+          {/* Sub */}
           <AnimatedSection delay={2}>
-            <p className="mx-auto max-w-2xl text-lg md:text-xl text-muted leading-relaxed mb-10">
+            <p
+              className="mx-auto max-w-2xl leading-relaxed mb-10"
+              style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: '#94a3b8' }}
+            >
               We design and deploy intelligent automation systems that remove manual admin,
               reduce operational costs, and allow your business to scale without increasing
               headcount.
             </p>
           </AnimatedSection>
 
+          {/* CTAs */}
           <AnimatedSection delay={3}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button to="/contact" variant="primary" size="lg">
+              <Button to="/contact" variant="primary" size="lg" className="btn-shimmer">
                 Book a Free AI Consultation
               </Button>
               <Button to="/solutions" variant="outline" size="lg">
-                View Solutions
+                View Solutions →
               </Button>
             </div>
           </AnimatedSection>
+
+          {/* Live counter */}
+          <AnimatedSection delay={4}>
+            <div className="mt-14 flex justify-center">
+              <LiveCounter />
+            </div>
+          </AnimatedSection>
         </div>
+
+        {/* Bottom fade */}
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-32"
+          style={{
+            background: 'linear-gradient(transparent, #020617)',
+          }}
+        />
       </section>
 
-      {/* ── Problems ── */}
+      {/* ── Problems (interactive) ── */}
       <section className="section section--alt">
         <div className="container">
           <AnimatedSection>
             <SectionHeading
               label="The Problem"
-              title={`Why businesses are <span class="text-accent">losing time</span> every day`}
-              subtitle="These are the operational bottlenecks we see across every industry — and every one of them can be solved with the right automation."
+              title={`Most growing businesses struggle with:`}
+              subtitle="Hover each row to reveal the AI solution — every problem below has been solved for businesses just like yours."
               center
             />
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {problems.map((p, i) => (
-              <AnimatedSection key={p.title} delay={(((i % 5) + 1) as 1 | 2 | 3 | 4 | 5)}>
-                <GlassCard className="p-8 h-full">
-                  <h3 className="text-lg font-bold text-white mb-3">{p.title}</h3>
-                  <p className="text-muted text-sm leading-relaxed">{p.body}</p>
-                </GlassCard>
-              </AnimatedSection>
-            ))}
-          </div>
+          <AnimatedSection delay={1}>
+            <div
+              style={{
+                maxWidth: 760,
+                margin: '0 auto',
+                borderTop: '1px solid rgba(255,255,255,0.06)',
+              }}
+            >
+              {problemRows.map((row, i) => (
+                <ProblemRow
+                  key={i}
+                  index={i}
+                  problem={row.problem}
+                  solution={row.solution}
+                />
+              ))}
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={2}>
+            <p
+              className="text-center mt-10"
+              style={{ color: '#94a3b8', fontSize: 14 }}
+            >
+              Our AI systems automate these processes so your team can focus on higher-value work.
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -202,25 +283,126 @@ export default function HomePage() {
             />
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {services.map((s, i) => (
-              <AnimatedSection key={s.title} delay={(((i % 5) + 1) as 1 | 2 | 3 | 4 | 5)}>
-                <GlassCard className="p-8 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold uppercase tracking-widest text-accent border border-accent-border rounded-full px-3 py-1 mb-4 self-start">
-                    {s.tag}
-                  </span>
-                  <h3 className="text-2xl font-bold text-white mb-2">{s.title}</h3>
-                  <p className="text-accent text-sm font-medium mb-3">{s.tagline}</p>
-                  <p className="text-muted text-sm leading-relaxed mb-6">{s.description}</p>
-                  <ul className="mt-auto space-y-2">
-                    {s.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-2 text-sm text-muted">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
+              <AnimatedSection key={s.title} delay={(((i % 3) + 1) as 1 | 2 | 3)}>
+                <div
+                  className="h-full flex flex-col relative"
+                  style={{
+                    background: s.featured
+                      ? 'rgba(125,211,252,0.06)'
+                      : 'rgba(255,255,255,0.03)',
+                    border: s.featured
+                      ? '1px solid rgba(125,211,252,0.35)'
+                      : '1px solid rgba(255,255,255,0.08)',
+                    borderRadius: 20,
+                    padding: 32,
+                    transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+                  }}
+                  onMouseEnter={e => {
+                    const el = e.currentTarget as HTMLDivElement
+                    el.style.transform = 'translateY(-6px)'
+                    el.style.boxShadow = '0 12px 40px rgba(125,211,252,0.12)'
+                  }}
+                  onMouseLeave={e => {
+                    const el = e.currentTarget as HTMLDivElement
+                    el.style.transform = 'translateY(0)'
+                    el.style.boxShadow = 'none'
+                  }}
+                >
+                  {s.featured && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: -14,
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                      }}
+                    >
+                      <span
+                        style={{
+                          display: 'inline-block',
+                          background: '#7dd3fc',
+                          color: '#020617',
+                          fontSize: 11,
+                          fontWeight: 800,
+                          letterSpacing: '0.1em',
+                          textTransform: 'uppercase',
+                          padding: '4px 14px',
+                          borderRadius: 999,
+                          animation: 'pulse-glow 2.5s ease-in-out infinite',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {s.badge}
+                      </span>
+                    </div>
+                  )}
+
+                  {s.featured && <div style={{ marginBottom: 8 }} />}
+
+                  <h3 style={{ fontSize: 22, fontWeight: 800, color: '#ffffff', marginBottom: 6 }}>
+                    {s.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: '#7dd3fc',
+                      marginBottom: 12,
+                    }}
+                  >
+                    {s.tagline}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: 13,
+                      lineHeight: 1.75,
+                      color: '#94a3b8',
+                      marginBottom: 20,
+                    }}
+                  >
+                    {s.description}
+                  </p>
+
+                  <ul style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                    {s.bullets.map(b => (
+                      <li
+                        key={b}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: 10,
+                          fontSize: 13,
+                          color: '#94a3b8',
+                          lineHeight: 1.6,
+                        }}
+                      >
+                        <span
+                          style={{
+                            flexShrink: 0,
+                            marginTop: 6,
+                            width: 6,
+                            height: 6,
+                            borderRadius: '50%',
+                            background: '#7dd3fc',
+                          }}
+                        />
                         {b}
                       </li>
                     ))}
                   </ul>
-                </GlassCard>
+
+                  <div style={{ marginTop: 24 }}>
+                    <Button
+                      to="/services"
+                      variant={s.featured ? 'primary' : 'outline'}
+                      className={`w-full justify-center${s.featured ? ' btn-shimmer' : ''}`}
+                    >
+                      Learn More →
+                    </Button>
+                  </div>
+                </div>
               </AnimatedSection>
             ))}
           </div>
@@ -234,15 +416,43 @@ export default function HomePage() {
             <SectionHeading
               label="Use Cases"
               title={`Built for <span class="text-accent">every industry</span>`}
-              subtitle="Our automation systems are already helping businesses across a wide range of sectors remove manual work and scale smarter."
+              subtitle="Our automation systems help businesses across all sectors remove manual work and scale smarter."
               center
             />
           </AnimatedSection>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {useCases.map((uc, i) => (
               <AnimatedSection key={uc} delay={(((i % 5) + 1) as 1 | 2 | 3 | 4 | 5)}>
-                <div className="glass-card px-5 py-4 text-center text-sm font-medium text-white hover:text-accent transition-colors">
+                <div
+                  style={{
+                    padding: '14px 20px',
+                    borderRadius: 14,
+                    textAlign: 'center',
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: '#e2e8f0',
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    backdropFilter: 'blur(8px)',
+                    transition: 'all 0.22s ease',
+                    cursor: 'default',
+                  }}
+                  onMouseEnter={e => {
+                    const el = e.currentTarget as HTMLDivElement
+                    el.style.color = '#7dd3fc'
+                    el.style.borderColor = 'rgba(125,211,252,0.3)'
+                    el.style.background = 'rgba(125,211,252,0.05)'
+                    el.style.transform = 'translateY(-2px)'
+                  }}
+                  onMouseLeave={e => {
+                    const el = e.currentTarget as HTMLDivElement
+                    el.style.color = '#e2e8f0'
+                    el.style.borderColor = 'rgba(255,255,255,0.08)'
+                    el.style.background = 'rgba(255,255,255,0.03)'
+                    el.style.transform = 'translateY(0)'
+                  }}
+                >
                   {uc}
                 </div>
               </AnimatedSection>
@@ -251,33 +461,33 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── How It Works ── */}
+      {/* ── How It Works (scroll-driven timeline) ── */}
       <section className="section">
         <div className="container">
           <AnimatedSection>
             <SectionHeading
               label="How It Works"
               title={`From first call to <span class="text-accent">live system</span> in weeks`}
-              subtitle="Our process is designed to be clear, efficient, and low-friction — so you can start seeing results as fast as possible."
+              subtitle="Our process is clear, low-friction, and built for speed — so you see results as fast as possible."
               center
             />
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+          <div className="max-w-xl mx-auto mt-2">
             {steps.map((s, i) => (
-              <AnimatedSection key={s.num} delay={(((i % 5) + 1) as 1 | 2 | 3 | 4 | 5)}>
-                <GlassCard className="p-8 h-full">
-                  <p className="text-4xl font-extrabold text-accent/30 mb-4 leading-none">{s.num}</p>
-                  <h3 className="text-lg font-bold text-white mb-3">{s.title}</h3>
-                  <p className="text-muted text-sm leading-relaxed">{s.body}</p>
-                </GlassCard>
-              </AnimatedSection>
+              <StepItem
+                key={s.num}
+                num={s.num}
+                title={s.title}
+                body={s.body}
+                isLast={i === steps.length - 1}
+              />
             ))}
           </div>
 
           <AnimatedSection>
-            <div className="text-center">
-              <Button to="/contact" variant="primary" size="lg">
+            <div className="text-center mt-4">
+              <Button to="/contact" variant="primary" size="lg" className="btn-shimmer">
                 Book a Free AI Consultation
               </Button>
             </div>

@@ -1,3 +1,5 @@
+'use client'
+
 interface GlassCardProps {
   children: React.ReactNode
   className?: string

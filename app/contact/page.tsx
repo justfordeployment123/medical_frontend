@@ -1,9 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import GlassCard from '@/components/ui/GlassCard'
 import AnimatedSection from '@/components/ui/AnimatedSection'
-import Button from '@/components/ui/Button'
 import Link from 'next/link'
 
 interface FormState {
@@ -28,37 +26,111 @@ const defaultForm: FormState = {
   solution: '',
 }
 
+function Field({
+  label,
+  name,
+  type = 'text',
+  value,
+  onChange,
+  placeholder = '',
+  required = false,
+}: {
+  label: string
+  name: keyof FormState
+  type?: string
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  placeholder?: string
+  required?: boolean
+}) {
+  return (
+    <div className={`float-field${value ? ' has-value' : ''}`}>
+      <input
+        type={type}
+        name={name}
+        required={required}
+        value={value}
+        onChange={onChange}
+        placeholder=" "
+        autoComplete="off"
+      />
+      <label>
+        {label}
+        {required && (
+          <span style={{ color: '#7dd3fc', marginLeft: 2 }}>*</span>
+        )}
+      </label>
+    </div>
+  )
+}
+
 export default function ContactPage() {
   const [form, setForm] = useState<FormState>(defaultForm)
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setSubmitted(true)
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      setSubmitted(true)
+    }, 1200)
   }
+
+  const callPoints = [
+    'Review your current workflows and identify bottlenecks',
+    'Identify automation opportunities specific to your business',
+    'Suggest potential AI solutions tailored to your goals',
+  ]
 
   return (
     <>
       {/* ── Page Hero ── */}
-      <section className="page-hero bg-secondary border-b border-glass-border">
-        <div className="container">
+      <section
+        style={{
+          paddingTop: 'calc(72px + 5rem)',
+          paddingBottom: '5rem',
+          background: '#0b1120',
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        <div className="container relative">
           <AnimatedSection>
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent mb-4">
-              <span className="dot-blink" />
+            <p
+              className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest mb-4"
+              style={{ color: '#7dd3fc' }}
+            >
+              <span
+                className="dot-blink"
+                style={{
+                  display: 'inline-block',
+                  width: 6,
+                  height: 6,
+                  borderRadius: '50%',
+                  background: '#7dd3fc',
+                }}
+              />
               Free Consultation
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight max-w-3xl mb-5">
-              Book your free <span className="text-accent">AI consultation.</span>
+            <h1
+              className="font-extrabold text-white leading-tight max-w-3xl mb-5"
+              style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
+            >
+              Book your free 30-minute{' '}
+              <span style={{ color: '#7dd3fc' }}>strategy consultation.</span>
             </h1>
-            <p className="text-lg text-muted leading-relaxed max-w-2xl">
-              Tell us about your business and we will identify the highest-impact automation
-              opportunities for your team.
+            <p style={{ fontSize: 18, color: '#94a3b8', lineHeight: 1.75, maxWidth: 580 }}>
+              Discover how AI automation can transform your business. No obligation, just
+              practical insights.
             </p>
           </AnimatedSection>
         </div>
@@ -67,214 +139,359 @@ export default function ContactPage() {
       {/* ── Two-col Layout ── */}
       <section className="section">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: 48,
+              alignItems: 'start',
+            }}
+          >
             {/* Left column */}
             <AnimatedSection delay={1}>
               <div>
-                <h2 className="text-2xl font-bold text-white mb-6">In this call we will:</h2>
-                <ul className="space-y-4 mb-10">
-                  {[
-                    'Review your current workflows and identify bottlenecks',
-                    'Identify automation opportunities specific to your business',
-                    'Suggest potential AI solutions tailored to your goals',
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-muted">
-                      <span className="flex-shrink-0 mt-1 h-5 w-5 rounded-full bg-accent/10 border border-accent-border flex items-center justify-center">
-                        <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                <h2 style={{ fontSize: 22, fontWeight: 700, color: '#ffffff', marginBottom: 24 }}>
+                  In this call we will:
+                </h2>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 36 }}>
+                  {callPoints.map(point => (
+                    <li
+                      key={point}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: 14,
+                        fontSize: 14,
+                        color: '#94a3b8',
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      <span
+                        style={{
+                          flexShrink: 0,
+                          marginTop: 2,
+                          width: 22,
+                          height: 22,
+                          borderRadius: '50%',
+                          background: 'rgba(125,211,252,0.1)',
+                          border: '1px solid rgba(125,211,252,0.3)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <span
+                          style={{
+                            width: 6,
+                            height: 6,
+                            borderRadius: '50%',
+                            background: '#7dd3fc',
+                          }}
+                        />
                       </span>
-                      {item}
+                      {point}
                     </li>
                   ))}
                 </ul>
 
-                <GlassCard className="p-8">
-                  <h3 className="text-xl font-bold text-white mb-2">Book Directly</h3>
-                  <p className="text-muted text-sm mb-6">
+                {/* Direct booking card */}
+                <div
+                  style={{
+                    padding: '28px 28px',
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    borderRadius: 20,
+                    backdropFilter: 'blur(12px)',
+                  }}
+                >
+                  <h3 style={{ fontSize: 18, fontWeight: 700, color: '#ffffff', marginBottom: 8 }}>
+                    Book Directly
+                  </h3>
+                  <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 20, lineHeight: 1.7 }}>
                     Prefer to skip the form? Book a time directly in our calendar.
                   </p>
-                  <Button href="#" variant="outline">
-                    Open Calendly →
-                  </Button>
-                </GlassCard>
+                  <a
+                    href="https://calendly.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      padding: '10px 20px',
+                      borderRadius: 10,
+                      border: '1px solid rgba(125,211,252,0.3)',
+                      color: '#7dd3fc',
+                      fontSize: 13,
+                      fontWeight: 600,
+                      textDecoration: 'none',
+                      transition: 'all 0.2s ease',
+                    }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget as HTMLAnchorElement
+                      el.style.background = 'rgba(125,211,252,0.08)'
+                      el.style.borderColor = 'rgba(125,211,252,0.5)'
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget as HTMLAnchorElement
+                      el.style.background = 'transparent'
+                      el.style.borderColor = 'rgba(125,211,252,0.3)'
+                    }}
+                  >
+                    Open Calendar →
+                  </a>
+                </div>
+
+                {/* Contact info */}
+                <div style={{ marginTop: 24 }}>
+                  <p style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>Or email us directly:</p>
+                  <a
+                    href="mailto:contact@impackta.online"
+                    style={{
+                      fontSize: 14,
+                      fontWeight: 600,
+                      color: '#7dd3fc',
+                      textDecoration: 'none',
+                      transition: 'color 0.2s',
+                    }}
+                    onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.color = '#bae6fd')}
+                    onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.color = '#7dd3fc')}
+                  >
+                    contact@impackta.online
+                  </a>
+                </div>
               </div>
             </AnimatedSection>
 
             {/* Right column — Form */}
             <AnimatedSection delay={2}>
-              <GlassCard className="p-8">
+              <div
+                style={{
+                  padding: '36px 32px',
+                  background: 'rgba(11,17,32,0.85)',
+                  border: '1px solid rgba(255,255,255,0.09)',
+                  borderRadius: 24,
+                  backdropFilter: 'blur(16px)',
+                }}
+              >
                 {submitted ? (
-                  <div className="text-center py-12">
-                    <div className="h-14 w-14 rounded-full bg-accent/10 border border-accent-border flex items-center justify-center mx-auto mb-6">
-                      <span className="text-2xl text-accent">✓</span>
+                  <div style={{ textAlign: 'center', padding: '48px 16px' }}>
+                    <div
+                      style={{
+                        width: 60,
+                        height: 60,
+                        borderRadius: '50%',
+                        background: 'rgba(125,211,252,0.1)',
+                        border: '2px solid rgba(125,211,252,0.4)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        margin: '0 auto 20px',
+                        fontSize: 24,
+                        color: '#7dd3fc',
+                        animation: 'pulse-glow 2.5s ease-in-out infinite',
+                      }}
+                    >
+                      ✓
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-3">
+                    <h3 style={{ fontSize: 24, fontWeight: 800, color: '#ffffff', marginBottom: 10 }}>
                       Thank you — we are on it!
                     </h3>
-                    <p className="text-muted leading-relaxed">
-                      Your submission has been received. A member of the IMPACKTA AI team will be
-                      in touch within one business day to confirm your consultation.
+                    <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, maxWidth: 340, margin: '0 auto' }}>
+                      Your submission has been received. A member of the IMPACKTA AI team will be in
+                      touch within one business day to confirm your consultation.
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <h3 className="text-xl font-bold text-white mb-1">Book My Free Consultation</h3>
-                    <p className="text-muted text-sm mb-4">
+                  <form onSubmit={handleSubmit}>
+                    <h3 style={{ fontSize: 20, fontWeight: 800, color: '#ffffff', marginBottom: 6 }}>
+                      Book My Free Consultation
+                    </h3>
+                    <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 28, lineHeight: 1.6 }}>
                       Fill in the form and we will reach out to schedule your call.
                     </p>
 
-                    {/* Row 1 */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-1.5">
-                          First Name <span className="text-accent">*</span>
-                        </label>
-                        <input
-                          type="text"
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                      {/* Row 1 */}
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                        <Field
+                          label="First Name"
                           name="firstName"
-                          required
                           value={form.firstName}
                           onChange={handleChange}
-                          className="w-full bg-glass-bg border border-glass-border rounded-lg px-4 py-2.5 text-sm text-white placeholder-muted focus:outline-none focus:border-accent-border transition-colors"
-                          placeholder="Jane"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-1.5">
-                          Last Name <span className="text-accent">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          name="lastName"
                           required
+                        />
+                        <Field
+                          label="Last Name"
+                          name="lastName"
                           value={form.lastName}
                           onChange={handleChange}
-                          className="w-full bg-glass-bg border border-glass-border rounded-lg px-4 py-2.5 text-sm text-white placeholder-muted focus:outline-none focus:border-accent-border transition-colors"
-                          placeholder="Smith"
+                          required
                         />
                       </div>
-                    </div>
 
-                    {/* Row 2 */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-1.5">
-                          Email <span className="text-accent">*</span>
-                        </label>
-                        <input
-                          type="email"
+                      {/* Row 2 */}
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                        <Field
+                          label="Email"
                           name="email"
-                          required
+                          type="email"
                           value={form.email}
                           onChange={handleChange}
-                          className="w-full bg-glass-bg border border-glass-border rounded-lg px-4 py-2.5 text-sm text-white placeholder-muted focus:outline-none focus:border-accent-border transition-colors"
-                          placeholder="jane@company.com"
+                          required
                         />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-1.5">
-                          Phone
-                        </label>
-                        <input
-                          type="tel"
+                        <Field
+                          label="Phone"
                           name="phone"
+                          type="tel"
                           value={form.phone}
                           onChange={handleChange}
-                          className="w-full bg-glass-bg border border-glass-border rounded-lg px-4 py-2.5 text-sm text-white placeholder-muted focus:outline-none focus:border-accent-border transition-colors"
-                          placeholder="+44 7700 000000"
                         />
                       </div>
-                    </div>
 
-                    {/* Row 3 */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-1.5">
-                          Company Name
-                        </label>
-                        <input
-                          type="text"
+                      {/* Row 3 */}
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                        <Field
+                          label="Company Name"
                           name="company"
                           value={form.company}
                           onChange={handleChange}
-                          className="w-full bg-glass-bg border border-glass-border rounded-lg px-4 py-2.5 text-sm text-white placeholder-muted focus:outline-none focus:border-accent-border transition-colors"
-                          placeholder="Acme Ltd"
                         />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-1.5">
-                          Type of Business
-                        </label>
-                        <input
-                          type="text"
+                        <Field
+                          label="Type of Business"
                           name="businessType"
                           value={form.businessType}
                           onChange={handleChange}
-                          className="w-full bg-glass-bg border border-glass-border rounded-lg px-4 py-2.5 text-sm text-white placeholder-muted focus:outline-none focus:border-accent-border transition-colors"
-                          placeholder="e.g. Healthcare, Legal..."
                         />
                       </div>
-                    </div>
 
-                    {/* Biggest Challenge */}
-                    <div>
-                      <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-1.5">
-                        Biggest Challenge
-                      </label>
-                      <textarea
-                        name="challenge"
-                        rows={4}
-                        value={form.challenge}
-                        onChange={handleChange}
-                        className="w-full bg-glass-bg border border-glass-border rounded-lg px-4 py-2.5 text-sm text-white placeholder-muted focus:outline-none focus:border-accent-border transition-colors resize-none"
-                        placeholder="Describe the biggest operational challenge your team faces..."
-                      />
-                    </div>
+                      {/* Challenge textarea */}
+                      <div className={`float-field${form.challenge ? ' has-value' : ''}`}>
+                        <textarea
+                          name="challenge"
+                          rows={4}
+                          value={form.challenge}
+                          onChange={handleChange}
+                          placeholder=" "
+                          style={{ resize: 'none' }}
+                        />
+                        <label>Biggest Challenge</label>
+                      </div>
 
-                    {/* Solution Select */}
-                    <div>
-                      <label className="block text-xs font-semibold text-muted uppercase tracking-wider mb-1.5">
-                        What Solution Interests You
-                      </label>
-                      <select
-                        name="solution"
-                        value={form.solution}
-                        onChange={handleChange}
-                        className="w-full bg-glass-bg border border-glass-border rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accent-border transition-colors appearance-none"
+                      {/* Solution select */}
+                      <div
+                        style={{ position: 'relative' }}
+                        className={`float-field${form.solution ? ' has-value' : ''}`}
                       >
-                        <option value="" className="bg-secondary">Select an option...</option>
-                        <option value="receptionist" className="bg-secondary">AI Receptionist / Virtual Front Desk</option>
-                        <option value="admin" className="bg-secondary">AI Admin Assistant</option>
-                        <option value="sales" className="bg-secondary">AI Sales Support Agent</option>
-                        <option value="backend" className="bg-secondary">Backend Operations Automation</option>
-                        <option value="systems" className="bg-secondary">AI Systems</option>
-                        <option value="custom" className="bg-secondary">Custom AI Transformation</option>
-                        <option value="unsure" className="bg-secondary">Not sure – need advice</option>
-                      </select>
+                        <select
+                          name="solution"
+                          value={form.solution}
+                          onChange={handleChange}
+                        >
+                          <option value="" style={{ background: '#0b1120' }}> </option>
+                          <option value="receptionist" style={{ background: '#0b1120' }}>AI Receptionist / Virtual Front Desk</option>
+                          <option value="admin" style={{ background: '#0b1120' }}>AI Admin Assistant</option>
+                          <option value="sales" style={{ background: '#0b1120' }}>AI Sales Support Agent</option>
+                          <option value="backend" style={{ background: '#0b1120' }}>Backend Operations Automation</option>
+                          <option value="systems" style={{ background: '#0b1120' }}>AI Systems</option>
+                          <option value="custom" style={{ background: '#0b1120' }}>Custom AI Transformation</option>
+                          <option value="unsure" style={{ background: '#0b1120' }}>Not sure — need advice</option>
+                        </select>
+                        <label>What Solution Interests You</label>
+                        {/* Custom arrow */}
+                        <span
+                          style={{
+                            position: 'absolute',
+                            right: 14,
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            pointerEvents: 'none',
+                            color: '#64748b',
+                            fontSize: 12,
+                          }}
+                        >
+                          ▾
+                        </span>
+                      </div>
+
+                      {/* Privacy */}
+                      <p style={{ fontSize: 11, color: '#64748b', lineHeight: 1.7 }}>
+                        By submitting you agree to our{' '}
+                        <Link href="/privacy" style={{ color: '#7dd3fc', textDecoration: 'none' }}>
+                          Privacy Policy
+                        </Link>
+                        . We never share your data with third parties.
+                      </p>
+
+                      {/* Submit */}
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="btn-shimmer"
+                        style={{
+                          width: '100%',
+                          padding: '15px 24px',
+                          borderRadius: 12,
+                          fontWeight: 700,
+                          fontSize: 15,
+                          background: loading ? 'rgba(125,211,252,0.5)' : '#7dd3fc',
+                          color: '#020617',
+                          border: 'none',
+                          cursor: loading ? 'wait' : 'pointer',
+                          transition: 'all 0.2s ease',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: 8,
+                        }}
+                        onMouseEnter={e => {
+                          if (!loading) {
+                            const el = e.currentTarget as HTMLButtonElement
+                            el.style.background = '#bae6fd'
+                            el.style.boxShadow = '0 0 28px rgba(125,211,252,0.4)'
+                          }
+                        }}
+                        onMouseLeave={e => {
+                          if (!loading) {
+                            const el = e.currentTarget as HTMLButtonElement
+                            el.style.background = '#7dd3fc'
+                            el.style.boxShadow = 'none'
+                          }
+                        }}
+                      >
+                        {loading ? (
+                          <>
+                            <span
+                              style={{
+                                display: 'inline-block',
+                                width: 16,
+                                height: 16,
+                                border: '2px solid rgba(2,6,23,0.3)',
+                                borderTopColor: '#020617',
+                                borderRadius: '50%',
+                                animation: 'spin 0.7s linear infinite',
+                              }}
+                            />
+                            Sending...
+                          </>
+                        ) : (
+                          'Book My Free Consultation →'
+                        )}
+                      </button>
                     </div>
-
-                    {/* Privacy */}
-                    <p className="text-xs text-muted">
-                      By submitting this form you agree to our{' '}
-                      <Link href="/privacy" className="text-accent hover:underline">
-                        Privacy Policy
-                      </Link>
-                      . We will never share your data with third parties without your consent.
-                    </p>
-
-                    <button
-                      type="submit"
-                      className="w-full inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-200 px-6 py-3 text-sm bg-accent text-primary border border-accent hover:bg-sky-200 hover:shadow-[0_0_24px_rgba(125,211,252,0.4)] hover:-translate-y-px cursor-pointer"
-                    >
-                      Book My Free Consultation
-                    </button>
                   </form>
                 )}
-              </GlassCard>
+              </div>
             </AnimatedSection>
           </div>
         </div>
       </section>
+
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </>
   )
 }

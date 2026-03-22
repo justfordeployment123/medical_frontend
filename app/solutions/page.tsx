@@ -1,5 +1,5 @@
-import GlassCard from '@/components/ui/GlassCard'
-import SectionHeading from '@/components/ui/SectionHeading'
+'use client'
+
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import Button from '@/components/ui/Button'
 
@@ -20,6 +20,7 @@ const solutions = [
       'Faster response times',
       'Reduced front desk workload',
     ],
+    accentColor: 'rgba(125,211,252,0.08)',
   },
   {
     number: '02',
@@ -37,6 +38,7 @@ const solutions = [
       'Reduces operational errors',
       'Improves internal communication',
     ],
+    accentColor: 'rgba(56,189,248,0.06)',
   },
   {
     number: '03',
@@ -54,6 +56,7 @@ const solutions = [
       'Improved close rates',
       'Reduced sales team workload',
     ],
+    accentColor: 'rgba(125,211,252,0.08)',
   },
   {
     number: '04',
@@ -71,6 +74,7 @@ const solutions = [
       'Faster execution across teams',
       'Improved visibility for management',
     ],
+    accentColor: 'rgba(56,189,248,0.06)',
   },
 ]
 
@@ -78,56 +82,186 @@ export default function SolutionsPage() {
   return (
     <>
       {/* ── Page Hero ── */}
-      <section className="page-hero bg-secondary border-b border-glass-border">
-        <div className="container">
+      <section
+        style={{
+          paddingTop: 'calc(72px + 5rem)',
+          paddingBottom: '5rem',
+          background: '#0b1120',
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        <div className="container relative">
           <AnimatedSection>
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent mb-4">
-              <span className="dot-blink" />
+            <p
+              className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest mb-4"
+              style={{ color: '#7dd3fc' }}
+            >
+              <span
+                className="dot-blink"
+                style={{
+                  display: 'inline-block',
+                  width: 6,
+                  height: 6,
+                  borderRadius: '50%',
+                  background: '#7dd3fc',
+                }}
+              />
               Solutions
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight max-w-3xl mb-5">
-              AI solutions built for <span className="text-accent">real business problems.</span>
+            <h1
+              className="font-extrabold text-white leading-tight max-w-3xl mb-5"
+              style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
+            >
+              AI solutions built for{' '}
+              <span style={{ color: '#7dd3fc' }}>real business problems.</span>
             </h1>
-            <p className="text-lg text-muted leading-relaxed max-w-2xl">
-              Each solution is designed around a specific operational challenge. Explore how
-              IMPACKTA AI removes friction, reduces workload, and improves performance across your
-              business.
+            <p style={{ fontSize: 18, color: '#94a3b8', lineHeight: 1.75, maxWidth: 600 }}>
+              AI should solve operational problems, not create more complexity. We build automation
+              systems that remove the most time-consuming tasks from your business.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
       {/* ── Solution Cards ── */}
-      <section className="section">
+      <section className="section section--alt">
         <div className="container">
-          <div className="space-y-8">
+          <AnimatedSection>
+            <div style={{ textAlign: 'center', marginBottom: 48 }}>
+              <p
+                style={{
+                  fontSize: 11,
+                  fontWeight: 700,
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color: '#7dd3fc',
+                  marginBottom: 10,
+                }}
+              >
+                <span
+                  className="dot-blink"
+                  style={{
+                    display: 'inline-block',
+                    width: 6,
+                    height: 6,
+                    borderRadius: '50%',
+                    background: '#7dd3fc',
+                    marginRight: 8,
+                    verticalAlign: 'middle',
+                  }}
+                />
+                Our Products
+              </p>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', fontWeight: 800, color: '#ffffff' }}>
+                Four core AI products
+              </h2>
+            </div>
+          </AnimatedSection>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             {solutions.map((sol, i) => (
               <AnimatedSection key={sol.number} delay={(((i % 4) + 1) as 1 | 2 | 3 | 4)}>
-                <GlassCard className="p-8">
-                  <div className="flex items-start gap-4 mb-6">
-                    <span className="text-3xl font-extrabold text-accent/30 leading-none flex-shrink-0">
+                <div
+                  style={{
+                    background: sol.accentColor,
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    borderRadius: 20,
+                    padding: '32px 36px',
+                    backdropFilter: 'blur(12px)',
+                    transition: 'transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease',
+                  }}
+                  onMouseEnter={e => {
+                    const el = e.currentTarget as HTMLDivElement
+                    el.style.transform = 'translateY(-3px)'
+                    el.style.boxShadow = '0 8px 36px rgba(125,211,252,0.1)'
+                    el.style.borderColor = 'rgba(125,211,252,0.2)'
+                  }}
+                  onMouseLeave={e => {
+                    const el = e.currentTarget as HTMLDivElement
+                    el.style.transform = 'translateY(0)'
+                    el.style.boxShadow = 'none'
+                    el.style.borderColor = 'rgba(255,255,255,0.08)'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16, marginBottom: 24 }}>
+                    <span
+                      style={{
+                        fontSize: 'clamp(2rem, 4vw, 3rem)',
+                        fontWeight: 900,
+                        color: 'rgba(125,211,252,0.25)',
+                        lineHeight: 1,
+                        flexShrink: 0,
+                        fontFamily: 'ui-monospace, monospace',
+                      }}
+                    >
                       {sol.number}
                     </span>
                     <div>
-                      <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                      <h2
+                        style={{
+                          fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
+                          fontWeight: 800,
+                          color: '#ffffff',
+                          marginBottom: 6,
+                        }}
+                      >
                         {sol.title}
                       </h2>
-                      <p className="text-accent font-medium">{sol.subtitle}</p>
+                      <p style={{ fontSize: 14, fontWeight: 600, color: '#7dd3fc' }}>{sol.subtitle}</p>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                      gap: 32,
+                    }}
+                  >
                     {/* Capabilities */}
                     <div>
-                      <h3 className="text-xs font-semibold uppercase tracking-widest text-accent mb-4 flex items-center gap-2">
-                        <span className="h-px flex-1 bg-accent-border" />
+                      <h3
+                        style={{
+                          fontSize: 10,
+                          fontWeight: 700,
+                          letterSpacing: '0.12em',
+                          textTransform: 'uppercase',
+                          color: '#7dd3fc',
+                          marginBottom: 14,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 8,
+                        }}
+                      >
+                        <span style={{ flex: 1, height: 1, background: 'rgba(125,211,252,0.2)' }} />
                         Capabilities
-                        <span className="h-px flex-1 bg-accent-border" />
+                        <span style={{ flex: 1, height: 1, background: 'rgba(125,211,252,0.2)' }} />
                       </h3>
-                      <ul className="space-y-3">
-                        {sol.capabilities.map((cap) => (
-                          <li key={cap} className="flex items-start gap-3 text-sm text-muted">
-                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
+                      <ul style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                        {sol.capabilities.map(cap => (
+                          <li
+                            key={cap}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'flex-start',
+                              gap: 10,
+                              fontSize: 13,
+                              color: '#94a3b8',
+                              lineHeight: 1.6,
+                            }}
+                          >
+                            <span
+                              style={{
+                                flexShrink: 0,
+                                marginTop: 5,
+                                width: 5,
+                                height: 5,
+                                borderRadius: '50%',
+                                background: '#7dd3fc',
+                              }}
+                            />
                             {cap}
                           </li>
                         ))}
@@ -136,33 +270,65 @@ export default function SolutionsPage() {
 
                     {/* Impact */}
                     <div>
-                      <h3 className="text-xs font-semibold uppercase tracking-widest text-accent mb-4 flex items-center gap-2">
-                        <span className="h-px flex-1 bg-accent-border" />
+                      <h3
+                        style={{
+                          fontSize: 10,
+                          fontWeight: 700,
+                          letterSpacing: '0.12em',
+                          textTransform: 'uppercase',
+                          color: '#7dd3fc',
+                          marginBottom: 14,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 8,
+                        }}
+                      >
+                        <span style={{ flex: 1, height: 1, background: 'rgba(125,211,252,0.2)' }} />
                         Impact
-                        <span className="h-px flex-1 bg-accent-border" />
+                        <span style={{ flex: 1, height: 1, background: 'rgba(125,211,252,0.2)' }} />
                       </h3>
-                      <ul className="space-y-3">
-                        {sol.impact.map((imp) => (
-                          <li key={imp} className="flex items-start gap-3 text-sm font-medium text-white">
-                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
+                      <ul style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                        {sol.impact.map(imp => (
+                          <li
+                            key={imp}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'flex-start',
+                              gap: 10,
+                              fontSize: 13,
+                              fontWeight: 600,
+                              color: '#ffffff',
+                              lineHeight: 1.6,
+                            }}
+                          >
+                            <span
+                              style={{
+                                flexShrink: 0,
+                                marginTop: 5,
+                                width: 5,
+                                height: 5,
+                                borderRadius: '50%',
+                                background: '#7dd3fc',
+                              }}
+                            />
                             {imp}
                           </li>
                         ))}
                       </ul>
                     </div>
                   </div>
-                </GlassCard>
+                </div>
               </AnimatedSection>
             ))}
           </div>
 
           <AnimatedSection>
-            <div className="text-center mt-14">
-              <p className="text-muted mb-6">
+            <div style={{ textAlign: 'center', marginTop: 56 }}>
+              <p style={{ color: '#94a3b8', marginBottom: 20, fontSize: 15 }}>
                 Not sure which solution is right for you? Book a free consultation and we will
                 identify the highest-impact opportunities for your business.
               </p>
-              <Button to="/contact" variant="primary" size="lg">
+              <Button to="/contact" variant="primary" size="lg" className="btn-shimmer">
                 Book a Free AI Consultation
               </Button>
             </div>

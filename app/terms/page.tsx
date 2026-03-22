@@ -1,3 +1,5 @@
+'use client'
+
 import AnimatedSection from '@/components/ui/AnimatedSection'
 
 export default function TermsPage() {

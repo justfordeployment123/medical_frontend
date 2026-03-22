@@ -57,6 +57,79 @@
     0%, 100% { opacity: 1; }
     50%       { opacity: 0.2; }
   }
+
+  /* Glitch effect */
+  @keyframes glitch {
+    0%   { text-shadow: 2px 0 #ff0040, -2px 0 #00ffea; clip-path: inset(0 0 95% 0); }
+    10%  { text-shadow: -2px 0 #ff0040, 2px 0 #00ffea; clip-path: inset(10% 0 80% 0); }
+    20%  { text-shadow: 2px 2px #ff0040, -2px -2px #00ffea; clip-path: inset(30% 0 60% 0); }
+    30%  { text-shadow: -1px 0 #ff0040, 1px 0 #00ffea; clip-path: inset(60% 0 30% 0); }
+    40%  { text-shadow: none; clip-path: inset(80% 0 5% 0); }
+    60%  { text-shadow: none; clip-path: inset(0 0 0 0); }
+    100% { text-shadow: none; clip-path: inset(0 0 0 0); }
+  }
+
+  /* Shimmer background */
+  @keyframes shimmer-bg {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Marquee scroll */
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Beam traveling dot */
+  @keyframes beam-travel {
+    0%   { stroke-dashoffset: 160; opacity: 0.2; }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { stroke-dashoffset: -160; opacity: 0.2; }
+  }
+
+  /* Pulsating glow ring */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(125,211,252,0.35), 0 0 16px rgba(125,211,252,0.1); }
+    50%       { box-shadow: 0 0 0 10px rgba(125,211,252,0), 0 0 32px rgba(125,211,252,0.15); }
+  }
+
+  /* Orbit glow for beam nodes */
+  @keyframes orbit-glow {
+    0%, 100% { box-shadow: 0 0 6px rgba(125,211,252,0.2); }
+    50%       { box-shadow: 0 0 18px rgba(125,211,252,0.5); }
+  }
+
+  /* Float up/down */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+  }
+
+  /* Shimmer sweep on buttons */
+  @keyframes shimmer-sweep {
+    0%   { transform: translateX(-100%) skewX(-12deg); }
+    100% { transform: translateX(250%) skewX(-12deg); }
+  }
+
+  /* Fade-in slide up (for staggered items) */
+  @keyframes fade-slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Cursor blink */
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* Number count up flash */
+  @keyframes count-flash {
+    from { color: #7dd3fc; }
+    to   { color: inherit; }
+  }
 }
 
 /* =========================================================
@@ -124,6 +197,130 @@
     padding-top: calc(var(--nav-height) + 5rem);
     padding-bottom: 5rem;
   }
+
+  /* Shimmer button overlay */
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  .btn-shimmer:hover::after {
+    animation: shimmer-sweep 0.55s ease forwards;
+  }
+
+  /* ROI range slider */
+  .roi-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  .roi-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #7dd3fc;
+    cursor: pointer;
+    box-shadow: 0 0 0 4px rgba(125,211,252,0.15);
+    transition: box-shadow 0.2s;
+  }
+  .roi-slider::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 0 6px rgba(125,211,252,0.25);
+  }
+  .roi-slider::-webkit-slider-runnable-track {
+    background: linear-gradient(90deg, #7dd3fc var(--slider-pct, 50%), rgba(255,255,255,0.1) var(--slider-pct, 50%));
+    height: 4px;
+    border-radius: 2px;
+  }
+  .roi-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    background: #7dd3fc;
+    cursor: pointer;
+    box-shadow: 0 0 0 4px rgba(125,211,252,0.15);
+  }
+  .roi-slider::-moz-range-track {
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  /* Marquee track */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+
+  /* Floating label */
+  .float-field {
+    position: relative;
+  }
+  .float-field input,
+  .float-field textarea,
+  .float-field select {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 20px 16px 8px;
+    font-size: 14px;
+    color: #ffffff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .float-field input:focus,
+  .float-field textarea:focus,
+  .float-field select:focus {
+    border-color: rgba(125,211,252,0.5);
+    box-shadow: 0 0 0 3px rgba(125,211,252,0.08);
+    border-left: 2px solid #7dd3fc;
+  }
+  .float-field label {
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    font-size: 13px;
+    color: #64748b;
+    pointer-events: none;
+    transition: all 0.18s ease;
+    font-weight: 500;
+  }
+  .float-field input:focus ~ label,
+  .float-field input:not(:placeholder-shown) ~ label,
+  .float-field textarea:focus ~ label,
+  .float-field textarea:not(:placeholder-shown) ~ label,
+  .float-field select:focus ~ label,
+  .float-field.has-value label {
+    top: 6px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7dd3fc;
+    font-weight: 600;
+  }
+
+  /* More reveal delays */
+  .reveal--delay-6 { transition-delay: 0.6s; }
+  .reveal--delay-7 { transition-delay: 0.7s; }
+  .reveal--delay-8 { transition-delay: 0.8s; }
 }
 
 /* =========================================================
