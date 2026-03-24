@@ -1,8 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import Link from 'next/link'
+
+// ← Change this to the client's Calendly link when ready
+const CALENDLY_URL = 'https://calendly.com/memonsumair79'
 
 interface FormState {
   firstName: string
@@ -32,7 +35,6 @@ function Field({
   type = 'text',
   value,
   onChange,
-  placeholder = '',
   required = false,
 }: {
   label: string
@@ -40,7 +42,6 @@ function Field({
   type?: string
   value: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  placeholder?: string
   required?: boolean
 }) {
   return (
@@ -64,10 +65,76 @@ function Field({
   )
 }
 
+declare global {
+  interface Window {
+    Calendly?: {
+      initInlineWidget: (opts: {
+        url: string
+        parentElement: HTMLElement
+        prefill?: {
+          name?: string
+          email?: string
+          customAnswers?: Record<string, string>
+        }
+      }) => void
+    }
+  }
+}
+
 export default function ContactPage() {
   const [form, setForm] = useState<FormState>(defaultForm)
-  const [submitted, setSubmitted] = useState(false)
+  const [showCalendly, setShowCalendly] = useState(false)
   const [loading, setLoading] = useState(false)
+  const calendlyRef = useRef<HTMLDivElement>(null)
+
+  // Load Calendly embed script once
+  useEffect(() => {
+    if (document.getElementById('calendly-script')) return
+    const script = document.createElement('script')
+    script.id = 'calendly-script'
+    script.src = 'https://assets.calendly.com/assets/external/widget.js'
+    script.async = true
+    document.head.appendChild(script)
+
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = 'https://assets.calendly.com/assets/external/widget.css'
+    document.head.appendChild(link)
+  }, [])
+
+  // Init inline widget after showCalendly becomes true
+  useEffect(() => {
+    if (!showCalendly || !calendlyRef.current) return
+
+    const init = () => {
+      if (window.Calendly && calendlyRef.current) {
+        window.Calendly.initInlineWidget({
+          url: CALENDLY_URL,
+          parentElement: calendlyRef.current,
+          prefill: {
+            name: `${form.firstName} ${form.lastName}`.trim(),
+            email: form.email,
+            customAnswers: {
+              a1: form.phone,
+              a2: form.company,
+              a3: form.businessType,
+              a4: form.challenge,
+              a5: form.solution,
+            },
+          },
+        })
+      }
+    }
+
+    // Script might still be loading
+    if (window.Calendly) {
+      init()
+    } else {
+      const script = document.getElementById('calendly-script')
+      script?.addEventListener('load', init)
+      return () => script?.removeEventListener('load', init)
+    }
+  }, [showCalendly]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -80,8 +147,12 @@ export default function ContactPage() {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      setSubmitted(true)
-    }, 1200)
+      setShowCalendly(true)
+      // Scroll to Calendly widget
+      setTimeout(() => {
+        calendlyRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
+    }, 800)
   }
 
   const callPoints = [
@@ -103,7 +174,6 @@ export default function ContactPage() {
           overflow: 'hidden',
         }}
       >
-        {/* Hero background image — professional workspace, full colour */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/hero/contact.png"
@@ -120,7 +190,6 @@ export default function ContactPage() {
             filter: 'brightness(0.72)',
           }}
         />
-        {/* Gradient: dark left for text legibility, photo visible on the right */}
         <div
           style={{
             position: 'absolute',
@@ -246,7 +315,7 @@ export default function ContactPage() {
                     Prefer to skip the form? Book a time directly in our calendar.
                   </p>
                   <a
-                    href="https://calendly.com"
+                    href={CALENDLY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
@@ -326,224 +395,160 @@ export default function ContactPage() {
                   </svg>
                 ))}
 
-              <div
-                style={{
-                  padding: '36px 32px',
-                  background: 'rgba(11,17,32,0.85)',
-                  border: '1px solid rgba(255,255,255,0.09)',
-                  borderRadius: 24,
-                  backdropFilter: 'blur(16px)',
-                }}
-              >
-                {submitted ? (
-                  <div style={{ textAlign: 'center', padding: '48px 16px' }}>
-                    <div
-                      style={{
-                        width: 60,
-                        height: 60,
-                        borderRadius: '50%',
-                        background: 'rgba(125,211,252,0.1)',
-                        border: '2px solid rgba(125,211,252,0.4)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        margin: '0 auto 20px',
-                        fontSize: 24,
-                        color: '#7dd3fc',
-                        animation: 'pulse-glow 2.5s ease-in-out infinite',
-                      }}
-                    >
-                      ✓
-                    </div>
-                    <h3 style={{ fontSize: 24, fontWeight: 800, color: '#ffffff', marginBottom: 10 }}>
-                      Thank you — we are on it!
-                    </h3>
-                    <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, maxWidth: 340, margin: '0 auto' }}>
-                      Your submission has been received. A member of the IMPACKTA AI team will be in
-                      touch within one business day to confirm your consultation.
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit}>
-                    <h3 style={{ fontSize: 20, fontWeight: 800, color: '#ffffff', marginBottom: 6 }}>
-                      Book My Free Consultation
-                    </h3>
-                    <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 28, lineHeight: 1.6 }}>
-                      Fill in the form and we will reach out to schedule your call.
-                    </p>
+                <div
+                  style={{
+                    padding: '36px 32px',
+                    background: 'rgba(11,17,32,0.85)',
+                    border: '1px solid rgba(255,255,255,0.09)',
+                    borderRadius: 24,
+                    backdropFilter: 'blur(16px)',
+                  }}
+                >
+                  {!showCalendly ? (
+                    <form onSubmit={handleSubmit}>
+                      <h3 style={{ fontSize: 20, fontWeight: 800, color: '#ffffff', marginBottom: 6 }}>
+                        Book My Free Consultation
+                      </h3>
+                      <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 28, lineHeight: 1.6 }}>
+                        Fill in the form and we will open the calendar to pick a time.
+                      </p>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                      {/* Row 1 */}
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                        <Field
-                          label="First Name"
-                          name="firstName"
-                          value={form.firstName}
-                          onChange={handleChange}
-                          required
-                        />
-                        <Field
-                          label="Last Name"
-                          name="lastName"
-                          value={form.lastName}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                        {/* Row 1 */}
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                          <Field label="First Name" name="firstName" value={form.firstName} onChange={handleChange} required />
+                          <Field label="Last Name" name="lastName" value={form.lastName} onChange={handleChange} required />
+                        </div>
 
-                      {/* Row 2 */}
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                        <Field
-                          label="Email"
-                          name="email"
-                          type="email"
-                          value={form.email}
-                          onChange={handleChange}
-                          required
-                        />
-                        <Field
-                          label="Phone"
-                          name="phone"
-                          type="tel"
-                          value={form.phone}
-                          onChange={handleChange}
-                        />
-                      </div>
+                        {/* Row 2 */}
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                          <Field label="Email" name="email" type="email" value={form.email} onChange={handleChange} required />
+                          <Field label="Phone" name="phone" type="tel" value={form.phone} onChange={handleChange} />
+                        </div>
 
-                      {/* Row 3 */}
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                        <Field
-                          label="Company Name"
-                          name="company"
-                          value={form.company}
-                          onChange={handleChange}
-                        />
-                        <Field
-                          label="Type of Business"
-                          name="businessType"
-                          value={form.businessType}
-                          onChange={handleChange}
-                        />
-                      </div>
+                        {/* Row 3 */}
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                          <Field label="Company Name" name="company" value={form.company} onChange={handleChange} />
+                          <Field label="Type of Business" name="businessType" value={form.businessType} onChange={handleChange} />
+                        </div>
 
-                      {/* Challenge textarea */}
-                      <div className={`float-field${form.challenge ? ' has-value' : ''}`}>
-                        <textarea
-                          name="challenge"
-                          rows={4}
-                          value={form.challenge}
-                          onChange={handleChange}
-                          placeholder=" "
-                          style={{ resize: 'none' }}
-                        />
-                        <label>Biggest Challenge</label>
-                      </div>
+                        {/* Challenge textarea */}
+                        <div className={`float-field${form.challenge ? ' has-value' : ''}`}>
+                          <textarea
+                            name="challenge"
+                            rows={4}
+                            value={form.challenge}
+                            onChange={handleChange}
+                            placeholder=" "
+                            style={{ resize: 'none' }}
+                          />
+                          <label>Biggest Challenge</label>
+                        </div>
 
-                      {/* Solution select */}
-                      <div
-                        style={{ position: 'relative' }}
-                        className={`float-field${form.solution ? ' has-value' : ''}`}
-                      >
-                        <select
+                        {/* Solution field */}
+                        <Field
+                          label="What Solution Interests You"
                           name="solution"
                           value={form.solution}
                           onChange={handleChange}
-                        >
-                          <option value="" style={{ background: '#0b1120' }}> </option>
-                          <option value="receptionist" style={{ background: '#0b1120' }}>AI Receptionist / Virtual Front Desk</option>
-                          <option value="admin" style={{ background: '#0b1120' }}>AI Admin Assistant</option>
-                          <option value="sales" style={{ background: '#0b1120' }}>AI Sales Support Agent</option>
-                          <option value="backend" style={{ background: '#0b1120' }}>Backend Operations Automation</option>
-                          <option value="systems" style={{ background: '#0b1120' }}>AI Systems</option>
-                          <option value="custom" style={{ background: '#0b1120' }}>Custom AI Transformation</option>
-                          <option value="unsure" style={{ background: '#0b1120' }}>Not sure — need advice</option>
-                        </select>
-                        <label>What Solution Interests You</label>
-                        {/* Custom arrow */}
-                        <span
+                        />
+
+                        {/* Privacy */}
+                        <p style={{ fontSize: 11, color: '#64748b', lineHeight: 1.7 }}>
+                          By submitting you agree to our{' '}
+                          <Link href="/privacy" style={{ color: '#7dd3fc', textDecoration: 'none' }}>
+                            Privacy Policy
+                          </Link>
+                          . We never share your data with third parties.
+                        </p>
+
+                        {/* Submit */}
+                        <button
+                          type="submit"
+                          disabled={loading}
+                          className="btn-shimmer"
                           style={{
-                            position: 'absolute',
-                            right: 14,
-                            top: '50%',
-                            transform: 'translateY(-50%)',
-                            pointerEvents: 'none',
-                            color: '#64748b',
-                            fontSize: 12,
+                            width: '100%',
+                            padding: '15px 24px',
+                            borderRadius: 12,
+                            fontWeight: 700,
+                            fontSize: 15,
+                            background: loading ? 'rgba(125,211,252,0.5)' : '#7dd3fc',
+                            color: '#020617',
+                            border: 'none',
+                            cursor: loading ? 'wait' : 'pointer',
+                            transition: 'all 0.2s ease',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: 8,
+                          }}
+                          onMouseEnter={e => {
+                            if (!loading) {
+                              const el = e.currentTarget as HTMLButtonElement
+                              el.style.background = '#bae6fd'
+                              el.style.boxShadow = '0 0 28px rgba(125,211,252,0.4)'
+                            }
+                          }}
+                          onMouseLeave={e => {
+                            if (!loading) {
+                              const el = e.currentTarget as HTMLButtonElement
+                              el.style.background = '#7dd3fc'
+                              el.style.boxShadow = 'none'
+                            }
                           }}
                         >
-                          ▾
-                        </span>
+                          {loading ? (
+                            <>
+                              <span
+                                style={{
+                                  display: 'inline-block',
+                                  width: 16,
+                                  height: 16,
+                                  border: '2px solid rgba(2,6,23,0.3)',
+                                  borderTopColor: '#020617',
+                                  borderRadius: '50%',
+                                  animation: 'spin 0.7s linear infinite',
+                                }}
+                              />
+                              Loading calendar...
+                            </>
+                          ) : (
+                            'Book My Free Consultation →'
+                          )}
+                        </button>
                       </div>
-
-                      {/* Privacy */}
-                      <p style={{ fontSize: 11, color: '#64748b', lineHeight: 1.7 }}>
-                        By submitting you agree to our{' '}
-                        <Link href="/privacy" style={{ color: '#7dd3fc', textDecoration: 'none' }}>
-                          Privacy Policy
-                        </Link>
-                        . We never share your data with third parties.
-                      </p>
-
-                      {/* Submit */}
-                      <button
-                        type="submit"
-                        disabled={loading}
-                        className="btn-shimmer"
-                        style={{
-                          width: '100%',
-                          padding: '15px 24px',
-                          borderRadius: 12,
-                          fontWeight: 700,
-                          fontSize: 15,
-                          background: loading ? 'rgba(125,211,252,0.5)' : '#7dd3fc',
-                          color: '#020617',
-                          border: 'none',
-                          cursor: loading ? 'wait' : 'pointer',
-                          transition: 'all 0.2s ease',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: 8,
-                        }}
-                        onMouseEnter={e => {
-                          if (!loading) {
-                            const el = e.currentTarget as HTMLButtonElement
-                            el.style.background = '#bae6fd'
-                            el.style.boxShadow = '0 0 28px rgba(125,211,252,0.4)'
-                          }
-                        }}
-                        onMouseLeave={e => {
-                          if (!loading) {
-                            const el = e.currentTarget as HTMLButtonElement
-                            el.style.background = '#7dd3fc'
-                            el.style.boxShadow = 'none'
-                          }
-                        }}
-                      >
-                        {loading ? (
-                          <>
-                            <span
-                              style={{
-                                display: 'inline-block',
-                                width: 16,
-                                height: 16,
-                                border: '2px solid rgba(2,6,23,0.3)',
-                                borderTopColor: '#020617',
-                                borderRadius: '50%',
-                                animation: 'spin 0.7s linear infinite',
-                              }}
-                            />
-                            Sending...
-                          </>
-                        ) : (
-                          'Book My Free Consultation →'
-                        )}
-                      </button>
+                    </form>
+                  ) : (
+                    /* Calendly inline widget */
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+                        <h3 style={{ fontSize: 18, fontWeight: 800, color: '#ffffff', margin: 0 }}>
+                          Pick a time that works for you
+                        </h3>
+                        <button
+                          onClick={() => setShowCalendly(false)}
+                          style={{
+                            background: 'none',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            borderRadius: 8,
+                            color: '#64748b',
+                            fontSize: 12,
+                            padding: '4px 10px',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          ← Back
+                        </button>
+                      </div>
+                      <div
+                        ref={calendlyRef}
+                        style={{ minWidth: 280, height: 630 }}
+                      />
                     </div>
-                  </form>
-                )}
+                  )}
+                </div>
               </div>
-              </div>{/* closes position:relative wrapper */}
             </AnimatedSection>
           </div>
         </div>

@@ -1,15 +1,18 @@
-import { GoogleGenAI } from '@google/genai'
+import OpenAI from 'openai'
 
 // Lazy-initialized so dotenv has already run by the time this is used
-let genai: GoogleGenAI | null = null
+let openai: OpenAI | null = null
 
-function getClient(): GoogleGenAI {
-  if (!genai) {
-    const apiKey = process.env.GEMINI_API_KEY
-    if (!apiKey) throw new Error('GEMINI_API_KEY is not set in environment variables')
-    genai = new GoogleGenAI({ apiKey })
+function getClient(): OpenAI {
+  if (!openai) {
+    const apiKey = process.env.OPENAI_API_KEY
+    if (!apiKey) {
+      console.error('Available environment variables:', Object.keys(process.env).filter(key => key.includes('API') || key.includes('KEY') || key.includes('OPENAI')))
+      throw new Error('OPENAI_API_KEY is not set in environment variables. Make sure .env file is properly loaded.')
+    }
+    openai = new OpenAI({ apiKey })
   }
-  return genai
+  return openai
 }
 
 const SYSTEM_INSTRUCTION = `You are a helpful assistant for IMPACKTA AI, an AI automation consultancy.
@@ -23,17 +26,19 @@ export async function generateAnswer(
 ): Promise<string> {
   const context = contextChunks.join('\n\n---\n\n')
 
-  const prompt = `${SYSTEM_INSTRUCTION}
-
-Context:
-${context}
-
-Question: ${userMessage}`
-
-  const response = await getClient().models.generateContent({
-    model: 'gemini-2.5-flash',
-    contents: prompt,
+  const response = await getClient().chat.completions.create({
+    model: 'gpt-4o-mini',
+    messages: [
+      {
+        role: 'system',
+        content: `${SYSTEM_INSTRUCTION}\n\nContext:\n${context}`,
+      },
+      {
+        role: 'user',
+        content: userMessage,
+      },
+    ],
   })
 
-  return response.text ?? 'Sorry, I was unable to generate a response. Please try again.'
+  return response.choices[0]?.message?.content ?? 'Sorry, I was unable to generate a response. Please try again.'
 }

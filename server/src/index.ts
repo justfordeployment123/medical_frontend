@@ -1,10 +1,32 @@
-import * as path from 'path'
-import * as dotenv from 'dotenv'
-dotenv.config({ path: path.join(__dirname, '../.env') })
-import express from 'express'
 import cors from 'cors'
-import chatRouter from './routes/chat'
+import * as dotenv from 'dotenv'
+import express from 'express'
+import * as fs from 'fs'
+import * as path from 'path'
 import { checkDBReady } from './rag/retriever'
+import chatRouter from './routes/chat'
+
+// Load .env from server root directory
+// Try multiple paths to handle different execution contexts
+const envPaths = [
+  path.resolve(__dirname, '../.env'),
+  path.resolve(process.cwd(), 'server/.env'),
+  path.resolve(process.cwd(), '.env'),
+]
+
+let envLoaded = false
+for (const envPath of envPaths) {
+  if (fs.existsSync(envPath)) {
+    dotenv.config({ path: envPath })
+    console.log(`✓ Loaded .env from: ${envPath}`)
+    envLoaded = true
+    break
+  }
+}
+
+if (!envLoaded) {
+  console.warn('⚠ Warning: .env file not found in expected locations')
+}
 
 const app = express()
 const PORT = process.env.PORT ?? 3001
