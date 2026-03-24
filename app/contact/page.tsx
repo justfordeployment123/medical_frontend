@@ -103,7 +103,35 @@ export default function ContactPage() {
           overflow: 'hidden',
         }}
       >
-        <div className="container relative">
+        {/* Hero background image — professional workspace, full colour */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+            opacity: 0.55,
+            filter: 'brightness(0.72)',
+          }}
+        />
+        {/* Gradient: dark left for text legibility, photo visible on the right */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 1,
+            background:
+              'linear-gradient(90deg, rgba(11,17,32,0.92) 0%, rgba(11,17,32,0.7) 45%, rgba(11,17,32,0.2) 100%)',
+          }}
+        />
+
+        <div className="container relative" style={{ zIndex: 1 }}>
           <AnimatedSection>
             <p
               className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest mb-4"
@@ -122,11 +150,18 @@ export default function ContactPage() {
               Free Consultation
             </p>
             <h1
-              className="font-extrabold text-white leading-tight max-w-3xl mb-5"
-              style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
+              className="font-extrabold leading-tight max-w-3xl mb-5"
+              style={{
+                fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                background: 'linear-gradient(90deg, #ffffff 0%, #7dd3fc 30%, #38bdf8 55%, #93c5fd 75%, #ffffff 100%)',
+                backgroundSize: '300% 100%',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                animation: 'gradient-color-shift 5s ease infinite',
+              }}
             >
-              Book your free 30-minute{' '}
-              <span style={{ color: '#7dd3fc' }}>strategy consultation.</span>
+              Ready to automate your growth?
             </h1>
             <p style={{ fontSize: 18, color: '#94a3b8', lineHeight: 1.75, maxWidth: 580 }}>
               Discover how AI automation can transform your business. No obligation, just
@@ -265,6 +300,32 @@ export default function ContactPage() {
 
             {/* Right column — Form */}
             <AnimatedSection delay={2}>
+              <div style={{ position: 'relative' }}>
+                {/* Geometric glowing corner brackets */}
+                {(['tl', 'tr', 'bl', 'br'] as const).map((corner, ci) => (
+                  <svg
+                    key={corner}
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    style={{
+                      position: 'absolute',
+                      top: corner.startsWith('t') ? -6 : undefined,
+                      bottom: corner.startsWith('b') ? -6 : undefined,
+                      left: corner.endsWith('l') ? -6 : undefined,
+                      right: corner.endsWith('r') ? -6 : undefined,
+                      zIndex: 2,
+                      animation: `geo-pulse 2.5s ease-in-out ${ci * 0.4}s infinite`,
+                    }}
+                  >
+                    {corner === 'tl' && <><path d="M28 2H4a2 2 0 0 0-2 2v24" stroke="#7dd3fc" strokeWidth="2" strokeLinecap="round"/></>}
+                    {corner === 'tr' && <><path d="M0 2h24a2 2 0 0 1 2 2v24" stroke="#7dd3fc" strokeWidth="2" strokeLinecap="round"/></>}
+                    {corner === 'bl' && <><path d="M28 26H4a2 2 0 0 1-2-2V0" stroke="#7dd3fc" strokeWidth="2" strokeLinecap="round"/></>}
+                    {corner === 'br' && <><path d="M0 26h24a2 2 0 0 0 2-2V0" stroke="#7dd3fc" strokeWidth="2" strokeLinecap="round"/></>}
+                  </svg>
+                ))}
+
               <div
                 style={{
                   padding: '36px 32px',
@@ -482,6 +543,7 @@ export default function ContactPage() {
                   </form>
                 )}
               </div>
+              </div>{/* closes position:relative wrapper */}
             </AnimatedSection>
           </div>
         </div>

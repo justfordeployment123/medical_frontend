@@ -67,36 +67,74 @@ export default function ServicesPage() {
           overflow: 'hidden',
         }}
       >
-        <div className="container relative">
-          <AnimatedSection>
-            <p
-              className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest mb-4"
-              style={{ color: '#7dd3fc' }}
-            >
-              <span
-                className="dot-blink"
-                style={{
-                  display: 'inline-block',
-                  width: 6,
-                  height: 6,
-                  borderRadius: '50%',
-                  background: '#7dd3fc',
-                }}
-              />
-              Services
-            </p>
-            <h1
-              className="font-extrabold text-white leading-tight max-w-3xl mb-5"
-              style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
-            >
-              Choose the right level of{' '}
-              <span style={{ color: '#7dd3fc' }}>AI transformation.</span>
-            </h1>
-            <p style={{ fontSize: 18, color: '#94a3b8', lineHeight: 1.75, maxWidth: 600 }}>
-              From targeted automation fixes to complete operational overhauls — our three service
-              tiers match where your business is and where you want to go.
-            </p>
-          </AnimatedSection>
+        {/* Hero background image — modern architecture, full colour */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+            opacity: 0.55,
+            filter: 'brightness(0.7)',
+          }}
+        />
+        {/* Gradient: text-side dark, image-side visible */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 1,
+            background:
+              'linear-gradient(90deg, rgba(11,17,32,0.92) 0%, rgba(11,17,32,0.7) 45%, rgba(11,17,32,0.22) 100%)',
+          }}
+        />
+
+        <div className="container relative" style={{ zIndex: 1 }}>
+          {/* Drop-from-above animation on each hero element with staggered delays */}
+          <p
+            className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest mb-4"
+            style={{ color: '#7dd3fc', animation: 'drop-from-above 0.45s ease 0.15s both' }}
+          >
+            <span
+              className="dot-blink"
+              style={{
+                display: 'inline-block',
+                width: 6,
+                height: 6,
+                borderRadius: '50%',
+                background: '#7dd3fc',
+              }}
+            />
+            Services
+          </p>
+          <h1
+            className="font-extrabold text-white leading-tight max-w-3xl mb-5"
+            style={{
+              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              animation: 'drop-from-above 0.5s ease 0.3s both',
+            }}
+          >
+            Choose the right level of{' '}
+            <span style={{ color: '#7dd3fc' }}>AI transformation.</span>
+          </h1>
+          <p
+            style={{
+              fontSize: 18,
+              color: '#94a3b8',
+              lineHeight: 1.75,
+              maxWidth: 600,
+              animation: 'drop-from-above 0.45s ease 0.45s both',
+            }}
+          >
+            From targeted automation fixes to complete operational overhauls — our three service
+            tiers match where your business is and where you want to go.
+          </p>
         </div>
       </section>
 

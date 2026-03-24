@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef } from 'react'
 import Button from '@/components/ui/Button'
 import SectionHeading from '@/components/ui/SectionHeading'
 import AnimatedSection from '@/components/ui/AnimatedSection'
@@ -51,6 +52,8 @@ const services = [
       'Workflow notifications & triggers',
     ],
     featured: false,
+    // AI Receptionist & scheduling — real estate agent on the phone
+    img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=200&q=80',
   },
   {
     tag: 'Tier 2',
@@ -66,6 +69,8 @@ const services = [
       'Customer support AI systems',
     ],
     featured: true,
+    // Sales pipelines & CRM — business analytics dashboard
+    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=200&q=80',
   },
   {
     tag: 'Tier 3',
@@ -81,6 +86,8 @@ const services = [
       'System integration & ongoing support',
     ],
     featured: false,
+    // Bespoke enterprise development — team strategy/consulting
+    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=200&q=80',
   },
 ]
 
@@ -119,6 +126,21 @@ const steps = [
 ]
 
 export default function HomePage() {
+  const magnetRef = useRef<HTMLDivElement>(null)
+
+  function handleMagnet(e: React.MouseEvent<HTMLDivElement>) {
+    const el = magnetRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const dx = (e.clientX - (rect.left + rect.width / 2)) * 0.3
+    const dy = (e.clientY - (rect.top + rect.height / 2)) * 0.3
+    el.style.transform = `translate(${dx}px, ${dy}px)`
+  }
+
+  function resetMagnet() {
+    if (magnetRef.current) magnetRef.current.style.transform = 'translate(0, 0)'
+  }
+
   return (
     <>
       {/* ── Hero ── */}
@@ -126,6 +148,24 @@ export default function HomePage() {
         className="relative flex min-h-screen items-center justify-center overflow-hidden"
         style={{ background: '#020617' }}
       >
+        {/* Hero background — luxury real estate property, matches AI-for-RE theme */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+            opacity: 0.22,
+            filter: 'brightness(0.45)',
+          }}
+        />
+
         {/* Particles */}
         <Particles className="absolute inset-0 z-0" count={75} />
 
@@ -146,6 +186,17 @@ export default function HomePage() {
           style={{
             background:
               'radial-gradient(ellipse 80% 55% at 50% 40%, rgba(125,211,252,0.11) 0%, transparent 70%)',
+          }}
+        />
+
+        {/* Fluid gradient overlay — slow-moving abstract background */}
+        <div
+          className="pointer-events-none absolute inset-0 z-[3]"
+          style={{
+            background:
+              'linear-gradient(135deg, rgba(125,211,252,0.06) 0%, rgba(56,189,248,0.04) 25%, transparent 50%, rgba(14,165,233,0.05) 75%, rgba(125,211,252,0.05) 100%)',
+            backgroundSize: '400% 400%',
+            animation: 'fluid-bg 18s ease infinite',
           }}
         />
 
@@ -171,22 +222,49 @@ export default function HomePage() {
             </p>
           </AnimatedSection>
 
-          {/* Main headline */}
-          <AnimatedSection delay={1}>
-            <h1
-              className="mx-auto max-w-4xl font-extrabold leading-tight text-white mb-6"
-              style={{ fontSize: 'clamp(2.4rem, 6vw, 4.5rem)' }}
-            >
-              AI systems that{' '}
+          {/* Main headline — word-by-word staggered slide-in */}
+          <h1
+            className="mx-auto max-w-4xl font-extrabold leading-tight text-white mb-6"
+            style={{ fontSize: 'clamp(2.4rem, 6vw, 4.5rem)' }}
+          >
+            {(['AI', 'systems', 'that'] as const).map((word, i) => (
               <span
-                className="text-accent"
-                style={{ animation: 'glitch 0.45s ease 1.8s 1 forwards' }}
+                key={word}
+                style={{
+                  display: 'inline-block',
+                  opacity: 0,
+                  animation: `word-slide-in 0.5s ease ${0.3 + i * 0.1}s forwards`,
+                  marginRight: '0.28em',
+                }}
               >
-                eliminate
-              </span>{' '}
-              repetitive work.
-            </h1>
-          </AnimatedSection>
+                {word}
+              </span>
+            ))}
+            <span
+              className="text-accent"
+              style={{
+                display: 'inline-block',
+                opacity: 0,
+                animation: 'word-slide-in 0.5s ease 0.6s forwards, glitch 0.45s ease 2.1s 1',
+                marginRight: '0.28em',
+              }}
+            >
+              eliminate
+            </span>
+            {(['repetitive', 'work.'] as const).map((word, i) => (
+              <span
+                key={word}
+                style={{
+                  display: 'inline-block',
+                  opacity: 0,
+                  animation: `word-slide-in 0.5s ease ${0.7 + i * 0.1}s forwards`,
+                  marginRight: i === 1 ? 0 : '0.28em',
+                }}
+              >
+                {word}
+              </span>
+            ))}
+          </h1>
 
           {/* Sub */}
           <AnimatedSection delay={2}>
@@ -203,9 +281,17 @@ export default function HomePage() {
           {/* CTAs */}
           <AnimatedSection delay={3}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button to="/contact" variant="primary" size="lg" className="btn-shimmer">
-                Book a Free AI Consultation
-              </Button>
+              {/* Magnetic hover button */}
+              <div
+                ref={magnetRef}
+                onMouseMove={handleMagnet}
+                onMouseLeave={resetMagnet}
+                style={{ display: 'inline-block', transition: 'transform 0.2s ease' }}
+              >
+                <Button to="/contact" variant="primary" size="lg" className="btn-shimmer">
+                  Book a Free AI Consultation
+                </Button>
+              </div>
               <Button to="/solutions" variant="outline" size="lg">
                 View Solutions →
               </Button>
@@ -310,6 +396,40 @@ export default function HomePage() {
                     el.style.boxShadow = 'none'
                   }}
                 >
+                  {/* Corner image — abstract tech/RE visual in top-right */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 16,
+                      right: 16,
+                      width: 64,
+                      height: 64,
+                      borderRadius: '50%',
+                      overflow: 'hidden',
+                      border: s.featured
+                        ? '1px solid rgba(125,211,252,0.35)'
+                        : '1px solid rgba(125,211,252,0.15)',
+                      boxShadow: s.featured
+                        ? '0 0 20px rgba(125,211,252,0.18)'
+                        : '0 0 10px rgba(125,211,252,0.08)',
+                      animation: `float ${6.5 + (s.featured ? 0 : 1)}s ease-in-out infinite`,
+                      pointerEvents: 'none',
+                    }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={s.img}
+                      alt=""
+                      aria-hidden="true"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        filter: 'brightness(0.9)',
+                      }}
+                    />
+                  </div>
+
                   {s.featured && (
                     <div
                       style={{

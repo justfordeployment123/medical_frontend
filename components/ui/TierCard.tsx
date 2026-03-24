@@ -2,6 +2,15 @@
 
 import Button from '@/components/ui/Button'
 
+const TIER_IMAGES: Record<string, string> = {
+  // AI Receptionist / quick automation wins — real estate agent in action
+  'Tier 1': 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=200&q=80',
+  // AI Systems / sales pipelines & CRM — analytics dashboard
+  'Tier 2': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=200&q=80',
+  // Custom AI / bespoke enterprise — strategy / team session
+  'Tier 3': 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=200&q=80',
+}
+
 interface TierCardProps {
   tag: string
   badge: string
@@ -40,6 +49,40 @@ export default function TierCard({ tag, badge, title, tagline, items, bestFor, f
         el.style.boxShadow = featured ? '0 0 48px rgba(125,211,252,0.08)' : 'none'
       }}
     >
+      {/* Corner image — tier-specific visual, floating glass sphere style */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 16,
+          right: 16,
+          width: 60,
+          height: 60,
+          borderRadius: '50%',
+          overflow: 'hidden',
+          border: featured
+            ? '1px solid rgba(125,211,252,0.4)'
+            : '1px solid rgba(125,211,252,0.18)',
+          boxShadow: featured
+            ? '0 0 22px rgba(125,211,252,0.2)'
+            : '0 0 10px rgba(125,211,252,0.08)',
+          animation: 'float 7s ease-in-out infinite',
+          pointerEvents: 'none',
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={TIER_IMAGES[tag] ?? TIER_IMAGES['Tier 1']}
+          alt=""
+          aria-hidden="true"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            filter: 'brightness(0.92)',
+          }}
+        />
+      </div>
+
       {/* Most popular badge */}
       {featured && (
         <div

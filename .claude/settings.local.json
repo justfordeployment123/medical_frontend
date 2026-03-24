@@ -10,7 +10,8 @@
       "Bash(npm run:*)",
       "Bash(echo \"EXIT:$?\")",
       "Bash(node:*)",
-      "Bash(powershell -Command \"Remove-Item -Recurse -Force E:\\\\\\\\medicalfrontend\\\\\\\\.next\" 2>&1)"
+      "Bash(powershell -Command \"Remove-Item -Recurse -Force E:\\\\\\\\medicalfrontend\\\\\\\\.next\" 2>&1)",
+      "Bash(npm show:*)"
     ]
   }
 }

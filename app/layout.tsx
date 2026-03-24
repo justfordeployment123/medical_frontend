@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer'
 import CursorSpotlight from '@/components/layout/CursorSpotlight'
 import ScrollProgressBar from '@/components/layout/ScrollProgressBar'
 import StickyBookCTA from '@/components/layout/StickyBookCTA'
+import ChatWidget from '@/components/ui/ChatWidget'
 import './globals.css'
 
 const fontSans = Plus_Jakarta_Sans({
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
         <StickyBookCTA />
+        <ChatWidget />
       </body>
     </html>
   )

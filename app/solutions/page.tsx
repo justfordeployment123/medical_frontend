@@ -1,7 +1,35 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import Button from '@/components/ui/Button'
+
+const DECODE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%&!'
+
+function DecodeTitle({ text, className, style }: { text: string; className?: string; style?: React.CSSProperties }) {
+  const [displayed, setDisplayed] = useState(
+    () => text.split('').map(c => (c === ' ' ? ' ' : DECODE_CHARS[Math.floor(Math.random() * DECODE_CHARS.length)])).join('')
+  )
+
+  useEffect(() => {
+    let iteration = 0
+    const letters = text.split('')
+    const interval = setInterval(() => {
+      setDisplayed(
+        letters.map((letter, idx) => {
+          if (letter === ' ') return ' '
+          if (idx < iteration) return letter
+          return DECODE_CHARS[Math.floor(Math.random() * DECODE_CHARS.length)]
+        }).join('')
+      )
+      iteration += 0.6
+      if (iteration >= letters.length) clearInterval(interval)
+    }, 38)
+    return () => clearInterval(interval)
+  }, [text])
+
+  return <span className={className} style={style}>{displayed}</span>
+}
 
 const solutions = [
   {
@@ -92,7 +120,67 @@ export default function SolutionsPage() {
           overflow: 'hidden',
         }}
       >
-        <div className="container relative">
+        {/* Hero background image — tech/circuit board, full colour */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+            opacity: 0.5,
+            filter: 'brightness(0.65)',
+          }}
+        />
+        {/* Gradient: dark left for text, image shows on the right */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 1,
+            background:
+              'linear-gradient(90deg, rgba(11,17,32,0.93) 0%, rgba(11,17,32,0.72) 45%, rgba(11,17,32,0.25) 100%)',
+          }}
+        />
+
+        {/* Floating property data fragments background */}
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+          {[
+            { top: '12%', left: '4%',  text: 'PRICE: $485,000' },
+            { top: '38%', left: '78%', text: 'BEDS: 4 | BATHS: 3' },
+            { top: '65%', left: '3%',  text: 'AI_QUALIFY: true' },
+            { top: '20%', left: '68%', text: 'LEAD_SCORE: 94' },
+            { top: '80%', left: '72%', text: 'APPT: 2024-03-15' },
+            { top: '52%', left: '5%',  text: 'AUTO_FOLLOWUP: ON' },
+            { top: '70%', left: '40%', text: 'SQ_FT: 2,840' },
+            { top: '28%', left: '45%', text: 'STATUS: HOT_LEAD' },
+          ].map((f, i) => (
+            <span
+              key={i}
+              style={{
+                position: 'absolute',
+                top: f.top,
+                left: f.left,
+                fontSize: 10,
+                fontFamily: 'ui-monospace, monospace',
+                color: 'rgba(125,211,252,0.13)',
+                letterSpacing: '0.08em',
+                animation: `float ${5.5 + i * 0.6}s ease-in-out infinite`,
+                animationDelay: `${i * 0.4}s`,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {f.text}
+            </span>
+          ))}
+        </div>
+
+        <div className="container relative" style={{ zIndex: 1 }}>
           <AnimatedSection>
             <p
               className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest mb-4"
@@ -110,12 +198,12 @@ export default function SolutionsPage() {
               />
               Solutions
             </p>
+            {/* Digital decode/typing effect on hero title */}
             <h1
               className="font-extrabold text-white leading-tight max-w-3xl mb-5"
-              style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
+              style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontFamily: 'ui-monospace, monospace' }}
             >
-              AI solutions built for{' '}
-              <span style={{ color: '#7dd3fc' }}>real business problems.</span>
+              <DecodeTitle text="AI solutions built for real business problems." />
             </h1>
             <p style={{ fontSize: 18, color: '#94a3b8', lineHeight: 1.75, maxWidth: 600 }}>
               AI should solve operational problems, not create more complexity. We build automation

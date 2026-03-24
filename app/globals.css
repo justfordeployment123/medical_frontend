@@ -130,6 +130,56 @@
     from { color: #7dd3fc; }
     to   { color: inherit; }
   }
+
+  /* Word-by-word headline slide-in */
+  @keyframes word-slide-in {
+    from { opacity: 0; transform: translateY(18px); filter: blur(3px); }
+    to   { opacity: 1; transform: translateY(0);   filter: blur(0); }
+  }
+
+  /* Drop from above for hero text */
+  @keyframes drop-from-above {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Stat card throb glow border */
+  @keyframes stat-throb {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(125,211,252,0), 0 0 0 1px rgba(125,211,252,0.12); }
+    50%       { box-shadow: 0 0 32px 4px rgba(125,211,252,0.18), 0 0 0 1px rgba(125,211,252,0.45); }
+  }
+
+  /* Animated gradient text color shift */
+  @keyframes gradient-color-shift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Geometric frame corner pulse */
+  @keyframes geo-pulse {
+    0%, 100% { opacity: 0.3; }
+    50%       { opacity: 0.8; }
+  }
+
+  /* Fluid hero background gradient motion */
+  @keyframes fluid-bg {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Testimonial slide from left */
+  @keyframes slide-from-left {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Testimonial slide from right */
+  @keyframes slide-from-right {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
 }
 
 /* =========================================================
