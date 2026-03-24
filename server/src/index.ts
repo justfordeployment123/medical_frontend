@@ -1,13 +1,10 @@
 import * as path from 'path'
 import * as dotenv from 'dotenv'
-const envPath = path.join(__dirname, '../.env')
-const result = dotenv.config({ path: envPath })
-console.log('dotenv path:', envPath)
-console.log('dotenv result:', result.error ? result.error.message : 'OK')
-console.log('GEMINI_API_KEY loaded:', !!process.env.GEMINI_API_KEY)
+dotenv.config({ path: path.join(__dirname, '../.env') })
 import express from 'express'
 import cors from 'cors'
 import chatRouter from './routes/chat'
+import { checkDBReady } from './rag/retriever'
 
 const app = express()
 const PORT = process.env.PORT ?? 3001
@@ -19,10 +16,24 @@ app.use(cors({
 }))
 
 app.use(express.json())
-
 app.use('/chat', chatRouter)
 
-app.listen(PORT, () => {
-  console.log(`IMPACKTA AI chatbot server running on port ${PORT}`)
-  console.log(`CORS allowed origin: ${FRONTEND_URL}`)
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() })
+})
+
+async function start() {
+  // Verify knowledge base exists before accepting traffic
+  await checkDBReady()
+
+  app.listen(PORT, () => {
+    console.log(`IMPACKTA AI chatbot server running on port ${PORT}`)
+    console.log(`CORS allowed origin: ${FRONTEND_URL}`)
+  })
+}
+
+start().catch(err => {
+  console.error('Failed to start server:', err.message)
+  console.error('Fix: run "npm run ingest" to build the knowledge base, then restart.')
+  process.exit(1)
 })

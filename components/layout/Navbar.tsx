@@ -59,23 +59,39 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      {open && (
-        <div className="md:hidden absolute top-[72px] left-0 right-0 bg-secondary/97 backdrop-blur-md border-b border-glass-border px-6 py-6 flex flex-col gap-4">
-          {NAV_LINKS.map(({ label, href }) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-sm font-medium text-muted hover:text-accent transition-colors"
-              onClick={() => setOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
-          <Button to="/contact" size="sm" className="mt-2 self-start" onClick={() => setOpen(false)}>
-            Book Consultation
-          </Button>
+      <div
+        className="md:hidden absolute left-0 right-0 top-[72px] overflow-hidden transition-all duration-300 ease-in-out"
+        style={{
+          maxHeight: open ? 400 : 0,
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? 'auto' : 'none',
+          borderBottom: open ? '1px solid rgba(255,255,255,0.08)' : 'none',
+          background: '#020617',
+          zIndex: 50,
+        }}
+      >
+        <div className="flex flex-col px-6 py-5 gap-1">
+          {NAV_LINKS.map(({ label, href }) => {
+            const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href)
+            return (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className="py-3 text-sm font-medium transition-colors border-b border-white/5 last:border-0"
+                style={{ color: isActive ? '#7dd3fc' : '#94a3b8' }}
+              >
+                {label}
+              </Link>
+            )
+          })}
+          <div className="pt-4 pb-2">
+            <Button to="/contact" size="sm" onClick={() => setOpen(false)}>
+              Book Consultation
+            </Button>
+          </div>
         </div>
-      )}
+      </div>
     </nav>
   )
 }

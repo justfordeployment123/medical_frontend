@@ -7,9 +7,27 @@ const TABLE_NAME = 'knowledge'
 
 let table: lancedb.Table | null = null
 
+export async function checkDBReady(): Promise<void> {
+  const db = await lancedb.connect(DB_PATH)
+  const tables = await db.tableNames()
+  if (!tables.includes(TABLE_NAME)) {
+    throw new Error(
+      `LanceDB table "${TABLE_NAME}" not found. Run "npm run ingest" on the server to build the knowledge base.`
+    )
+  }
+  table = await db.openTable(TABLE_NAME)
+  console.log(`LanceDB ready — "${TABLE_NAME}" table loaded (${tables.length} table(s) found)`)
+}
+
 async function getTable(): Promise<lancedb.Table> {
   if (!table) {
     const db = await lancedb.connect(DB_PATH)
+    const tables = await db.tableNames()
+    if (!tables.includes(TABLE_NAME)) {
+      throw new Error(
+        `Knowledge base not found. Run "npm run ingest" first.`
+      )
+    }
     table = await db.openTable(TABLE_NAME)
   }
   return table

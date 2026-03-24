@@ -383,32 +383,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Vision Block ── 2-col: content centred, image flush to page bottom */}
+      {/* ── Vision Block ── */}
       <section style={{ paddingTop: '5rem', paddingBottom: 0, overflow: 'hidden' }}>
         <div
+          className="grid grid-cols-1 lg:grid-cols-2 items-stretch"
           style={{
             maxWidth: 1200,
             marginLeft: 'auto',
             marginRight: 'auto',
             paddingLeft: '1.5rem',
-            paddingRight: 0,         /* let image bleed to the right edge */
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 0,
-            alignItems: 'stretch',
           }}
         >
-          {/* Col 1 — Vision content, centred */}
+          {/* Col 1 — Vision content */}
           <AnimatedSection delay={1}>
             <div
+              className="flex flex-col items-start justify-center h-full"
               style={{
-                paddingRight: '3rem',
+                paddingRight: 'clamp(0rem, 3vw, 3rem)',
                 paddingBottom: '5rem',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                justifyContent: 'center',
-                height: '100%',
+                paddingTop: '1rem',
               }}
             >
               {/* Label — start */}
@@ -467,15 +460,14 @@ export default function AboutPage() {
             </div>
           </AnimatedSection>
 
-          {/* Col 2 — image flush to right edge and page bottom */}
+          {/* Col 2 — image */}
           <AnimatedSection delay={2}>
             <div
+              className="relative overflow-hidden"
               style={{
-                position: 'relative',
-                overflow: 'hidden',
-                borderRadius: '24px 0 0 0',  /* rounded only top-left corner */
+                borderRadius: '24px 0 0 0',
                 height: '100%',
-                minHeight: 520,
+                minHeight: 360,
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
