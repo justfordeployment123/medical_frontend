@@ -70,7 +70,7 @@ export default function ServicesPage() {
         {/* Hero background image — modern architecture, full colour */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=1920&q=80"
+          src="/hero/service.png"
           alt=""
           aria-hidden="true"
           style={{

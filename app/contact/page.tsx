@@ -106,7 +106,7 @@ export default function ContactPage() {
         {/* Hero background image — professional workspace, full colour */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
+          src="/hero/contact.png"
           alt=""
           aria-hidden="true"
           style={{

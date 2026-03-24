@@ -42,52 +42,46 @@ const services = [
     tag: 'Tier 1',
     badge: 'Quick Wins',
     title: 'AI Automations',
-    tagline: 'Immediate efficiency gains.',
-    description:
-      'We identify the highest-impact repetitive tasks in your business and replace them with intelligent automation — fast.',
-    bullets: [
-      'AI receptionist & scheduling',
-      'Email triage & CRM automation',
-      'Internal productivity agents',
-      'Workflow notifications & triggers',
+    tagline: 'Quick wins that deliver immediate efficiency gains.',
+    icon: '⚡',
+    stats: [
+      { value: '24/7', label: 'Availability' },
+      { value: '10–25h', label: 'Saved/Week' },
+      { value: 'Instant', label: 'Response' },
     ],
     featured: false,
-    // AI Receptionist & scheduling — real estate agent on the phone
-    img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=200&q=80',
+    // AI receptionist & customer service — person with professional headset
+    img: 'https://images.unsplash.com/photo-1587560699334-bea93391dcef?auto=format&fit=crop&w=600&q=80',
   },
   {
     tag: 'Tier 2',
     badge: 'Most Popular',
     title: 'AI Systems',
-    tagline: 'Operational transformation.',
-    description:
-      'End-to-end automation systems that connect your tools, workflows, and teams into a single intelligent operation.',
-    bullets: [
-      'Automated lead generation pipelines',
-      'Sales automation & follow-ups',
-      'Internal workflow automation',
-      'Customer support AI systems',
+    tagline: 'Strategic AI implementations that transform operations.',
+    icon: '◈',
+    stats: [
+      { value: '3×', label: 'More Leads' },
+      { value: '100%', label: 'Automated' },
+      { value: 'Zero', label: 'Manual Work' },
     ],
     featured: true,
-    // Sales pipelines & CRM — business analytics dashboard
-    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=200&q=80',
+    // Sales pipelines & analytics — data dashboard with metrics
+    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
   },
   {
     tag: 'Tier 3',
     badge: 'Enterprise',
     title: 'Custom AI',
-    tagline: 'Fully bespoke AI solutions.',
-    description:
-      'A complete AI transformation engagement — from deep process audit to custom agent development and ongoing optimisation.',
-    bullets: [
-      'Deep business process audit',
-      'Automation opportunity mapping',
-      'Custom AI agent development',
-      'System integration & ongoing support',
+    tagline: 'Fully bespoke AI solutions built around your organisation.',
+    icon: '◎',
+    stats: [
+      { value: '100%', label: 'Bespoke' },
+      { value: 'Full', label: 'Integration' },
+      { value: 'Always', label: 'Supported' },
     ],
     featured: false,
-    // Bespoke enterprise development — team strategy/consulting
-    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=200&q=80',
+    // Bespoke enterprise strategy — team in modern office environment
+    img: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80',
   },
 ]
 
@@ -151,7 +145,7 @@ export default function HomePage() {
         {/* Hero background — luxury real estate property, matches AI-for-RE theme */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80"
+          src="/hero/home.png"
           alt=""
           aria-hidden="true"
           style={{
@@ -369,158 +363,219 @@ export default function HomePage() {
             />
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {services.map((s, i) => (
               <AnimatedSection key={s.title} delay={(((i % 3) + 1) as 1 | 2 | 3)}>
                 <div
-                  className="h-full flex flex-col relative"
                   style={{
-                    background: s.featured
-                      ? 'rgba(125,211,252,0.06)'
-                      : 'rgba(255,255,255,0.03)',
-                    border: s.featured
-                      ? '1px solid rgba(125,211,252,0.35)'
-                      : '1px solid rgba(255,255,255,0.08)',
+                    position: 'relative',
                     borderRadius: 20,
-                    padding: 32,
-                    transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+                    overflow: 'hidden',
+                    minHeight: 440,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-end',
+                    border: s.featured
+                      ? '1px solid rgba(125,211,252,0.4)'
+                      : '1px solid rgba(255,255,255,0.1)',
+                    boxShadow: s.featured ? '0 0 48px rgba(125,211,252,0.15)' : 'none',
+                    transition: 'box-shadow 0.3s ease',
                   }}
                   onMouseEnter={e => {
                     const el = e.currentTarget as HTMLDivElement
-                    el.style.transform = 'translateY(-6px)'
-                    el.style.boxShadow = '0 12px 40px rgba(125,211,252,0.12)'
+                    const img = el.querySelector('img') as HTMLImageElement | null
+                    if (img) img.style.transform = 'scale(1.07)'
+                    el.style.boxShadow = '0 20px 56px rgba(125,211,252,0.22)'
                   }}
                   onMouseLeave={e => {
                     const el = e.currentTarget as HTMLDivElement
-                    el.style.transform = 'translateY(0)'
-                    el.style.boxShadow = 'none'
+                    const img = el.querySelector('img') as HTMLImageElement | null
+                    if (img) img.style.transform = 'scale(1)'
+                    el.style.boxShadow = s.featured ? '0 0 48px rgba(125,211,252,0.15)' : 'none'
                   }}
                 >
-                  {/* Corner image — abstract tech/RE visual in top-right */}
+                  {/* Full-bleed background image */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={s.img}
+                    alt=""
+                    aria-hidden="true"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      zIndex: 0,
+                      transition: 'transform 0.5s ease',
+                    }}
+                  />
+                  {/* Dark gradient overlay — stronger at bottom */}
                   <div
                     style={{
                       position: 'absolute',
-                      top: 16,
-                      right: 16,
-                      width: 64,
-                      height: 64,
-                      borderRadius: '50%',
-                      overflow: 'hidden',
-                      border: s.featured
-                        ? '1px solid rgba(125,211,252,0.35)'
-                        : '1px solid rgba(125,211,252,0.15)',
-                      boxShadow: s.featured
-                        ? '0 0 20px rgba(125,211,252,0.18)'
-                        : '0 0 10px rgba(125,211,252,0.08)',
-                      animation: `float ${6.5 + (s.featured ? 0 : 1)}s ease-in-out infinite`,
-                      pointerEvents: 'none',
+                      inset: 0,
+                      background:
+                        'linear-gradient(180deg, rgba(2,6,23,0.28) 0%, rgba(2,6,23,0.72) 50%, rgba(2,6,23,0.97) 100%)',
+                      zIndex: 1,
+                    }}
+                  />
+
+                  {/* Top row: icon + badge/arrow */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 20,
+                      left: 20,
+                      right: 20,
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-start',
+                      zIndex: 2,
                     }}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={s.img}
-                      alt=""
-                      aria-hidden="true"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        filter: 'brightness(0.9)',
-                      }}
-                    />
-                  </div>
-
-                  {s.featured && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: -14,
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                      }}
-                    >
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                       <span
                         style={{
-                          display: 'inline-block',
-                          background: '#7dd3fc',
-                          color: '#020617',
-                          fontSize: 11,
-                          fontWeight: 800,
-                          letterSpacing: '0.1em',
-                          textTransform: 'uppercase',
-                          padding: '4px 14px',
-                          borderRadius: 999,
-                          animation: 'pulse-glow 2.5s ease-in-out infinite',
-                          whiteSpace: 'nowrap',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          width: 44,
+                          height: 44,
+                          borderRadius: 12,
+                          background: 'rgba(2,6,23,0.72)',
+                          backdropFilter: 'blur(8px)',
+                          border: '1px solid rgba(125,211,252,0.3)',
+                          fontSize: 20,
+                          color: '#7dd3fc',
                         }}
                       >
-                        {s.badge}
+                        {s.icon}
                       </span>
-                    </div>
-                  )}
-
-                  {s.featured && <div style={{ marginBottom: 8 }} />}
-
-                  <h3 style={{ fontSize: 22, fontWeight: 800, color: '#ffffff', marginBottom: 6 }}>
-                    {s.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: '#7dd3fc',
-                      marginBottom: 12,
-                    }}
-                  >
-                    {s.tagline}
-                  </p>
-                  <p
-                    style={{
-                      fontSize: 13,
-                      lineHeight: 1.75,
-                      color: '#94a3b8',
-                      marginBottom: 20,
-                    }}
-                  >
-                    {s.description}
-                  </p>
-
-                  <ul style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                    {s.bullets.map(b => (
-                      <li
-                        key={b}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          gap: 10,
-                          fontSize: 13,
-                          color: '#94a3b8',
-                          lineHeight: 1.6,
-                        }}
-                      >
+                      {s.featured && (
                         <span
                           style={{
-                            flexShrink: 0,
-                            marginTop: 6,
-                            width: 6,
-                            height: 6,
-                            borderRadius: '50%',
+                            display: 'inline-block',
                             background: '#7dd3fc',
+                            color: '#020617',
+                            fontSize: 9,
+                            fontWeight: 800,
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            padding: '3px 10px',
+                            borderRadius: 999,
+                            animation: 'pulse-glow 2.5s ease-in-out infinite',
+                            whiteSpace: 'nowrap',
                           }}
-                        />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div style={{ marginTop: 24 }}>
-                    <Button
-                      to="/services"
-                      variant={s.featured ? 'primary' : 'outline'}
-                      className={`w-full justify-center${s.featured ? ' btn-shimmer' : ''}`}
+                        >
+                          {s.badge}
+                        </span>
+                      )}
+                    </div>
+                    <a
+                      href="/services"
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: '50%',
+                        background: 'rgba(2,6,23,0.6)',
+                        backdropFilter: 'blur(8px)',
+                        border: '1px solid rgba(255,255,255,0.18)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: 16,
+                        color: '#ffffff',
+                        textDecoration: 'none',
+                        flexShrink: 0,
+                      }}
                     >
-                      Learn More →
-                    </Button>
+                      ↗
+                    </a>
+                  </div>
+
+                  {/* Bottom content */}
+                  <div style={{ position: 'relative', zIndex: 2, padding: '0 24px 20px' }}>
+                    <p
+                      style={{
+                        fontSize: 10,
+                        fontWeight: 700,
+                        letterSpacing: '0.12em',
+                        textTransform: 'uppercase',
+                        color: '#7dd3fc',
+                        marginBottom: 8,
+                      }}
+                    >
+                      {s.tag}
+                    </p>
+                    <h3
+                      style={{
+                        fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)',
+                        fontWeight: 800,
+                        color: '#ffffff',
+                        lineHeight: 1.2,
+                        marginBottom: 8,
+                      }}
+                    >
+                      {s.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontSize: 13,
+                        color: 'rgba(255,255,255,0.6)',
+                        lineHeight: 1.6,
+                        marginBottom: 20,
+                      }}
+                    >
+                      {s.tagline}
+                    </p>
+                    {/* Stats row */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        borderTop: '1px solid rgba(255,255,255,0.12)',
+                        paddingTop: 16,
+                      }}
+                    >
+                      {s.stats.map((stat, si) => (
+                        <div
+                          key={stat.label}
+                          style={{
+                            flex: 1,
+                            textAlign: 'center',
+                            borderRight:
+                              si < s.stats.length - 1
+                                ? '1px solid rgba(255,255,255,0.1)'
+                                : 'none',
+                            paddingRight: si < s.stats.length - 1 ? 10 : 0,
+                            paddingLeft: si > 0 ? 10 : 0,
+                          }}
+                        >
+                          <p
+                            style={{
+                              fontSize: 15,
+                              fontWeight: 800,
+                              color: '#ffffff',
+                              lineHeight: 1.2,
+                            }}
+                          >
+                            {stat.value}
+                          </p>
+                          <p
+                            style={{
+                              fontSize: 9,
+                              fontWeight: 600,
+                              letterSpacing: '0.08em',
+                              textTransform: 'uppercase',
+                              color: 'rgba(125,211,252,0.75)',
+                              marginTop: 3,
+                            }}
+                          >
+                            {stat.label}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </AnimatedSection>

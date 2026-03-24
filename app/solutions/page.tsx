@@ -123,7 +123,7 @@ export default function SolutionsPage() {
         {/* Hero background image — tech/circuit board, full colour */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80"
+          src="/hero/solution.png"
           alt=""
           aria-hidden="true"
           style={{

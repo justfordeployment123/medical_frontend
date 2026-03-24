@@ -11,32 +11,32 @@ const pillars = [
     title: 'Why We Exist',
     body: 'We believe many businesses spend too much time on manual processes that slow growth and drain productivity. Our goal is to replace these repetitive tasks with intelligent automation systems that allow teams to focus on higher-value work.',
     icon: '◎',
-    // Mission — automation eliminating manual work: clean workflow/productivity
-    img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=500&q=80',
+    // Mission — freeing teams from manual work: circuit board (tech foundation replacing old processes)
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
   },
   {
     label: 'Approach',
     title: 'How We Work',
     body: 'At IMPACKTA AI we focus on practical automation that delivers measurable results. Rather than introducing unnecessary complexity, we design systems that integrate seamlessly with existing tools and workflows.',
     icon: '⟳',
-    // Approach — seamless integration: team working with connected tools
-    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=500&q=80',
+    // Approach — integration & connected systems: monitor with code/colourful tech screen
+    img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80',
   },
   {
     label: 'Founder Perspective',
     title: 'Built From Experience',
     body: 'With experience in operations-heavy environments, we understand the real challenges businesses face when managing workflows, communication, and internal processes.',
     icon: '◈',
-    // Founder — operations experience: hands-on working environment
-    img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=80',
+    // Founder — operations infrastructure experience: server rack with blue lighting, no humans
+    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
   },
   {
     label: 'What We Do',
     title: 'Our Focus',
     body: 'IMPACKTA AI is an automation consultancy focused on helping businesses eliminate repetitive work and operate more efficiently through intelligent systems and AI-driven automation.',
     icon: '◉',
-    // Focus — real estate automation: agent with property
-    img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=500&q=80',
+    // Focus — AI-driven automation: futuristic AI concept with light beams
+    img: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=600&q=80',
   },
 ]
 
@@ -117,7 +117,7 @@ export default function AboutPage() {
         {/* Hero background image — full colour, visible */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80"
+          src="/hero/about.png"
           alt=""
           aria-hidden="true"
           style={{
@@ -267,28 +267,30 @@ export default function AboutPage() {
               <AnimatedSection key={p.label} delay={(((i % 4) + 1) as 1 | 2 | 3 | 4)}>
                 <div
                   style={{
-                    height: '100%',
-                    padding: 32,
-                    background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    borderRadius: 20,
-                    backdropFilter: 'blur(12px)',
-                    transition: 'transform 0.25s ease, box-shadow 0.25s ease',
                     position: 'relative',
+                    borderRadius: 20,
                     overflow: 'hidden',
+                    minHeight: 380,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-end',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    transition: 'box-shadow 0.3s ease',
                   }}
                   onMouseEnter={e => {
                     const el = e.currentTarget as HTMLDivElement
-                    el.style.transform = 'translateY(-4px)'
-                    el.style.boxShadow = '0 8px 32px rgba(125,211,252,0.1)'
+                    const imgEl = el.querySelector('img') as HTMLImageElement | null
+                    if (imgEl) imgEl.style.transform = 'scale(1.07)'
+                    el.style.boxShadow = '0 20px 56px rgba(125,211,252,0.18)'
                   }}
                   onMouseLeave={e => {
                     const el = e.currentTarget as HTMLDivElement
-                    el.style.transform = 'translateY(0)'
+                    const imgEl = el.querySelector('img') as HTMLImageElement | null
+                    if (imgEl) imgEl.style.transform = 'scale(1)'
                     el.style.boxShadow = 'none'
                   }}
                 >
-                  {/* Duotone background image — brand cyan + dark blue tones */}
+                  {/* Full-bleed background image */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={p.img}
@@ -300,46 +302,86 @@ export default function AboutPage() {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      opacity: 0.45,
-                      filter: 'brightness(0.75)',
-                      pointerEvents: 'none',
                       zIndex: 0,
+                      transition: 'transform 0.5s ease',
                     }}
                   />
-                  {/* Gradient overlay to fade image at bottom */}
+                  {/* Dark gradient overlay */}
                   <div
                     style={{
                       position: 'absolute',
                       inset: 0,
-                      background: 'linear-gradient(180deg, transparent 30%, rgba(11,17,32,0.85) 100%)',
+                      background:
+                        'linear-gradient(180deg, rgba(2,6,23,0.28) 0%, rgba(2,6,23,0.65) 45%, rgba(2,6,23,0.97) 100%)',
                       zIndex: 1,
-                      pointerEvents: 'none',
                     }}
                   />
 
-                  <div style={{ position: 'relative', zIndex: 2 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-                    <span style={{ fontSize: 22, color: 'rgba(125,211,252,0.6)' }}>{p.icon}</span>
+                  {/* Top row: icon badge + label */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 20,
+                      left: 20,
+                      right: 20,
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-start',
+                      zIndex: 2,
+                    }}
+                  >
                     <span
                       style={{
-                        fontSize: 10,
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: 44,
+                        height: 44,
+                        borderRadius: 12,
+                        background: 'rgba(2,6,23,0.72)',
+                        backdropFilter: 'blur(8px)',
+                        border: '1px solid rgba(125,211,252,0.3)',
+                        fontSize: 20,
+                        color: '#7dd3fc',
+                      }}
+                    >
+                      {p.icon}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 9,
                         fontWeight: 700,
                         letterSpacing: '0.1em',
                         textTransform: 'uppercase',
                         color: '#7dd3fc',
-                        border: '1px solid rgba(125,211,252,0.3)',
+                        background: 'rgba(2,6,23,0.7)',
+                        backdropFilter: 'blur(8px)',
+                        border: '1px solid rgba(125,211,252,0.25)',
                         borderRadius: 999,
-                        padding: '3px 11px',
+                        padding: '5px 12px',
                       }}
                     >
                       {p.label}
                     </span>
                   </div>
-                  <h3 style={{ fontSize: 20, fontWeight: 700, color: '#ffffff', marginBottom: 12 }}>
-                    {p.title}
-                  </h3>
-                  <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.8 }}>{p.body}</p>
-                  </div>{/* closes position:relative zIndex:2 content wrapper */}
+
+                  {/* Bottom content */}
+                  <div style={{ position: 'relative', zIndex: 2, padding: '0 24px 24px' }}>
+                    <h3
+                      style={{
+                        fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
+                        fontWeight: 800,
+                        color: '#ffffff',
+                        lineHeight: 1.2,
+                        marginBottom: 10,
+                      }}
+                    >
+                      {p.title}
+                    </h3>
+                    <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', lineHeight: 1.75 }}>
+                      {p.body}
+                    </p>
+                  </div>
                 </div>
               </AnimatedSection>
             ))}
