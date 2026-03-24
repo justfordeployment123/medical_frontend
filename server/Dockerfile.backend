@@ -25,4 +25,4 @@ COPY --from=builder /app/data ./data
 
 EXPOSE 3001
 
-CMD ["node", "dist/index.js"]
+CMD ["sh", "-c", "npm run ingest && node dist/index.js"]
