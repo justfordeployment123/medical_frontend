@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
 
 // ← Change this to the client's Calendly link when ready
 const CALENDLY_URL = 'https://calendly.com/memonsumair79'
@@ -248,7 +248,7 @@ export default function ContactPage() {
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
               gap: 48,
-              alignItems: 'start',
+              alignItems: 'center',
             }}
           >
             {/* Left column */}
@@ -298,72 +298,6 @@ export default function ContactPage() {
                   ))}
                 </ul>
 
-                {/* Direct booking card */}
-                <div
-                  style={{
-                    padding: '28px 28px',
-                    background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    borderRadius: 20,
-                    backdropFilter: 'blur(12px)',
-                  }}
-                >
-                  <h3 style={{ fontSize: 18, fontWeight: 700, color: '#ffffff', marginBottom: 8 }}>
-                    Book Directly
-                  </h3>
-                  <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 20, lineHeight: 1.7 }}>
-                    Prefer to skip the form? Book a time directly in our calendar.
-                  </p>
-                  <a
-                    href={CALENDLY_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 8,
-                      padding: '10px 20px',
-                      borderRadius: 10,
-                      border: '1px solid rgba(125,211,252,0.3)',
-                      color: '#7dd3fc',
-                      fontSize: 13,
-                      fontWeight: 600,
-                      textDecoration: 'none',
-                      transition: 'all 0.2s ease',
-                    }}
-                    onMouseEnter={e => {
-                      const el = e.currentTarget as HTMLAnchorElement
-                      el.style.background = 'rgba(125,211,252,0.08)'
-                      el.style.borderColor = 'rgba(125,211,252,0.5)'
-                    }}
-                    onMouseLeave={e => {
-                      const el = e.currentTarget as HTMLAnchorElement
-                      el.style.background = 'transparent'
-                      el.style.borderColor = 'rgba(125,211,252,0.3)'
-                    }}
-                  >
-                    Open Calendar →
-                  </a>
-                </div>
-
-                {/* Contact info */}
-                <div style={{ marginTop: 24 }}>
-                  <p style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>Or email us directly:</p>
-                  <a
-                    href="mailto:contact@impackta.online"
-                    style={{
-                      fontSize: 14,
-                      fontWeight: 600,
-                      color: '#7dd3fc',
-                      textDecoration: 'none',
-                      transition: 'color 0.2s',
-                    }}
-                    onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.color = '#bae6fd')}
-                    onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.color = '#7dd3fc')}
-                  >
-                    contact@impackta.online
-                  </a>
-                </div>
               </div>
             </AnimatedSection>
 
@@ -406,9 +340,10 @@ export default function ContactPage() {
                 >
                   {!showCalendly ? (
                     <form onSubmit={handleSubmit}>
-                      <h3 style={{ fontSize: 20, fontWeight: 800, color: '#ffffff', marginBottom: 6 }}>
-                        Book My Free Consultation
-                      </h3>
+
+                     <h2 style={{ fontSize: 18, color: '#ffffff', marginBottom: 28, lineHeight: 1.6 ,  fontWeight: 'bold'}}>
+                       Book Your Free Consultation
+                      </h2>
                       <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 28, lineHeight: 1.6 }}>
                         Fill in the form and we will open the calendar to pick a time.
                       </p>
@@ -429,7 +364,46 @@ export default function ContactPage() {
                         {/* Row 3 */}
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                           <Field label="Company Name" name="company" value={form.company} onChange={handleChange} />
-                          <Field label="Type of Business" name="businessType" value={form.businessType} onChange={handleChange} />
+                          <div className={`float-field${form.businessType ? ' has-value' : ''}`} style={{ position: 'relative' }}>
+                            <select
+                              name="businessType"
+                              value={form.businessType}
+                              onChange={handleChange}
+                              style={{
+                                appearance: 'none',
+                                WebkitAppearance: 'none',
+                                background: 'transparent',
+                                paddingRight: 32,
+                              }}
+                            >
+                              <option value="" disabled hidden></option>
+                              <option value="Healthcare">Healthcare</option>
+                              <option value="Legal">Legal</option>
+                              <option value="Real Estate">Real Estate</option>
+                              <option value="E-commerce">E-commerce</option>
+                              <option value="Finance">Finance</option>
+                              <option value="Hospitality">Hospitality</option>
+                              <option value="Education">Education</option>
+                              <option value="Recruitment">Recruitment</option>
+                              <option value="Other">Other</option>
+                            </select>
+                            <label>Type of Business</label>
+                            <svg
+                              viewBox="0 0 10 6"
+                              fill="none"
+                              style={{
+                                position: 'absolute',
+                                right: 14,
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                width: 10,
+                                height: 6,
+                                pointerEvents: 'none',
+                              }}
+                            >
+                              <path d="M1 1l4 4 4-4" stroke="#7dd3fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </div>
                         </div>
 
                         {/* Challenge textarea */}
@@ -445,13 +419,47 @@ export default function ContactPage() {
                           <label>Biggest Challenge</label>
                         </div>
 
-                        {/* Solution field */}
-                        <Field
-                          label="What Solution Interests You"
-                          name="solution"
-                          value={form.solution}
-                          onChange={handleChange}
-                        />
+                        {/* Solution dropdown */}
+                        <div className={`float-field${form.solution ? ' has-value' : ''}`} style={{ position: 'relative' }}>
+                          <select
+                            name="solution"
+                            value={form.solution}
+                            onChange={handleChange}
+                            style={{
+                              appearance: 'none',
+                              WebkitAppearance: 'none',
+                              background: 'transparent',
+                              paddingRight: 32,
+                            }}
+                          >
+                            <option value="" disabled hidden></option>
+                            <option value="AI Receptionist">AI Receptionist</option>
+                            <option value="Scheduling Automation">Scheduling Automation</option>
+                            <option value="Email Triage">Email Triage</option>
+                            <option value="CRM Automation">CRM Automation</option>
+                            <option value="Lead Generation">Lead Generation</option>
+                            <option value="Sales Automation">Sales Automation</option>
+                            <option value="Customer Support AI">Customer Support AI</option>
+                            <option value="Custom AI Solution">Custom AI Solution</option>
+                            <option value="Not Sure Yet">Not Sure Yet</option>
+                          </select>
+                          <label>What Solution Interests You</label>
+                          <svg
+                            viewBox="0 0 10 6"
+                            fill="none"
+                            style={{
+                              position: 'absolute',
+                              right: 14,
+                              top: '50%',
+                              transform: 'translateY(-50%)',
+                              width: 10,
+                              height: 6,
+                              pointerEvents: 'none',
+                            }}
+                          >
+                            <path d="M1 1l4 4 4-4" stroke="#7dd3fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </div>
 
                         {/* Privacy */}
                         <p style={{ fontSize: 11, color: '#64748b', lineHeight: 1.7 }}>
@@ -514,7 +522,12 @@ export default function ContactPage() {
                               Loading calendar...
                             </>
                           ) : (
-                            'Book My Free Consultation →'
+                            <>
+                              <svg viewBox="0 0 20 20" fill="none" style={{ width: 18, height: 18, flexShrink: 0 }}>
+                                <path d="M2 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7l-4 3V5Z" stroke="#020617" strokeWidth="1.6" strokeLinejoin="round"/>
+                              </svg>
+                              Book a Free Call →
+                            </>
                           )}
                         </button>
                       </div>
@@ -557,6 +570,10 @@ export default function ContactPage() {
       <style>{`
         @keyframes spin {
           to { transform: rotate(360deg); }
+        }
+        .float-field select option {
+          background: #0b1120;
+          color: #ffffff;
         }
       `}</style>
     </>

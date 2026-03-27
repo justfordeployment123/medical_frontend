@@ -1,9 +1,8 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import Button from '@/components/ui/Button'
-import GlassCard from '@/components/ui/GlassCard'
 import AnimatedSection from '@/components/ui/AnimatedSection'
+import Button from '@/components/ui/Button'
+import { useEffect, useRef, useState } from 'react'
 
 const pillars = [
   {
@@ -25,7 +24,7 @@ const pillars = [
   {
     label: 'Founder Perspective',
     title: 'Built From Experience',
-    body: 'With experience in operations-heavy environments, we understand the real challenges businesses face when managing workflows, communication, and internal processes.',
+    body: 'With firsthand experience in operations-heavy environments, we understand the real challenges businesses face when managing workflows, communication, and internal processes.',
     icon: '◈',
     // Founder — operations infrastructure experience: server rack with blue lighting, no humans
     img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',

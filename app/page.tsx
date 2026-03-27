@@ -55,7 +55,6 @@ const services = [
   },
   {
     tag: 'Tier 2',
-    badge: 'Most Popular',
     title: 'AI Systems',
     tagline: 'Strategic AI implementations that transform operations.',
     icon: '◈',
@@ -64,7 +63,7 @@ const services = [
       { value: '100%', label: 'Automated' },
       { value: 'Zero', label: 'Manual Work' },
     ],
-    featured: true,
+    featured: false,
     // Sales pipelines & analytics — data dashboard with metrics
     img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
   },

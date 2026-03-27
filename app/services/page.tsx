@@ -22,7 +22,6 @@ const tiers = [
   },
   {
     tag: 'Tier 2',
-    badge: 'Most Popular',
     title: 'AI Systems',
     tagline: 'Strategic AI implementations that transform operations.',
     items: [
@@ -32,7 +31,7 @@ const tiers = [
       'Customer support AI systems',
     ],
     bestFor: 'Businesses ready to scale operations with automation.',
-    featured: true,
+    featured: false,
     cta: 'Get Started →',
   },
   {
