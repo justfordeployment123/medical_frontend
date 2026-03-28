@@ -13,7 +13,8 @@
       "Bash(powershell -Command \"Remove-Item -Recurse -Force E:\\\\\\\\medicalfrontend\\\\\\\\.next\" 2>&1)",
       "Bash(npm show:*)",
       "WebFetch(domain:unsplash.com)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(find E:/medicalfrontend/server/src -name index.*)"
     ]
   }
 }
