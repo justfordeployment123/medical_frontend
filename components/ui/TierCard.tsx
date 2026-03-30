@@ -37,7 +37,7 @@ const TIER_STATS: Record<string, { value: string; label: string }[]> = {
 
 interface TierCardProps {
   tag: string
-  badge: string
+  badge?: string
   title: string
   tagline: string
   items: string[]

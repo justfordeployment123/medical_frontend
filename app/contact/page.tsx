@@ -350,6 +350,7 @@ export default function ContactPage() {
 
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                         {/* Row 1 */}
+                        
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                           <Field label="First Name" name="firstName" value={form.firstName} onChange={handleChange} required />
                           <Field label="Last Name" name="lastName" value={form.lastName} onChange={handleChange} required />
