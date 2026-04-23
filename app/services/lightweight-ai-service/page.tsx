@@ -10,34 +10,46 @@ import Particles from '@/components/ui/Particles'
 export default function AIAutomationsPage() {
   const features = [
     { 
-      title: 'AI Receptionist Systems', 
-      desc: 'Never miss a call or inquiry again. Our AI handles inbound 24/7.',
+      title: 'AI Receptionist & Virtual Front Desk', 
+      desc: 'A 24/7 digital front office that handles initial enquiries and ensures every client interaction is captured and responded to instantly.',
+      core: [
+        'Answers inbound calls and messages using natural voice AI',
+        'Captures key enquiry details at first touch',
+        'Books consultations directly into your calendar',
+        'Sends confirmations and appointment reminders',
+        'Escalates urgent matters to your team'
+      ],
+      impact: [
+        'Ensures no enquiries are missed while delivering a consistent, professional first impression.'
+      ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
     },
     { 
-      title: 'Scheduling Automation', 
-      desc: 'Automatically book appointments and meetings directly into your calendar.',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-    },
-    { 
-      title: 'Email Triage', 
-      desc: 'Identify critical emails and auto-respond with precision.',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-    },
-    { 
-      title: 'CRM Automation', 
-      desc: 'Keep your CRM perfectly synced without manual entry or errors.',
+      title: 'AI Client Intake & Engagement', 
+      desc: 'A structured intake system that gathers, qualifies, and organises client information following initial contact.',
+      core: [
+        'Collects detailed client information through guided workflows',
+        'Performs structured qualification and prioritisation',
+        'Builds a complete pre-consultation brief',
+        'Organises and routes enquiries for efficient handling'
+      ],
+      impact: [
+        'Ensures every enquiry is properly qualified and prepared, allowing your team to focus on high-value client work.'
+      ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
     },
     { 
-      title: 'Internal Agents', 
-      desc: 'Empower your staff with AI assistants trained on your internal workflows.',
+      title: 'AI Admin Assistant', 
+      desc: 'A private productivity agent designed to handle repetitive admin tasks and streamline internal workflows.',
+      core: [
+        'Organises your inbox and prepares contextual draft responses for review',
+        'Automates data synchronisation and record management to keep systems up to date',
+        'Generates internal summaries via your preferred channel, while managing invoice creation and follow-ups'
+      ],
+      impact: [
+        'Saves 15+ hours per week by reducing manual workload and improving operational efficiency.'
+      ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.1 12.1"></path><path d="M12 12l9.9-0.1"></path><path d="M12 12l0 10"></path></svg>
-    },
-    { 
-      title: 'Quality Control', 
-      desc: 'Auto-verify data and processes to ensure zero-defect operations.',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
     }
   ]
 
@@ -82,13 +94,13 @@ export default function AIAutomationsPage() {
           <AnimatedSection>
             <p className="text-accent font-bold text-xs uppercase tracking-[0.3em] mb-6 flex items-center justify-center gap-2">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              Tier 01 — Foundation
+              Fast Deployment | Low Friction | Immediate ROI
             </p>
             <h1 className="text-4xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tight mx-auto max-w-4xl">
-              AI <span className="text-accent italic decoration-accent/20 underline underline-offset-8">Automations</span>
+              Lightweight <span className="text-accent italic decoration-accent/20 underline underline-offset-8">AI Services</span>
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mb-12 leading-relaxed mx-auto">
-              Quick wins that deliver immediate efficiency gains. We identify bottlenecks in your operations and automate them with precision, freeing your team to focus on what matters.
+              Designed to eliminate repetitive, time-consuming tasks that slow you down. These solutions help you operate more efficiently, present more professionally, and focus on the work that matters most.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
@@ -116,14 +128,38 @@ export default function AIAutomationsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
             {features.map((f, i) => (
-              <AnimatedSection key={i} delay={((i % 3) + 1) as 1 | 2 | 3 | 4 | 5}>
-                <div className="group p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-accent/30 hover:bg-white/[0.04] transition-all duration-500 h-full relative overflow-hidden text-center">
+              <AnimatedSection key={i} delay={((i % 3) + 1) as 1 | 2 | 3 | 4 | 5} className="h-full">
+                <div className="flex flex-col group p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-accent/30 hover:bg-white/[0.04] transition-all duration-500 h-full relative overflow-hidden">
                   <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-all" />
-                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform duration-500 mx-auto">
+                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform duration-500">
                     {f.icon}
                   </div>
                   <h3 className="text-xl font-bold text-white mb-4 group-hover:text-accent transition-colors">{f.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{f.desc}</p>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6">{f.desc}</p>
+                  
+                  <div className="text-left mb-6">
+                    <h4 className="text-white text-sm font-semibold mb-3">Core Capabilities:</h4>
+                    <ul className="space-y-3">
+                      {f.core.map((capability, idx) => (
+                        <li key={idx} className="flex items-start text-sm text-slate-400">
+                          <span className="text-accent mr-3 font-bold mt-0.5">✓</span>
+                          <span className="leading-snug">{capability}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="text-left mt-auto pt-6 border-t border-white/5">
+                    <h4 className="text-white text-sm font-semibold mb-3">Impact:</h4>
+                    <ul className="space-y-2">
+                      {f.impact.map((point, idx) => (
+                        <li key={idx} className="flex items-start text-sm text-blue-200 italic">
+                          <span className="bg-blue-400 mr-3 mt-2 block h-1.5 w-1.5 rounded-full shrink-0" />
+                          <span className="leading-snug">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </AnimatedSection>
             ))}

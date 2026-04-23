@@ -10,34 +10,52 @@ import Particles from '@/components/ui/Particles'
 export default function AISystemsPage() {
   const features = [
     { 
-      title: 'Workflow Orchestration', 
-      desc: 'Connect your entire tech stack into a single, automated ecosystem.',
+      title: 'AI Client Acquisition System', 
+      desc: 'A fully automated system designed to generate, engage, and convert high-value clients without manual follow-up.',
+      core: [
+        'Identifies ideal client profiles and key stakeholders',
+        'Personalised outreach across professional channels (Email, LinkedIn)',
+        'Behaviour-based follow-ups that adapt to engagement',
+        'Automated qualification and booking of high-value consultations'
+      ],
+      impact: [
+        'Creates a consistent, predictable pipeline',
+        'Reduces reliance on paid advertising',
+        'Increases conversion from enquiry to client'
+      ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
     },
     { 
-      title: 'Data Synchronization', 
-      desc: 'Real-time data flow between CRM, ERP, and custom applications.',
+      title: 'Backend Operations Automation', 
+      desc: 'A connected automation layer that streamlines and runs your core operational workflows with minimal manual input.',
+      core: [
+        'Integration across CRM, finance, and internal systems',
+        'Automated workflows triggered by real-time activity',
+        'Data synchronisation across platforms',
+        'AI-powered reporting and operational dashboards'
+      ],
+      impact: [
+        'Reduces operational workload by 40–60%',
+        'Improves accuracy and execution speed',
+        'Enables scalable growth without increasing headcount'
+      ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
     },
     { 
-      title: 'Automated Reporting', 
-      desc: 'Get deep insights delivered directly to your inbox or Slack.',
+      title: 'AI Multi-Department Automation', 
+      desc: 'A unified system that connects and automates workflows across multiple departments.',
+      core: [
+        'Automated cross-team workflows and approvals',
+        'Seamless data flow between departments and systems',
+        'Integrated customer support and operational processes',
+        'AI-assisted decision support for management'
+      ],
+      impact: [
+        'Eliminates operational silos',
+        'Improves efficiency across teams',
+        'Increases scalability and organisational performance'
+      ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-    },
-    { 
-      title: 'Process Monitoring', 
-      desc: '24/7 monitoring of all automated workflows with instant alerts.',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="7" r="4"></circle></svg>
-    },
-    { 
-      title: 'Legacy Integration', 
-      desc: 'Upgrade old systems without expensive migrations using AI bridges.',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-    },
-    { 
-      title: 'System Scaling', 
-      desc: 'Architecture designed to grow with your business volume effortlessly.',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
     }
   ]
 
@@ -82,13 +100,13 @@ export default function AISystemsPage() {
           <AnimatedSection>
             <p className="text-accent font-bold text-xs uppercase tracking-[0.3em] mb-6 flex items-center justify-center gap-2">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              Tier 02 — Integration
+              Operational Efficiency | Revenue Growth | Scalable Infrastructure
             </p>
             <h1 className="text-4xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tight mx-auto max-w-4xl">
-              AI <span className="text-accent italic decoration-accent/20 underline underline-offset-8">Systems</span>
+              Heavyweight <span className="text-accent italic decoration-accent/20 underline underline-offset-8">AI Services</span>
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mb-12 leading-relaxed mx-auto">
-              Connect your business logic under a single automated umbrella. We build the architecture that allows your data to flow and your systems to talk.
+              Built to transform how your business acquires clients and operates day-to-day. We implement intelligent systems that streamline workflows, improve coordination, and enable scalable growth without increasing overhead.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
@@ -116,14 +134,38 @@ export default function AISystemsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
             {features.map((f, i) => (
-              <AnimatedSection key={i} delay={((i % 3) + 1) as 1 | 2 | 3 | 4 | 5}>
-                <div className="group p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-accent/30 hover:bg-white/[0.04] transition-all duration-500 h-full relative overflow-hidden text-center">
+              <AnimatedSection key={i} delay={((i % 3) + 1) as 1 | 2 | 3 | 4 | 5} className="h-full">
+                <div className="flex flex-col group p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-accent/30 hover:bg-white/[0.04] transition-all duration-500 h-full relative overflow-hidden">
                   <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-all" />
-                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform duration-500 mx-auto">
+                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform duration-500">
                     {f.icon}
                   </div>
                   <h3 className="text-xl font-bold text-white mb-4 group-hover:text-accent transition-colors">{f.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{f.desc}</p>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6">{f.desc}</p>
+                  
+                  <div className="text-left mb-6">
+                    <h4 className="text-white text-sm font-semibold mb-3">Core Capabilities:</h4>
+                    <ul className="space-y-3">
+                      {f.core.map((capability, idx) => (
+                        <li key={idx} className="flex items-start text-sm text-slate-400">
+                          <span className="text-accent mr-3 font-bold mt-0.5">✓</span>
+                          <span className="leading-snug">{capability}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="text-left mt-auto pt-6 border-t border-white/5">
+                    <h4 className="text-white text-sm font-semibold mb-3">Impact:</h4>
+                    <ul className="space-y-2">
+                      {f.impact.map((point, idx) => (
+                        <li key={idx} className="flex items-start text-sm text-blue-200 italic">
+                          <span className="bg-blue-400 mr-3 mt-2 block h-1.5 w-1.5 rounded-full shrink-0" />
+                          <span className="leading-snug">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </AnimatedSection>
             ))}

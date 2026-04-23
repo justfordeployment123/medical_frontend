@@ -10,34 +10,21 @@ import Particles from '@/components/ui/Particles'
 export default function CustomAIPage() {
   const features = [
     { 
-      title: 'Bespoke AI Modeling', 
-      desc: 'Custom and fine-tuned AI models built on your data, your processes and your business logic.',
+      title: 'AI Transformation Programme', 
+      desc: 'A strategic partnership to transition your firm into an AI-enabled operation through a tailored, long-term roadmap.',
+      core: [
+        'Strategic Roadmap: A phased implementation plan aligned to your firm’s objectives, workflows, and compliance requirements.',
+        'Custom Knowledge Systems: Secure, private AI trained on your internal documentation, SOPs, and case data - enabling instant access to critical information.',
+        'System Architecture & Integration: Design and deployment of a connected AI infrastructure that integrates seamlessly with your existing tools and workflows.',
+        'Ongoing Support & Optimisation: Dedicated oversight to monitor performance, refine system logic, and ensure continuous improvement as your firm evolves.'
+      ],
+      impact: [
+        'Creates a long-term operational advantage through smarter systems',
+        'Reduces dependency on manual processes and internal knowledge bottlenecks',
+        'Improves speed, accuracy, and consistency across the business',
+        'Enables scalable growth without increasing operational complexity'
+      ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.1 12.1"></path><path d="M12 12l9.9-0.1"></path><path d="M12 12l0 10"></path></svg>
-    },
-    { 
-      title: 'Predictive Analytics', 
-      desc: 'AI that identifies trends, anomalies, and risks in your data before they become problems.',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-    },
-    { 
-      title: 'Voice & Vision AI', 
-      desc: 'Multimodal AI that can see, hear, and understand your business operations.',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1v22M17 5H7M19 9H5M21 13H3M19 17H5M17 21H7"></path></svg>
-    },
-    { 
-      title: 'R&D Partnership', 
-      desc: 'We act as your fractional AI research department, exploring and building custom solutions beyond off-the-shelf tools.',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-    },
-    { 
-      title: 'Edge Deployment', 
-      desc: 'Run powerful AI models locally or on-device for maximum speed and privacy.',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-    },
-    { 
-      title: 'AI Agent Development', 
-      desc: 'Autonomous AI agents that execute multi-step tasks and make decisions within your business.',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><circle cx="12" cy="12" r="3"></circle><path d="M4 20c2.2-3.6 5.5-5 8-5s5.8 1.4 8 5"></path></svg>
     }
   ]
 
@@ -82,13 +69,13 @@ export default function CustomAIPage() {
           <AnimatedSection>
             <p className="text-accent font-bold text-xs uppercase tracking-[0.3em] mb-6 flex items-center justify-center gap-2">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              Tier 03 — Innovation
+              Strategic Transformation | Bespoke Solutions | Institutional Value
             </p>
             <h1 className="text-4xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tight mx-auto max-w-4xl">
-              Custom <span className="text-accent italic decoration-accent/20 underline underline-offset-8">AI</span>
+              Custom-Weight <span className="text-accent italic decoration-accent/20 underline underline-offset-8">AI Service</span>
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mb-12 leading-relaxed mx-auto">
-              When off-the-shelf isn&apos;t enough, we design and build AI models you own, tailored to your specific competitive advantage.
+              A fully bespoke transformation designed around your business. We analyse your operations, identify bottlenecks, and implement secure, high-performance systems that improve efficiency, accuracy, and long-term scalability.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
@@ -114,16 +101,53 @@ export default function CustomAIPage() {
             />
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+          <div className="max-w-4xl mx-auto mt-16">
             {features.map((f, i) => (
-              <AnimatedSection key={i} delay={((i % 3) + 1) as 1 | 2 | 3 | 4 | 5}>
-                <div className="group p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-accent/30 hover:bg-white/[0.04] transition-all duration-500 h-full relative overflow-hidden text-center">
+              <AnimatedSection key={i} delay={((i % 3) + 1) as 1 | 2 | 3 | 4 | 5} className="h-full">
+                <div className="flex flex-col group p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-accent/30 hover:bg-white/[0.04] transition-all duration-500 h-full relative overflow-hidden">
                   <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-all" />
-                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform duration-500 mx-auto">
+                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform duration-500">
                     {f.icon}
                   </div>
                   <h3 className="text-xl font-bold text-white mb-4 group-hover:text-accent transition-colors">{f.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{f.desc}</p>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6">{f.desc}</p>
+                  
+                  <div className="text-left mb-6">
+                    <h4 className="text-white text-sm font-semibold mb-3">Core Components:</h4>
+                    <ul className="space-y-3">
+                      {f.core.map((capability, idx) => {
+                        const colonIndex = capability.indexOf(':');
+                        if (colonIndex > -1) {
+                          const title = capability.substring(0, colonIndex);
+                          const text = capability.substring(colonIndex + 1);
+                          return (
+                            <li key={idx} className="flex items-start text-sm text-slate-400">
+                              <span className="text-accent mr-3 font-bold mt-0.5">✓</span>
+                              <span className="leading-snug"><strong className="text-white">{title}:</strong>{text}</span>
+                            </li>
+                          );
+                        }
+                        return (
+                          <li key={idx} className="flex items-start text-sm text-slate-400">
+                            <span className="text-accent mr-3 font-bold mt-0.5">✓</span>
+                            <span className="leading-snug">{capability}</span>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+
+                  <div className="text-left mt-auto pt-6 border-t border-white/5">
+                    <h4 className="text-white text-sm font-semibold mb-3">Impact:</h4>
+                    <ul className="space-y-2">
+                      {f.impact.map((point, idx) => (
+                        <li key={idx} className="flex items-start text-sm text-blue-200 italic">
+                          <span className="bg-blue-400 mr-3 mt-2 block h-1.5 w-1.5 rounded-full shrink-0" />
+                          <span className="leading-snug">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </AnimatedSection>
             ))}

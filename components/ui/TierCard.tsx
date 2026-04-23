@@ -17,13 +17,13 @@ const TIER_ICONS: Record<string, string> = {
 const TIER_STATS: Record<string, { value: string; label: string }[]> = {
   'Tier 1': [
     { value: '24/7', label: 'Availability' },
-    { value: '10–25h', label: 'Saved/Week' },
+    { value: '15hr+', label: 'Saved/Week' },
     { value: 'Instant', label: 'Response' },
   ],
   'Tier 2': [
-    { value: '3×', label: 'More Leads' },
-    { value: '100%', label: 'Automated' },
-    { value: 'Zero', label: 'Manual Work' },
+    { value: 'Scalable', label: 'Output' },
+    { value: 'Touchless', label: 'Workflows' },
+    { value: 'Unified', label: 'Systems' },
   ],
   'Tier 3': [
     { value: '100%', label: 'Bespoke' },
@@ -93,7 +93,7 @@ export default function TierCard({
                   </span>
                 )}
               </div>
-              <h3 className="text-2xl font-bold text-white group-hover:text-blue-200 transition-colors">
+              <h3 className="text-2xl font-bold text-white group-hover:text-blue-200 transition-colors min-h-[64px]">
                 {title}
               </h3>
             </div>
@@ -102,7 +102,7 @@ export default function TierCard({
             </div>
           </div>
 
-          <p className="text-gray-400 text-sm leading-relaxed mb-8">{tagline}</p>
+          <p className="text-gray-400 text-sm leading-relaxed mb-8 min-h-[64px]">{tagline}</p>
 
           {/* Dynamic Stats Row */}
           <div className="grid grid-cols-3 gap-2 mb-8 p-3 rounded-2xl bg-white/5 border border-white/5">

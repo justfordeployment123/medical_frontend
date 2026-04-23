@@ -1,7 +1,6 @@
 'use client'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import Button from '@/components/ui/Button'
-import CyclingText from '@/components/ui/CyclingText'
 import FaqSection from '@/components/ui/FaqSection'
 import LiveCounter from '@/components/ui/LiveCounter'
 import Particles from '@/components/ui/Particles'
@@ -32,49 +31,47 @@ const problemRows = [
     problem: 'Constant manual follow-ups falling through cracks',
     solution: 'Automated follow-up sequences, fully personalised at scale',
   },
-  {
-    problem: 'Onboarding and training inefficiencies',
-    solution: 'AI Onboarding Assistant guides new hires instantly from day one',
-  },
 ]
 
 const servicesRaw = [
   {
     tag: 'Tier 1',
     badge: 'Rapid Deployment',
-    title: 'AI Automations',
+    title: 'Lightweight AI Service',
+    href: '/services/lightweight-ai-service',
     tagline:
       'Quick wins that deliver immediate efficiency gains. We identify and automate your bottlenecks fast.',
     icon: '⚡',
     stats: [
       { value: '24/7', label: 'Availability' },
-      { value: '10–25h', label: 'Saved/Week' },
+      { value: '15hr+', label: 'Saved/Week' },
       { value: 'Instant', label: 'Response' },
     ],
     features: [
-      'Automated Lead Response',
-      '24/7 AI Receptionist',
-      'Instant Appointment Booking',
-      'Smart FAQ Handling'
+      '24/7 Virtual Receptionist',
+      'Client Intake & Conflict Screening',
+      'Enquiry Capture & Routing',
+      'Smart Appointment Coordination'
     ],
     featured: false,
     img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80',
   },
   {
     tag: 'Tier 2',
-    title: 'AI Systems',
+    title: 'Heavyweight AI Service',
+    href: '/services/heavyweight-ai-service',
     tagline: 'Intelligent systems built to scale with your business and streamline how it operates',
     icon: '◈',
     stats: [
-      { value: '3×', label: 'More Leads' },
-      { value: '100%', label: 'Automated' },
-      { value: 'Zero', label: 'Manual Work' },
+      { value: 'Scalable', label: 'Output' },
+      { value: 'Touchless', label: 'Workflows' },
+      { value: 'Unified', label: 'Systems' },
     ],
     features: [
       'CRM Integration & Automation',
-      'Custom Sales Pipelines',
-      'Predictive Analytics',
-      'Automated Follow-up Sequences'
+      'End-to-End Workflow Automation',
+      'Audit Trails and Compliance Logging',
+      'Multi-Department Sync'
     ],
     featured: true,
     img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
@@ -82,7 +79,7 @@ const servicesRaw = [
   {
     tag: 'Tier 3',
     badge: 'Enterprise',
-    title: 'Custom AI',
+    title: 'Custom-Weight AI Service',
     tagline: 'Fully bespoke AI solutions built around your organisation.',
     icon: '◎',
     stats: [
@@ -91,13 +88,13 @@ const servicesRaw = [
       { value: 'Always', label: 'Supported' },
     ],
     features: [
-      'Proprietary Model Training',
-      'End-to-End Workflow Automation',
-      'White-Glove Support',
-      'Scalable Enterprise Infrastructure'
+      'Institutional Knowledge & Precedent Retrieval',
+      'Custom AI Models & Logic',
+      'White Glove Support',
+      'Secure Private Infrastructure'
     ],
     featured: false,
-    href: '/services/custom-ai',
+    href: '/services/custom-weight-ai-service',
     img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
   },
 ]
@@ -107,38 +104,54 @@ const services = servicesRaw.map(s => ({
   href: s.href || `/services/${s.title.toLowerCase().replace(/\s+/g, '-')}`
 }))
 
-const useCases = [
-  'Medical & Healthcare Clinics',
-  'Legal & Professional Services',
-  'Real Estate Agencies',
-  'Recruitment Firms',
-  'E-commerce & Retail',
-  'Financial Services',
-  'Marketing & Creative Agencies',
-  'SaaS & Tech Startups',
- 
+const whoItsFor = [
+  {
+    title: 'Founders & Independent Professionals',
+    description: 'Built for those running lean. We automate repetitive admin and day-to-day tasks so you can focus on high-value work that drives your business forward.',
+    image: '/images/founders.png'
+  },
+  {
+    title: 'High-Growth Ventures',
+    description: 'For businesses outgrowing their processes. We replace manual bottlenecks with intelligent systems that allow your team to scale output without increasing workload or burnout.',
+    image: '/images/ventures.png'
+  },
+  {
+    title: 'Established Firms & Corporate Teams',
+    description: 'For organisations that need more than basic tools. We design secure, private AI systems that protect your data while modernising how your operations run at scale.',
+    image: '/images/corporate.png'
+  }
 ]
 
 const steps = [
   {
     num: '01',
-    title: 'Discovery Call',
-    body: 'We analyse your workflows and identify the biggest automation opportunities for your specific business.',
+    title: 'Discovery & AI Audit',
+    body: 'We review your workflows, identify inefficiencies, and pinpoint the highest-impact automation opportunities.',
   },
   {
     num: '02',
-    title: 'System Design',
-    body: 'We design a custom AI solution tailored specifically to your processes, tools, and team structure.',
+    title: 'Solution Design',
+    body: 'We design a tailored AI system aligned to your processes, tools, and business goals.',
   },
   {
     num: '03',
-    title: 'Implementation',
-    body: 'The system is built, integrated, and deployed into your existing stack with minimal disruption.',
+    title: 'Onboarding & Access Setup',
+    body: 'We securely connect to your systems and gather everything needed to build effectively.',
   },
   {
     num: '04',
-    title: 'Optimisation',
-    body: 'We monitor performance and continuously refine the system as your business grows.',
+    title: 'Build & Integration',
+    body: 'Your system is built, tested, and integrated into your existing workflows with minimal disruption.',
+  },
+  {
+    num: '05',
+    title: 'Testing & Go-Live',
+    body: 'We validate performance, refine the system, and deploy it into your live environment.',
+  },
+  {
+    num: '06',
+    title: 'Optimisation & Scaling',
+    body: 'We monitor performance and refine your system as required to support your business as it evolves.',
   },
 ]
 
@@ -219,26 +232,7 @@ export default function HomePage() {
 
         <div className="container relative z-10 py-36 text-center">
           {/* Industry cycling label */}
-          <AnimatedSection>
-            <p
-              className="flex flex-wrap items-center justify-center gap-2 text-xs font-semibold uppercase tracking-widest mb-5"
-              style={{ color: '#94a3b8' }}
-            >
-              <span
-                className="dot-blink"
-                style={{
-                  display: 'inline-block',
-                  width: 6,
-                  height: 6,
-                  borderRadius: '50%',
-                  background: '#7dd3fc',
-                }}
-              />
-              AI Automation built for&nbsp;
-              <CyclingText />
-            </p>
-          </AnimatedSection>
-
+         
           {/* Main headline — word-by-word staggered slide-in */}
           <h1
             className="mx-auto max-w-4xl font-extrabold leading-tight text-white mb-6"
@@ -388,7 +382,7 @@ export default function HomePage() {
                     position: 'relative',
                     borderRadius: 20,
                     overflow: 'hidden',
-                    minHeight: 440,
+                    minHeight: 520,
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'flex-end',
@@ -469,7 +463,7 @@ export default function HomePage() {
                       >
                         {s.icon}
                       </span>
-                      {s.featured && (
+                      {s.featured && s.badge && (
                         <span
                           style={{
                             display: 'inline-block',
@@ -531,6 +525,7 @@ export default function HomePage() {
                         color: '#ffffff',
                         lineHeight: 1.2,
                         marginBottom: 8,
+                        minHeight: 64,
                       }}
                     >
                       {s.title}
@@ -541,6 +536,7 @@ export default function HomePage() {
                         color: 'rgba(255,255,255,0.6)',
                         lineHeight: 1.6,
                         marginBottom: 16,
+                        minHeight: 64,
                       }}
                     >
                       {s.tagline}
@@ -609,51 +605,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Use Cases ── */}
+      {/* ── Who It's For ── */}
       <section className="section section--alt">
         <div className="container">
           <AnimatedSection>
             <SectionHeading
-              label="Use Cases"
-              title={`Built for <span class="text-accent">every industry</span>`}
-              subtitle="Our automation systems help businesses across all sectors remove manual work and scale smarter."
+              label="Who It's For"
+              title={`Built to support <span class="text-accent">every stage</span>`}
+              subtitle="From independent founders to established corporate teams, we tailor AI solutions to your specific operational needs."
               center
             />
           </AnimatedSection>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {useCases.map((uc, i) => (
-              <AnimatedSection key={uc} delay={(((i % 5) + 1) as 1 | 2 | 3 | 4 | 5)}>
-                <div
-                  style={{
-                    padding: '14px 20px',
-                    borderRadius: 14,
-                    textAlign: 'center',
-                    fontSize: 13,
-                    fontWeight: 600,
-                    color: '#e2e8f0',
-                    background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    backdropFilter: 'blur(8px)',
-                    transition: 'all 0.22s ease',
-                    cursor: 'default',
-                  }}
-                  onMouseEnter={e => {
-                    const el = e.currentTarget as HTMLDivElement
-                    el.style.color = '#7dd3fc'
-                    el.style.borderColor = 'rgba(125,211,252,0.3)'
-                    el.style.background = 'rgba(125,211,252,0.05)'
-                    el.style.transform = 'translateY(-2px)'
-                  }}
-                  onMouseLeave={e => {
-                    const el = e.currentTarget as HTMLDivElement
-                    el.style.color = '#e2e8f0'
-                    el.style.borderColor = 'rgba(255,255,255,0.08)'
-                    el.style.background = 'rgba(255,255,255,0.03)'
-                    el.style.transform = 'translateY(0)'
-                  }}
-                >
-                  {uc}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            {whoItsFor.map((w, i) => (
+              <AnimatedSection key={w.title} delay={(((i % 3) + 1) as 1 | 2 | 3)}>
+                <div className="flex flex-col h-full rounded-[24px] overflow-hidden bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 group">
+                  <div className="overflow-hidden relative h-48 sm:h-56 w-full">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#020617] to-transparent opacity-80 z-10" />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={w.image} alt={w.title} className="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105" />
+                  </div>
+                  <div className="p-8 flex flex-col flex-grow bg-[#050914]/40 backdrop-blur-md relative z-20">
+                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-blue-200 transition-colors">{w.title}</h3>
+                    <p className="text-sm text-gray-400 leading-relaxed font-medium flex-grow">{w.description}</p>
+                  </div>
                 </div>
               </AnimatedSection>
             ))}

@@ -11,24 +11,13 @@ export default function ContactPage() {
     name: '',
     email: '',
     company: '',
-    industry: '',
     message: '',
   })
   const [loading, setLoading] = useState(false)
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
   const [focused, setFocused] = useState<string | null>(null)
 
-  const industries = [
-    'Medical & Healthcare Clinics',
-    'Legal & Professional Services',
-    'Real Estate Agencies',
-    'Recruitment Firms',
-    'E-commerce & Retail',
-    'Financial Services',
-    'Marketing & Creative Agencies',
-    'SaaS & Tech Startups',
-    'Other'
-  ]
+
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -51,7 +40,7 @@ export default function ContactPage() {
       if (response.ok) {
         setLoading(false)
         setToast({ message: "Message sent successfully! We'll respond within 24 hours.", type: 'success' })
-        setForm({ name: '', email: '', company: '', industry: '', message: '' })
+        setForm({ name: '', email: '', company: '', message: '' })
         setTimeout(() => setToast(null), 3000)
       } else {
         setLoading(false)
@@ -210,68 +199,33 @@ export default function ContactPage() {
                       ))}
                     </div>
 
-                    {/* Row: Company + Industry */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      {/* Company */}
-                      <div className="relative group">
-                        <label
-                          className={`absolute left-5 transition-all duration-200 pointer-events-none z-10 font-semibold
-                            ${isFloating('company')
-                              ? 'top-2.5 text-[10px] uppercase tracking-widest text-white/40'
-                              : 'top-[50%] -translate-y-1/2 text-sm text-white/30'
-                            }`}
-                        >
-                          Company{' '}
-                          <span className="text-white/25 text-[10px]">(optional)</span>
-                        </label>
-                        <input
-                          name="company"
-                          value={form.company}
-                          onChange={handleChange}
-                          onFocus={() => setFocused('company')}
-                          onBlur={() => setFocused(null)}
-                          /* KEY FIX: text-base (16px) prevents iOS auto-zoom */
-                          className="w-full pt-7 pb-3 px-5 bg-white/[0.03] border border-white/[0.08] rounded-2xl text-white text-base sm:text-sm
-                            focus:outline-none focus:border-accent/50 focus:bg-white/[0.05]
-                            group-hover:border-white/[0.15] transition-all duration-200"
-                        />
-                        <span
-                          className={`absolute bottom-0 left-5 right-5 h-[1.5px] rounded-full bg-gradient-to-r from-accent to-sky-400
-                            transition-transform duration-300 origin-left ${focused === 'company' ? 'scale-x-100' : 'scale-x-0'}`}
-                        />
-                      </div>
-
-                      {/* Industry */}
-                      <div className="relative group">
-                        <label className="absolute left-5 top-2.5 text-[10px] uppercase tracking-widest text-white/40 font-semibold pointer-events-none z-10">
-                          Industry
-                        </label>
-                        <select
-                          name="industry"
-                          value={form.industry}
-                          onChange={handleChange}
-                          onFocus={() => setFocused('industry')}
-                          onBlur={() => setFocused(null)}
-                          /* KEY FIX: text-base (16px) prevents iOS auto-zoom; appearance-none on md+ only */
-                          className="w-full pt-7 pb-3 px-5 bg-white/[0.03] border border-white/[0.08] rounded-2xl text-white text-base sm:text-sm
-                            focus:outline-none focus:border-accent/50 focus:bg-white/[0.05]
-                            group-hover:border-white/[0.15] transition-all duration-200 cursor-pointer
-                            md:appearance-none"
-                        >
-                          <option value="" disabled className="bg-[#07101f] text-white/40">
-                            Select your industry
-                          </option>
-                          {industries.map((ind) => (
-                            <option key={ind} value={ind} className="bg-[#0b1120] text-white">
-                              {ind}
-                            </option>
-                          ))}
-                        </select>
-                        <span
-                          className={`absolute bottom-0 left-5 right-5 h-[1.5px] rounded-full bg-gradient-to-r from-accent to-sky-400
-                            transition-transform duration-300 origin-left ${focused === 'industry' ? 'scale-x-100' : 'scale-x-0'}`}
-                        />
-                      </div>
+                    {/* Company */}
+                    <div className="relative group">
+                      <label
+                        className={`absolute left-5 transition-all duration-200 pointer-events-none z-10 font-semibold
+                          ${isFloating('company')
+                            ? 'top-2.5 text-[10px] uppercase tracking-widest text-white/40'
+                            : 'top-[50%] -translate-y-1/2 text-sm text-white/30'
+                          }`}
+                      >
+                        Company{' '}
+                        <span className="text-white/25 text-[10px]">(optional)</span>
+                      </label>
+                      <input
+                        name="company"
+                        value={form.company}
+                        onChange={handleChange}
+                        onFocus={() => setFocused('company')}
+                        onBlur={() => setFocused(null)}
+                        /* KEY FIX: text-base (16px) prevents iOS auto-zoom */
+                        className="w-full pt-7 pb-3 px-5 bg-white/[0.03] border border-white/[0.08] rounded-2xl text-white text-base sm:text-sm
+                          focus:outline-none focus:border-accent/50 focus:bg-white/[0.05]
+                          group-hover:border-white/[0.15] transition-all duration-200"
+                      />
+                      <span
+                        className={`absolute bottom-0 left-5 right-5 h-[1.5px] rounded-full bg-gradient-to-r from-accent to-sky-400
+                          transition-transform duration-300 origin-left ${focused === 'company' ? 'scale-x-100' : 'scale-x-0'}`}
+                      />
                     </div>
 
                     {/* Message */}
@@ -331,7 +285,7 @@ export default function ContactPage() {
                             </>
                           ) : (
                             <>
-                              Send Message
+                              Send Enquiry
                               <svg
                                 className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
                                 fill="none"
@@ -350,7 +304,7 @@ export default function ContactPage() {
                         <a href="/privacy" className="text-accent hover:underline underline-offset-4 transition-colors">
                           Privacy
                         </a>{' '}
-                        <a href="/policy" className="text-accent hover:underline underline-offset-4 transition-colors">
+                        <a href="/terms" className="text-accent hover:underline underline-offset-4 transition-colors">
                           Policy
                         </a>
                         .
