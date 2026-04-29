@@ -8,9 +8,10 @@ import React, { ChangeEvent, useState } from 'react'
 
 export default function ContactPage() {
   const [form, setForm] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
     email: '',
-    company: '',
     message: '',
   })
   const [loading, setLoading] = useState(false)
@@ -40,7 +41,7 @@ export default function ContactPage() {
       if (response.ok) {
         setLoading(false)
         setToast({ message: "Message sent successfully! We'll respond within 24 hours.", type: 'success' })
-        setForm({ name: '', email: '', company: '', message: '' })
+        setForm({ firstName: '', lastName: '', phone: '', email: '', message: '' })
         setTimeout(() => setToast(null), 3000)
       } else {
         setLoading(false)
@@ -164,9 +165,9 @@ export default function ContactPage() {
 
                   <form onSubmit={handleSubmit} className="space-y-6">
 
-                    {/* Row: Name + Email — KEY FIX: grid-cols-1 on mobile, sm:grid-cols-2 only on sm+ */}
+                    {/* Row: First Name + Last Name */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      {(['name', 'email'] as const).map((field) => (
+                      {(['firstName', 'lastName'] as const).map((field) => (
                         <div key={field} className="relative group">
                           <label
                             className={`absolute left-5 transition-all duration-200 pointer-events-none z-10 font-semibold
@@ -175,18 +176,17 @@ export default function ContactPage() {
                                 : 'top-[50%] -translate-y-1/2 text-sm text-white/30'
                               }`}
                           >
-                            {field === 'name' ? 'Name' : 'Email'}{' '}
+                            {field === 'firstName' ? 'First Name' : 'Last Name'}{' '}
                             <span className="text-accent">*</span>
                           </label>
                           <input
                             required
-                            type={field === 'email' ? 'email' : 'text'}
+                            type="text"
                             name={field}
                             value={form[field]}
                             onChange={handleChange}
                             onFocus={() => setFocused(field)}
                             onBlur={() => setFocused(null)}
-                            /* KEY FIX: text-base (16px) prevents iOS auto-zoom on focus */
                             className="w-full pt-7 pb-3 px-5 bg-white/[0.03] border border-white/[0.08] rounded-2xl text-white text-base sm:text-sm
                               focus:outline-none focus:border-accent/50 focus:bg-white/[0.05]
                               group-hover:border-white/[0.15] transition-all duration-200"
@@ -199,34 +199,37 @@ export default function ContactPage() {
                       ))}
                     </div>
 
-                    {/* Company */}
-                    <div className="relative group">
-                      <label
-                        className={`absolute left-5 transition-all duration-200 pointer-events-none z-10 font-semibold
-                          ${isFloating('company')
-                            ? 'top-2.5 text-[10px] uppercase tracking-widest text-white/40'
-                            : 'top-[50%] -translate-y-1/2 text-sm text-white/30'
-                          }`}
-                      >
-                        Company{' '}
-                        <span className="text-white/25 text-[10px]">(optional)</span>
-                      </label>
-                      <input
-                        name="company"
-                        value={form.company}
-                        onChange={handleChange}
-                        onFocus={() => setFocused('company')}
-                        onBlur={() => setFocused(null)}
-                        /* KEY FIX: text-base (16px) prevents iOS auto-zoom */
-                        className="w-full pt-7 pb-3 px-5 bg-white/[0.03] border border-white/[0.08] rounded-2xl text-white text-base sm:text-sm
-                          focus:outline-none focus:border-accent/50 focus:bg-white/[0.05]
-                          group-hover:border-white/[0.15] transition-all duration-200"
-                      />
-                      <span
-                        className={`absolute bottom-0 left-5 right-5 h-[1.5px] rounded-full bg-gradient-to-r from-accent to-sky-400
-                          transition-transform duration-300 origin-left ${focused === 'company' ? 'scale-x-100' : 'scale-x-0'}`}
-                      />
-                    </div>
+                    {/* Phone */}
+                    {(['phone', 'email'] as const).map((field) => (
+                      <div key={field} className="relative group">
+                        <label
+                          className={`absolute left-5 transition-all duration-200 pointer-events-none z-10 font-semibold
+                            ${isFloating(field)
+                              ? 'top-2.5 text-[10px] uppercase tracking-widest text-accent'
+                              : 'top-[50%] -translate-y-1/2 text-sm text-white/30'
+                            }`}
+                        >
+                          {field === 'phone' ? 'Phone' : 'Email'}{' '}
+                          <span className="text-accent">*</span>
+                        </label>
+                        <input
+                          required
+                          type={field === 'email' ? 'email' : 'tel'}
+                          name={field}
+                          value={form[field]}
+                          onChange={handleChange}
+                          onFocus={() => setFocused(field)}
+                          onBlur={() => setFocused(null)}
+                          className="w-full pt-7 pb-3 px-5 bg-white/[0.03] border border-white/[0.08] rounded-2xl text-white text-base sm:text-sm
+                            focus:outline-none focus:border-accent/50 focus:bg-white/[0.05]
+                            group-hover:border-white/[0.15] transition-all duration-200"
+                        />
+                        <span
+                          className={`absolute bottom-0 left-5 right-5 h-[1.5px] rounded-full bg-gradient-to-r from-accent to-sky-400
+                            transition-transform duration-300 origin-left ${focused === field ? 'scale-x-100' : 'scale-x-0'}`}
+                        />
+                      </div>
+                    ))}
 
                     {/* Message */}
                     <div className="relative group">
@@ -237,7 +240,7 @@ export default function ContactPage() {
                             : 'top-5 text-sm text-white/30'
                           }`}
                       >
-                        Message <span className="text-accent">*</span>
+                        Write a message <span className="text-accent">*</span>
                       </label>
                       <textarea
                         required

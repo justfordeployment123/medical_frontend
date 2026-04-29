@@ -45,61 +45,7 @@ const values = [
   'Seamless', 'Intelligent', 'Scalable', 'Efficient', 'Transformative', 'Results-Driven',
 ]
 
-const stats = [
-  { value: '10–25', unit: 'hrs', label: 'Saved per employee per week' },
-  { value: '24/7', unit: '', label: 'AI systems running non-stop' },
-  { value: '100%', unit: '', label: 'Focused on practical automation' },
-]
-
 export default function AboutPage() {
-  // Animated counters for stats
-  const [counters, setCounters] = useState(['10–0', '24/7', '0%'])
-  const statRefs = useRef<(HTMLDivElement | null)[]>([])
-  const animated = useRef([false, false, false])
-
-  useEffect(() => {
-    const observers = statRefs.current.map((ref, i) => {
-      if (!ref) return null
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting && !animated.current[i]) {
-            animated.current[i] = true
-            if (i === 1) {
-              // 24/7 — scramble then settle
-              const steps = ['00/0', '12/3', '20/6', '24/7']
-              steps.forEach((v, si) =>
-                setTimeout(
-                  () => setCounters(p => { const n = [...p]; n[1] = v; return n }),
-                  si * 200
-                )
-              )
-              return
-            }
-            const target = i === 0 ? 25 : 100
-            const duration = 1600
-            const start = Date.now()
-            const tick = () => {
-              const t = Math.min((Date.now() - start) / duration, 1)
-              const eased = 1 - Math.pow(1 - t, 3)
-              const val = Math.round(eased * target)
-              setCounters(p => {
-                const n = [...p]
-                n[i] = i === 0 ? `10–${val}` : `${val}%`
-                return n
-              })
-              if (t < 1) requestAnimationFrame(tick)
-            }
-            requestAnimationFrame(tick)
-          }
-        },
-        { threshold: 0.6 }
-      )
-      obs.observe(ref)
-      return obs
-    })
-    return () => observers.forEach(o => o?.disconnect())
-  }, [])
-
   return (
     <>
       {/* ── Page Hero ── */}
@@ -171,55 +117,6 @@ export default function AboutPage() {
               to remove manual work, reduce costs, and help teams operate at full capacity.
             </p>
           </AnimatedSection>
-        </div>
-      </section>
-
-      {/* ── Stats strip ── */}
-      <section style={{ background: '#020617', padding: '48px 0', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="container">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: 24,
-            }}
-          >
-            {stats.map((s, i) => (
-              <AnimatedSection key={s.label} delay={(i + 1) as 1 | 2 | 3}>
-                {/* Throb glow border wraps each stat */}
-                <div
-                  ref={el => { statRefs.current[i] = el }}
-                  style={{
-                    textAlign: 'center',
-                    padding: '24px 16px',
-                    borderRadius: 16,
-                    border: '1px solid rgba(125,211,252,0.12)',
-                    animation: `stat-throb 3s ease-in-out ${i * 0.8}s infinite`,
-                  }}
-                >
-                  <p
-                    style={{
-                      fontSize: 'clamp(2rem, 4vw, 3rem)',
-                      fontWeight: 900,
-                      color: '#7dd3fc',
-                      lineHeight: 1,
-                      marginBottom: 8,
-                      fontFamily: 'ui-monospace, monospace',
-                    }}
-                  >
-                    {counters[i]}
-                    {/* Show unit only for index 0 (hrs) since 24/7 and 100% don't have separate units */}
-                    {i === 0 && s.unit && (
-                      <span style={{ fontSize: '0.55em', fontWeight: 600, marginLeft: 4 }}>
-                        {s.unit}
-                      </span>
-                    )}
-                  </p>
-                  <p style={{ fontSize: 13, color: '#94a3b8', fontWeight: 500 }}>{s.label}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
         </div>
       </section>
 

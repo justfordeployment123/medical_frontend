@@ -11,17 +11,17 @@ export default function CustomAIPage() {
   const features = [
     { 
       title: 'AI Transformation Programme', 
-      desc: 'A strategic partnership to transition your firm into an AI-enabled operation through a tailored, long-term roadmap.',
+      desc: 'A fully bespoke programme built around your business. We map your operations, identify what is slowing you down, and implement secure, high-impact systems that improve efficiency, accuracy, and scalability across the board.',
       core: [
-        'Strategic Roadmap: A phased implementation plan aligned to your firm’s objectives, workflows, and compliance requirements.',
-        'Custom Knowledge Systems: Secure, private AI trained on your internal documentation, SOPs, and case data - enabling instant access to critical information.',
-        'System Architecture & Integration: Design and deployment of a connected AI infrastructure that integrates seamlessly with your existing tools and workflows.',
-        'Ongoing Support & Optimisation: Dedicated oversight to monitor performance, refine system logic, and ensure continuous improvement as your firm evolves.'
+        'Strategic Roadmap — A phased implementation plan aligned to your objectives, workflows, and regulatory requirements',
+        'Custom Knowledge Systems — Secure, private AI trained on your internal documentation, SOPs, and operational data',
+        'System Architecture & Integration — Design and deployment of a connected AI infrastructure that works with your existing tools',
+        'Ongoing Support & Optimisation — Dedicated oversight to monitor performance, refine system logic, and drive continuous improvement'
       ],
       impact: [
-        'Creates a long-term operational advantage through smarter systems',
-        'Reduces dependency on manual processes and internal knowledge bottlenecks',
-        'Improves speed, accuracy, and consistency across the business',
+        'Creates a long-term operational advantage that compounds over time',
+        'Institutional knowledge becomes a system asset, not a people dependency',
+        'Improves speed, accuracy, and consistency across every area of the business',
         'Enables scalable growth without increasing operational complexity'
       ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.1 12.1"></path><path d="M12 12l9.9-0.1"></path><path d="M12 12l0 10"></path></svg>
@@ -69,13 +69,13 @@ export default function CustomAIPage() {
           <AnimatedSection>
             <p className="text-accent font-bold text-xs uppercase tracking-[0.3em] mb-6 flex items-center justify-center gap-2">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              Strategic Transformation | Bespoke Solutions | Institutional Value
+              Strategic Transformation | Bespoke Build | Long-Term Partnership
             </p>
             <h1 className="text-4xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tight mx-auto max-w-4xl">
-              Custom-Weight <span className="text-accent italic decoration-accent/20 underline underline-offset-8">AI Service</span>
+              Tier 3: <span className="text-accent italic decoration-accent/20 underline underline-offset-8">Custom-Weight AI Services</span>
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mb-12 leading-relaxed mx-auto">
-              A fully bespoke transformation designed around your business. We analyse your operations, identify bottlenecks, and implement secure, high-performance systems that improve efficiency, accuracy, and long-term scalability.
+              A fully bespoke programme built around your business. We map your operations, identify what is slowing you down, and implement secure, high-impact systems that improve efficiency, accuracy, and scalability across the board.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
@@ -96,7 +96,7 @@ export default function CustomAIPage() {
             <SectionHeading 
               label="Innovation"
               title="What's included in Tier 3"
-              subtitle="Where AI becomes your key competitive advantage."
+              subtitle="A long-term partnership for strategic transformation, custom build, and institutional value."
               center
             />
           </AnimatedSection>
@@ -104,14 +104,17 @@ export default function CustomAIPage() {
           <div className="max-w-4xl mx-auto mt-16">
             {features.map((f, i) => (
               <AnimatedSection key={i} delay={((i % 3) + 1) as 1 | 2 | 3 | 4 | 5} className="h-full">
-                <div className="flex flex-col group p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-accent/30 hover:bg-white/[0.04] transition-all duration-500 h-full relative overflow-hidden">
+                <div
+                  className="group p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-accent/30 hover:bg-white/[0.04] transition-all duration-500 h-full relative overflow-hidden"
+                  style={{ display: 'grid', gridTemplateRows: 'auto auto auto 1fr auto' }}
+                >
                   <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-all" />
                   <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform duration-500">
                     {f.icon}
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-accent transition-colors">{f.title}</h3>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">{f.title}</h3>
                   <p className="text-slate-400 text-sm leading-relaxed mb-6">{f.desc}</p>
-                  
+
                   <div className="text-left mb-6">
                     <h4 className="text-white text-sm font-semibold mb-3">Core Components:</h4>
                     <ul className="space-y-3">
@@ -132,12 +135,12 @@ export default function CustomAIPage() {
                             <span className="text-accent mr-3 font-bold mt-0.5">✓</span>
                             <span className="leading-snug">{capability}</span>
                           </li>
-                        )
+                        );
                       })}
                     </ul>
                   </div>
 
-                  <div className="text-left mt-auto pt-6 border-t border-white/5">
+                  <div className="text-left pt-6 border-t border-white/5">
                     <h4 className="text-white text-sm font-semibold mb-3">Impact:</h4>
                     <ul className="space-y-2">
                       {f.impact.map((point, idx) => (
@@ -173,11 +176,11 @@ export default function CustomAIPage() {
               <div className="relative z-10">
                 <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-8 tracking-tight">Build the future together.</h2>
                 <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-                  Our custom solutions are built from the ground up. No shortcuts, no generic tools - just solutions that work for your business.
+                  Built from the ground up around your business. No shortcuts, no generic tools — just systems that work.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-6">
                   <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer px-12 py-5 text-lg">
-                    Book a Free AI Consultation
+                    Start Your Transformation
                   </Button>
                 </div>
               </div>

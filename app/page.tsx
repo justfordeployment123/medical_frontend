@@ -17,19 +17,23 @@ const problemRows = [
   },
   {
     problem: 'Repetitive admin work consuming your team',
-    solution: 'AI Admin Assistant saves 10–25 hrs per employee per week',
+    solution: 'AI Admin Assistant handles the repetitive work so your team focuses on what actually matters',
   },
   {
-    problem: 'Slow responses to inbound leads',
-    solution: 'Instant lead engagement within seconds of every enquiry',
+    problem: 'No visibility into what\'s working',
+    solution: 'AI reporting gives you real-time insight into performance across your business',
   },
   {
     problem: 'Disconnected software systems creating silos',
-    solution: 'Backend automation syncs all your tools automatically',
+    solution: 'Connected AI systems sync your tools and data automatically.',
   },
   {
     problem: 'Constant manual follow-ups falling through cracks',
     solution: 'Automated follow-up sequences, fully personalised at scale',
+  },
+  {
+    problem: 'Scaling requires hiring more people',
+    solution: 'AI systems scale your capacity without increasing your headcount',
   },
 ]
 
@@ -44,7 +48,7 @@ const servicesRaw = [
     icon: '⚡',
     stats: [
       { value: '24/7', label: 'Availability' },
-      { value: '15hr+', label: 'Saved/Week' },
+      { value: 'Zero TASKS MISSED' },
       { value: 'Instant', label: 'Response' },
     ],
     features: [
@@ -63,9 +67,9 @@ const servicesRaw = [
     tagline: 'Intelligent systems built to scale with your business and streamline how it operates',
     icon: '◈',
     stats: [
-      { value: 'Scalable', label: 'Output' },
-      { value: 'Touchless', label: 'Workflows' },
-      { value: 'Unified', label: 'Systems' },
+      { value: 'Scalable Output' },
+      { value: 'Touchless Workflows' },
+      { value: 'Unified Systems' },
     ],
     features: [
       'CRM Integration & Automation',
@@ -558,9 +562,9 @@ export default function HomePage() {
                         paddingTop: 16,
                       }}
                     >
-                      {s.stats.map((stat, si) => (
+                      {s.stats.map((stat: { value: string; label?: string }, si) => (
                         <div
-                          key={stat.label}
+                          key={stat.label ?? stat.value}
                           style={{
                             flex: 1,
                             textAlign: 'center',
@@ -582,18 +586,20 @@ export default function HomePage() {
                           >
                             {stat.value}
                           </p>
-                          <p
-                            style={{
-                              fontSize: 9,
-                              fontWeight: 600,
-                              letterSpacing: '0.08em',
-                              textTransform: 'uppercase',
-                              color: 'rgba(125,211,252,0.75)',
-                              marginTop: 3,
-                            }}
-                          >
-                            {stat.label}
-                          </p>
+                          {stat.label && (
+                            <p
+                              style={{
+                                fontSize: 9,
+                                fontWeight: 600,
+                                letterSpacing: '0.08em',
+                                textTransform: 'uppercase',
+                                color: 'rgba(125,211,252,0.75)',
+                                marginTop: 3,
+                              }}
+                            >
+                              {stat.label}
+                            </p>
+                          )}
                         </div>
                       ))}
                     </div>
