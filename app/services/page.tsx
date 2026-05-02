@@ -7,7 +7,7 @@ const tiers = [
   {
     tag: 'Tier 1',
     badge: 'Quick Wins',
-    title: 'Lightweight AI Service',
+    title: 'Lightweight AI',
     tagline: 'Quick wins that deliver immediate efficiency gains.',
     href: '/services/lightweight-ai-service',
     items: [
@@ -23,7 +23,7 @@ const tiers = [
   {
     tag: 'Tier 2',
     badge:'Integration',
-    title: 'Heavyweight AI Service',
+    title: 'Heavyweight AI',
     tagline: 'Strategic AI implementations that transform operations.',
     href: '/services/heavyweight-ai-service',
     items: [
@@ -39,7 +39,7 @@ const tiers = [
   {
     tag: 'Tier 3',
     badge: 'Enterprise',
-    title: 'Custom-Weight AI Service',
+    title: 'Custom AI',
     tagline: 'Fully bespoke AI solutions built around the organisation.',
     href: '/services/custom-weight-ai-service',
     items: [

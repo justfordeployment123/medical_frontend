@@ -41,14 +41,14 @@ const servicesRaw = [
   {
     tag: 'Tier 1',
     badge: 'Rapid Deployment',
-    title: 'Lightweight AI Service',
+    title: 'Lightweight AI',
     href: '/services/lightweight-ai-service',
     tagline:
       'Quick wins that deliver immediate efficiency gains. We identify and automate your bottlenecks fast.',
     icon: '⚡',
     stats: [
       { value: '24/7', label: 'Availability' },
-      { value: 'Zero TASKS MISSED' },
+      { value: 'Always', label: 'Handled' },
       { value: 'Instant', label: 'Response' },
     ],
     features: [
@@ -62,14 +62,14 @@ const servicesRaw = [
   },
   {
     tag: 'Tier 2',
-    title: 'Heavyweight AI Service',
+    title: 'Heavyweight AI',
     href: '/services/heavyweight-ai-service',
     tagline: 'Intelligent systems built to scale with your business and streamline how it operates',
     icon: '◈',
     stats: [
-      { value: 'Scalable Output' },
-      { value: 'Touchless Workflows' },
-      { value: 'Unified Systems' },
+      { value: 'Scalable', label: 'Output' },
+      { value: 'Process', label: 'Orchestration' },
+      { value: 'Unified', label: 'Systems' },
     ],
     features: [
       'CRM Integration & Automation',
@@ -83,7 +83,7 @@ const servicesRaw = [
   {
     tag: 'Tier 3',
     badge: 'Enterprise',
-    title: 'Custom-Weight AI Service',
+    title: 'Custom AI',
     tagline: 'Fully bespoke AI solutions built around your organisation.',
     icon: '◎',
     stats: [
@@ -139,8 +139,8 @@ const steps = [
   },
   {
     num: '03',
-    title: 'Onboarding & Access Setup',
-    body: 'We securely connect to your systems and gather everything needed to build effectively.',
+    title: 'System Access and Setup',
+    body: 'We securely connect to your existing systems and gather everything needed to build effectively.',
   },
   {
     num: '04',
@@ -149,8 +149,8 @@ const steps = [
   },
   {
     num: '05',
-    title: 'Testing & Go-Live',
-    body: 'We validate performance, refine the system, and deploy it into your live environment.',
+    title: 'Validation & Launch',
+    body: 'Your system is rigorously tested and only deployed into your live environment once it meets our performance standards.',
   },
   {
     num: '06',
@@ -526,7 +526,7 @@ export default function HomePage() {
                       style={{
                         fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)',
                         fontWeight: 800,
-                        color: '#ffffff',
+                        color: s.tag === 'Tier 1' ? '#7dd3fc' : '#ffffff',
                         lineHeight: 1.2,
                         marginBottom: 8,
                         minHeight: 64,
@@ -537,7 +537,7 @@ export default function HomePage() {
                     <p
                       style={{
                         fontSize: 13,
-                        color: 'rgba(255,255,255,0.6)',
+                        color: s.tag === 'Tier 1' ? '#7dd3fc' : 'rgba(255,255,255,0.6)',
                         lineHeight: 1.6,
                         marginBottom: 16,
                         minHeight: 64,
@@ -548,7 +548,7 @@ export default function HomePage() {
                     {/* Features List */}
                     <ul style={{ padding: 0, margin: '0 0 16px 0', listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
                       {(s as any).features?.map((f: string, i: number) => (
-                        <li key={i} className="flex items-center gap-3 text-sm text-slate-400">
+                        <li key={i} className="flex items-center gap-3 text-sm" style={{ color: s.tag === 'Tier 1' ? '#7dd3fc' : undefined }}>
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7dd3fc" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><polyline points="20 6 9 17 4 12"></polyline></svg>
                           <span>{f}</span>
                         </li>
@@ -580,7 +580,7 @@ export default function HomePage() {
                             style={{
                               fontSize: 15,
                               fontWeight: 800,
-                              color: '#ffffff',
+                              color: s.tag === 'Tier 1' ? '#7dd3fc' : '#ffffff',
                               lineHeight: 1.2,
                             }}
                           >
@@ -593,7 +593,7 @@ export default function HomePage() {
                                 fontWeight: 600,
                                 letterSpacing: '0.08em',
                                 textTransform: 'uppercase',
-                                color: 'rgba(125,211,252,0.75)',
+                                color: '#7dd3fc',
                                 marginTop: 3,
                               }}
                             >
@@ -618,7 +618,7 @@ export default function HomePage() {
             <SectionHeading
               label="Who It's For"
               title={`Built to support <span class="text-accent">every stage</span>`}
-              subtitle="From independent founders to established corporate teams, we tailor AI solutions to your specific operational needs."
+              subtitle="From solo founders to corporate teams — we tailor AI solutions to your stage, your workflow, and your ambitions."
               center
             />
           </AnimatedSection>

@@ -1,11 +1,10 @@
 'use client'
 
-import React from 'react'
-import Image from 'next/image'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import Button from '@/components/ui/Button'
-import SectionHeading from '@/components/ui/SectionHeading'
 import Particles from '@/components/ui/Particles'
+import SectionHeading from '@/components/ui/SectionHeading'
+import Image from 'next/image'
 
 export default function AIAutomationsPage() {
   const features = [
@@ -16,31 +15,27 @@ export default function AIAutomationsPage() {
         'Answers inbound calls and messages using natural voice AI',
         'Captures and screens enquiry details at first contact',
         'Builds a pre-consultation brief so your team arrives prepared',
-        'Books consultations directly into your calendar',
-        'Sends confirmations and appointment reminders',
-        'Escalates urgent matters to your team'
+        'Books consultations directly into your calendar'
       ],
       impact: [
         'No enquiry goes unanswered, regardless of time or volume',
-        'Every interaction is captured, logged, and responded to instantly',
+        'Every enquiry is instantly captured, logged, and routed to the right person',
         'Clients experience a professional first impression from first contact',
         'Your team focuses on delivery, not fielding calls and messages'
       ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
     },
-    { 
-      title: 'AI Admin Assistant', 
-      desc: 'A private productivity agent that handles the repetitive admin keeping your team from their most important work.',
+    {
+      title: 'AI Client Intake & Engagement',
+      desc: 'A structured intake system that gathers, qualifies, and organises client information following initial contact.',
       core: [
-        'Manages your inbox and drafts contextual responses for your review',
-        'Keeps internal records and client notes accurate and up to date',
-        'Automates invoice creation, sending, and follow-up',
-        'Generates internal summaries via your preferred channel'
+        'Collects detailed client information through guided workflows',
+        'Performs structured qualification and prioritisation',
+        'Builds a complete pre-consultation brief',
+        'Organises and routes enquiries for efficient handling'
       ],
       impact: [
-        'Eliminates the admin overhead that quietly costs your business every day',
-        'Inbox stays managed, records stay current, invoices go out on time',
-        'Your team focuses on billable, high-value work - not repetitive admin'
+        'Ensures every enquiry is properly qualified and prepared, allowing your team to focus on high-value client work.'
       ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
     },
@@ -48,12 +43,15 @@ export default function AIAutomationsPage() {
       title: 'AI Admin Assistant', 
       desc: 'A private productivity agent designed to handle repetitive admin tasks and streamline internal workflows.',
       core: [
-        'Organises your inbox and prepares contextual draft responses for review',
-        'Automates data synchronisation and record management to keep systems up to date',
-        'Generates internal summaries via your preferred channel, while managing invoice creation and follow-ups'
+        'Manages your inbox and drafts contextual responses for your review',
+        'Flags overdue tasks and pending items before they become problems',
+        'Automates invoice creation, sending, and follow-up',
+        'Generates internal summaries via your preferred channel'
       ],
       impact: [
-        'Saves 15+ hours per week by reducing manual workload and improving operational efficiency.'
+        'Standardises how routine work is handled across your business',
+        'Inbox stays managed, records stay current, invoices go out on time',
+        'Your team focuses on billable, high-value work - not repetitive admin'
       ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.1 12.1"></path><path d="M12 12l9.9-0.1"></path><path d="M12 12l0 10"></path></svg>
     }
@@ -98,12 +96,8 @@ export default function AIAutomationsPage() {
 
         <div className="container relative z-10 px-6 mx-auto py-32 text-center">
           <AnimatedSection>
-            <p className="text-accent font-bold text-xs uppercase tracking-[0.3em] mb-6 flex items-center justify-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              Fast Deployment | Low Friction | Immediate ROI
-            </p>
             <h1 className="text-4xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tight mx-auto max-w-4xl">
-              Tier 1: <span className="text-accent italic decoration-accent/20 underline underline-offset-8">Lightweight AI Services</span>
+              Tier 1: <span className="text-accent">Lightweight AI Services</span>
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mb-12 leading-relaxed mx-auto">
               Designed to eliminate repetitive, time-consuming tasks that slow you down. These solutions help you operate more efficiently, present more professionally, and focus on the work that matters most.
@@ -113,7 +107,7 @@ export default function AIAutomationsPage() {
                 Book a Free AI Consultation
               </Button>
               <div className="flex items-center gap-3 px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-sm font-bold backdrop-blur-sm">
-                 <span className="text-white">Rapid</span> <span className="text-accent">Deployment</span>
+                 <span className="text-accent">Day-One Impact</span>
               </div>
             </div>
           </AnimatedSection>
@@ -127,8 +121,7 @@ export default function AIAutomationsPage() {
             <SectionHeading 
               label="Capabilities"
               title="What's included in Tier 1"
-              subtitle="Fast deployment, low friction, and immediate ROI for the work that slows your team down most."
-              center
+                          center
             />
           </AnimatedSection>
 
@@ -137,7 +130,7 @@ export default function AIAutomationsPage() {
               <AnimatedSection key={i} delay={((i % 3) + 1) as 1 | 2 | 3 | 4 | 5} className="h-full">
                 <div
                   className="group p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-accent/30 hover:bg-white/[0.04] transition-all duration-500 h-full relative overflow-hidden"
-                  style={{ display: 'grid', gridTemplateRows: 'auto auto auto 1fr auto' }}
+                  style={{ display: 'grid', gridTemplateRows: 'auto auto auto auto auto 1fr' }}
                 >
                   <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-all" />
                   <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -146,7 +139,7 @@ export default function AIAutomationsPage() {
                   <h3 className="text-xl font-bold text-white mb-4 group-hover:text-accent transition-colors">{f.title}</h3>
                   <p className="text-slate-400 text-sm leading-relaxed mb-6">{f.desc}</p>
 
-                  <div className="text-left mb-6">
+                  <div className="text-left mb-6 min-h-[160px]">
                     <h4 className="text-white text-sm font-semibold mb-3">Core Capabilities:</h4>
                     <ul className="space-y-3">
                       {f.core.map((capability, idx) => (

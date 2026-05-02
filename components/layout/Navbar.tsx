@@ -11,9 +11,9 @@ const NAV_LINKS = [
     label: 'Services',     
     href: '/services',
     subItems: [
-      { label: 'Lightweight AI Service', href: '/services/lightweight-ai-service' },
-      { label: 'Heavyweight AI Service', href: '/services/heavyweight-ai-service' },
-      { label: 'Custom-Weight AI Service', href: '/services/custom-weight-ai-service' },
+      { label: 'Lightweight AI', href: '/services/lightweight-ai-service' },
+      { label: 'Heavyweight AI', href: '/services/heavyweight-ai-service' },
+      { label: 'Custom AI', href: '/services/custom-weight-ai-service' },
     ]
   },
   { label: 'Case Studies', href: '/case-studies' },

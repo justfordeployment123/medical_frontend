@@ -17,13 +17,13 @@ const TIER_ICONS: Record<string, string> = {
 const TIER_STATS: Record<string, { value: string; label?: string }[]> = {
   'Tier 1': [
     { value: '24/7', label: 'Availability' },
-    { value: 'Zero TASKS MISSED' },
+    { value: 'Always', label: 'Handled' },
     { value: 'Instant', label: 'Response' },
   ],
   'Tier 2': [
-    { value: 'Scalable Output' },
-    { value: 'Touchless Workflows' },
-    { value: 'Unified Systems' },
+    { value: 'Scalable', label: 'Output' },
+    { value: 'Process', label: 'Orchestration' },
+    { value: 'Unified', label: 'Systems' },
   ],
   'Tier 3': [
     { value: '100%', label: 'Bespoke' },
@@ -110,7 +110,7 @@ export default function TierCard({
               <div key={i} className="text-center">
                 <div className="text-xs font-bold text-white">{s.value}</div>
                 {s.label && (
-                  <div className="text-[8px] uppercase tracking-tighter text-gray-500 font-bold whitespace-nowrap">
+                  <div className="text-[8px] uppercase tracking-tighter text-blue-300 font-bold whitespace-nowrap">
                     {s.label}
                   </div>
                 )}

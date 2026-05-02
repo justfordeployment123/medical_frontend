@@ -1,17 +1,16 @@
 'use client'
 
-import React from 'react'
-import Image from 'next/image'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import Button from '@/components/ui/Button'
-import SectionHeading from '@/components/ui/SectionHeading'
 import Particles from '@/components/ui/Particles'
+import SectionHeading from '@/components/ui/SectionHeading'
+import Image from 'next/image'
 
 export default function AISystemsPage() {
   const features = [
     { 
-      title: 'AI Business Development System', 
-      desc: 'A fully automated system designed to generate, engage, and convert high-value clients without manual follow-up.',
+      title: 'AI Client Acquisition System', 
+      desc: 'A fully automated system designed to generate, qualify, and convert high-value clients without manual follow-up.',
       core: [
         'Identifies ideal client profiles and key decision-makers',
         'Personalised outreach across professional channels (Email, LinkedIn)',
@@ -19,20 +18,20 @@ export default function AISystemsPage() {
         'Automated qualification and booking of high-value consultations'
       ],
       impact: [
-        'Creates a consistent, predictable pipeline',
+        'Creates a consistent, predictable lead pipeline that runs in the background.',
         'Reduces reliance on referrals, paid advertising, or manual outreach',
         'Increases conversion from enquiry to client through timely, personalised follow-up',
         'Frees your team from prospecting so they can focus on closing and delivering'
       ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
     },
-    { 
-      title: 'AI Operations System', 
-      desc: 'A unified system that connects your tools and workflows so decisions, approvals, and data move with minimal human intervention.',
+    {
+      title: 'AI Operations System',
+      desc: 'A unified system that connects your tools and workflows — so decisions, approvals, and data move with minimal human intervention.',
       core: [
-        'Connects CRM, finance, operations, and support into a single automated layer',
-        'Automates cross-team workflows, approvals, and handoffs',
-        'Ensures real-time data flow between departments and systems',
+        'Connects and automates workflows across multiple departments simultaneously',
+        'Provides real-time visibility and control over operations across your business',
+        'Ensures seamless data flow between departments and systems',
         'AI-assisted reporting and decision support for leadership'
       ],
       impact: [
@@ -43,22 +42,6 @@ export default function AISystemsPage() {
       ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
     },
-    { 
-      title: 'AI Multi-Department Automation', 
-      desc: 'A unified system that connects and automates workflows across multiple departments.',
-      core: [
-        'Automated cross-team workflows and approvals',
-        'Seamless data flow between departments and systems',
-        'Integrated customer support and operational processes',
-        'AI-assisted decision support for management'
-      ],
-      impact: [
-        'Eliminates operational silos',
-        'Improves efficiency across teams',
-        'Increases scalability and organisational performance'
-      ],
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-    }
   ]
 
   return (
@@ -100,12 +83,8 @@ export default function AISystemsPage() {
 
         <div className="container relative z-10 px-6 mx-auto py-32 text-center">
           <AnimatedSection>
-            <p className="text-accent font-bold text-xs uppercase tracking-[0.3em] mb-6 flex items-center justify-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              Operational Efficiency | Revenue Growth | Scalable Infrastructure
-            </p>
             <h1 className="text-4xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tight mx-auto max-w-4xl">
-              Tier 2: <span className="text-accent italic decoration-accent/20 underline underline-offset-8">Heavyweight AI Services</span>
+              Tier 2: <span className="text-accent">Heavyweight AI Services</span>
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mb-12 leading-relaxed mx-auto">
               Built to transform how your business acquires clients and operates day-to-day. We implement intelligent systems that remove bottlenecks, sharpen execution, and enable scalable growth without increasing overhead.
@@ -129,8 +108,6 @@ export default function AISystemsPage() {
             <SectionHeading 
               label="Architecture"
               title="What's included in Tier 2"
-              subtitle="Operational efficiency, revenue growth, and scalable infrastructure for businesses ready to grow.
-"
               center
             />
           </AnimatedSection>
@@ -140,7 +117,7 @@ export default function AISystemsPage() {
               <AnimatedSection key={i} delay={((i % 3) + 1) as 1 | 2 | 3 | 4 | 5} className="h-full">
                 <div
                   className="group p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-accent/30 hover:bg-white/[0.04] transition-all duration-500 h-full relative overflow-hidden"
-                  style={{ display: 'grid', gridTemplateRows: 'auto auto auto 1fr auto' }}
+                  style={{ display: 'grid', gridTemplateRows: 'auto auto auto auto auto 1fr' }}
                 >
                   <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-all" />
                   <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -149,7 +126,7 @@ export default function AISystemsPage() {
                   <h3 className="text-xl font-bold text-white mb-4 group-hover:text-accent transition-colors">{f.title}</h3>
                   <p className="text-slate-400 text-sm leading-relaxed mb-6">{f.desc}</p>
 
-                  <div className="text-left mb-6">
+                  <div className="text-left mb-6 min-h-[160px]">
                     <h4 className="text-white text-sm font-semibold mb-3">Core Capabilities:</h4>
                     <ul className="space-y-3">
                       {f.core.map((capability, idx) => (
@@ -165,7 +142,7 @@ export default function AISystemsPage() {
                     <h4 className="text-white text-sm font-semibold mb-3">Impact:</h4>
                     <ul className="space-y-2">
                       {f.impact.map((point, idx) => (
-                        <li key={idx} className="flex items-start text-sm text-blue-200 italic">
+                        <li key={idx} className="flex items-start text-sm text-blue-200">
                           <span className="bg-blue-400 mr-3 mt-2 block h-1.5 w-1.5 rounded-full shrink-0" />
                           <span className="leading-snug">{point}</span>
                         </li>

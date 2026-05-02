@@ -176,11 +176,10 @@ export default function ContactPage() {
                                 : 'top-[50%] -translate-y-1/2 text-sm text-white/30'
                               }`}
                           >
-                            {field === 'firstName' ? 'First Name' : 'Last Name'}{' '}
-                            <span className="text-accent">*</span>
+                            {field === 'firstName' ? <>First Name <span className="text-accent">*</span></> : 'Last Name'}
                           </label>
                           <input
-                            required
+                            required={field === 'firstName'}
                             type="text"
                             name={field}
                             value={form[field]}
@@ -199,7 +198,7 @@ export default function ContactPage() {
                       ))}
                     </div>
 
-                    {/* Phone */}
+                    {/* Phone + Email */}
                     {(['phone', 'email'] as const).map((field) => (
                       <div key={field} className="relative group">
                         <label
@@ -209,11 +208,10 @@ export default function ContactPage() {
                               : 'top-[50%] -translate-y-1/2 text-sm text-white/30'
                             }`}
                         >
-                          {field === 'phone' ? 'Phone' : 'Email'}{' '}
-                          <span className="text-accent">*</span>
+                          {field === 'email' ? <>Email <span className="text-accent">*</span></> : 'Phone'}
                         </label>
                         <input
-                          required
+                          required={field === 'email'}
                           type={field === 'email' ? 'email' : 'tel'}
                           name={field}
                           value={form[field]}
@@ -240,10 +238,9 @@ export default function ContactPage() {
                             : 'top-5 text-sm text-white/30'
                           }`}
                       >
-                        Write a message <span className="text-accent">*</span>
+                        Write a message
                       </label>
                       <textarea
-                        required
                         name="message"
                         value={form.message}
                         onChange={handleChange}

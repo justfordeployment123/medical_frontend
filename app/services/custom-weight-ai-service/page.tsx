@@ -11,7 +11,7 @@ export default function CustomAIPage() {
   const features = [
     { 
       title: 'AI Transformation Programme', 
-      desc: 'A fully bespoke programme built around your business. We map your operations, identify what is slowing you down, and implement secure, high-impact systems that improve efficiency, accuracy, and scalability across the board.',
+      desc: 'A tailored AI transformation roadmap, delivered from strategy through to implementation.',
       core: [
         'Strategic Roadmap — A phased implementation plan aligned to your objectives, workflows, and regulatory requirements',
         'Custom Knowledge Systems — Secure, private AI trained on your internal documentation, SOPs, and operational data',
@@ -19,7 +19,7 @@ export default function CustomAIPage() {
         'Ongoing Support & Optimisation — Dedicated oversight to monitor performance, refine system logic, and drive continuous improvement'
       ],
       impact: [
-        'Creates a long-term operational advantage that compounds over time',
+        'Embeds AI into core business operations, not as a tool but as infrastructure.',
         'Institutional knowledge becomes a system asset, not a people dependency',
         'Improves speed, accuracy, and consistency across every area of the business',
         'Enables scalable growth without increasing operational complexity'
@@ -72,7 +72,7 @@ export default function CustomAIPage() {
               Strategic Transformation | Bespoke Build | Long-Term Partnership
             </p>
             <h1 className="text-4xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tight mx-auto max-w-4xl">
-              Tier 3: <span className="text-accent italic decoration-accent/20 underline underline-offset-8">Custom-Weight AI Services</span>
+              Tier 3: <span className="text-accent">Custom AI Services</span>
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mb-12 leading-relaxed mx-auto">
               A fully bespoke programme built around your business. We map your operations, identify what is slowing you down, and implement secure, high-impact systems that improve efficiency, accuracy, and scalability across the board.
@@ -96,8 +96,7 @@ export default function CustomAIPage() {
             <SectionHeading 
               label="Innovation"
               title="What's included in Tier 3"
-              subtitle="A long-term partnership for strategic transformation, custom build, and institutional value."
-              center
+             center
             />
           </AnimatedSection>
 
@@ -106,7 +105,7 @@ export default function CustomAIPage() {
               <AnimatedSection key={i} delay={((i % 3) + 1) as 1 | 2 | 3 | 4 | 5} className="h-full">
                 <div
                   className="group p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-accent/30 hover:bg-white/[0.04] transition-all duration-500 h-full relative overflow-hidden"
-                  style={{ display: 'grid', gridTemplateRows: 'auto auto auto 1fr auto' }}
+                  style={{ display: 'grid', gridTemplateRows: 'auto auto auto auto auto 1fr' }}
                 >
                   <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-all" />
                   <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -115,7 +114,7 @@ export default function CustomAIPage() {
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">{f.title}</h3>
                   <p className="text-slate-400 text-sm leading-relaxed mb-6">{f.desc}</p>
 
-                  <div className="text-left mb-6">
+                  <div className="text-left mb-6 min-h-[180px]">
                     <h4 className="text-white text-sm font-semibold mb-3">Core Components:</h4>
                     <ul className="space-y-3">
                       {f.core.map((capability, idx) => {
@@ -144,7 +143,7 @@ export default function CustomAIPage() {
                     <h4 className="text-white text-sm font-semibold mb-3">Impact:</h4>
                     <ul className="space-y-2">
                       {f.impact.map((point, idx) => (
-                        <li key={idx} className="flex items-start text-sm text-blue-200 italic">
+                        <li key={idx} className="flex items-start text-sm text-blue-200">
                           <span className="bg-blue-400 mr-3 mt-2 block h-1.5 w-1.5 rounded-full shrink-0" />
                           <span className="leading-snug">{point}</span>
                         </li>
