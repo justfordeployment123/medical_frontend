@@ -526,7 +526,7 @@ export default function HomePage() {
                       style={{
                         fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)',
                         fontWeight: 800,
-                        color: s.tag === 'Tier 1' ? '#7dd3fc' : '#ffffff',
+                        color: '#ffffff',
                         lineHeight: 1.2,
                         marginBottom: 8,
                         minHeight: 64,
@@ -537,7 +537,7 @@ export default function HomePage() {
                     <p
                       style={{
                         fontSize: 13,
-                        color: s.tag === 'Tier 1' ? '#7dd3fc' : 'rgba(255,255,255,0.6)',
+                        color: 'rgba(255,255,255,0.6)',
                         lineHeight: 1.6,
                         marginBottom: 16,
                         minHeight: 64,
@@ -548,7 +548,7 @@ export default function HomePage() {
                     {/* Features List */}
                     <ul style={{ padding: 0, margin: '0 0 16px 0', listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
                       {(s as any).features?.map((f: string, i: number) => (
-                        <li key={i} className="flex items-center gap-3 text-sm" style={{ color: s.tag === 'Tier 1' ? '#7dd3fc' : undefined }}>
+                        <li key={i} className="flex items-center gap-3 text-sm" style={{ color: 'rgba(255,255,255,0.85)' }}>
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7dd3fc" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><polyline points="20 6 9 17 4 12"></polyline></svg>
                           <span>{f}</span>
                         </li>
@@ -580,7 +580,7 @@ export default function HomePage() {
                             style={{
                               fontSize: 15,
                               fontWeight: 800,
-                              color: s.tag === 'Tier 1' ? '#7dd3fc' : '#ffffff',
+                              color: '#ffffff',
                               lineHeight: 1.2,
                             }}
                           >
