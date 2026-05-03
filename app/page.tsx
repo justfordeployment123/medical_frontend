@@ -73,7 +73,7 @@ const servicesRaw = [
     ],
     features: [
       'CRM Integration & Automation',
-      'End-to-End Workflow Automation',
+      'Touchless Workflows',
       'Audit Trails and Compliance Logging',
       'Multi-Department Sync'
     ],
@@ -145,7 +145,7 @@ const steps = [
   {
     num: '04',
     title: 'Build & Integration',
-    body: 'Your system is built, tested, and integrated into your existing workflows with minimal disruption.',
+    body: 'Your system is built and integrated into your existing workflows with minimal disruption.',
   },
   {
     num: '05',

@@ -7,15 +7,15 @@ import { useEffect, useRef, useState } from 'react'
 const pillars = [
   {
     label: 'Mission',
-    title: 'Why We Exist',
-    body: 'We believe many businesses spend too much time on manual processes that slow growth and drain productivity. Our goal is to replace these repetitive tasks with intelligent automation systems that allow teams to focus on higher-value work.',
+    title: 'Why we exist',
+    body: 'We believe many businesses spend too much time on repetive tasks that slow growth and drain productivity. Our goal is to replace these manual processes with intelligent automation systems that allow teams to focus on higher-value work.',
     icon: '◎',
     // Mission — freeing teams from manual work: circuit board (tech foundation replacing old processes)
     img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
   },
   {
     label: 'Approach',
-    title: 'How We Work',
+    title: 'How we work',
     body: 'At IMPACKTA AI we focus on practical automation that delivers measurable results. Rather than introducing unnecessary complexity, we design systems that integrate seamlessly with your existing tools and workflows.',
     icon: '⟳',
     // Approach — integration & connected systems: monitor with code/colourful tech screen
@@ -23,7 +23,7 @@ const pillars = [
   },
   {
     label: 'Founder Perspective',
-    title: 'Built From Experience',
+    title: 'Built from experience',
     body: 'With firsthand experience in operations-heavy environments, we understand the real challenges businesses face when managing workflows, communication, and internal processes.',
     icon: '◈',
     // Founder — operations infrastructure experience: server rack with blue lighting, no humans
@@ -31,7 +31,7 @@ const pillars = [
   },
   {
     label: 'What We Do',
-    title: 'Our Focus',
+    title: 'Our focus',
     body: 'IMPACKTA AI is an automation consultancy focused on helping businesses eliminate repetitive work and operate more efficiently through intelligent systems and AI-driven automation.',
     icon: '◉',
     // Focus — AI-driven automation: futuristic AI concept with light beams

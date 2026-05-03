@@ -25,23 +25,9 @@ export default function AIAutomationsPage() {
       ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
     },
-    {
-      title: 'AI Client Intake & Engagement',
-      desc: 'A structured intake system that gathers, qualifies, and organises client information following initial contact.',
-      core: [
-        'Collects detailed client information through guided workflows',
-        'Performs structured qualification and prioritisation',
-        'Builds a complete pre-consultation brief',
-        'Organises and routes enquiries for efficient handling'
-      ],
-      impact: [
-        'Ensures every enquiry is properly qualified and prepared, allowing your team to focus on high-value client work.'
-      ],
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-    },
     { 
       title: 'AI Admin Assistant', 
-      desc: 'A private productivity agent designed to handle repetitive admin tasks and streamline internal workflows.',
+      desc: 'A private productivity agent that handles the repetitive admin keeping your team from their most important work.',
       core: [
         'Manages your inbox and drafts contextual responses for your review',
         'Flags overdue tasks and pending items before they become problems',
@@ -50,8 +36,9 @@ export default function AIAutomationsPage() {
       ],
       impact: [
         'Standardises how routine work is handled across your business',
+        'Eliminates the admin overhead that quietly costs your business every day',
         'Inbox stays managed, records stay current, invoices go out on time',
-        'Your team focuses on billable, high-value work - not repetitive admin'
+        'Your team can focus on billable, high-value work'
       ],
       icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.1 12.1"></path><path d="M12 12l9.9-0.1"></path><path d="M12 12l0 10"></path></svg>
     }
@@ -107,7 +94,10 @@ export default function AIAutomationsPage() {
                 Book a Free AI Consultation
               </Button>
               <div className="flex items-center gap-3 px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-sm font-bold backdrop-blur-sm">
-                 <span className="text-accent">Day-One Impact</span>
+                <span>
+                  <span className="text-white">Day-One </span>
+                  <span className="text-accent">Impact</span>
+                </span>
               </div>
             </div>
           </AnimatedSection>
@@ -155,7 +145,7 @@ export default function AIAutomationsPage() {
                     <h4 className="text-white text-sm font-semibold mb-3">Impact:</h4>
                     <ul className="space-y-2">
                       {f.impact.map((point, idx) => (
-                        <li key={idx} className="flex items-start text-sm text-blue-200 italic">
+                        <li key={idx} className="flex items-start text-sm text-blue-200">
                           <span className="bg-blue-400 mr-3 mt-2 block h-1.5 w-1.5 rounded-full shrink-0" />
                           <span className="leading-snug">{point}</span>
                         </li>

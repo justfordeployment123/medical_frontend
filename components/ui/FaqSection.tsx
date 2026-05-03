@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: "Who owns the developed AI systems?",
-    a: "Yes - you retain full ownership of the solution and how it’s used within your business. We build systems either within your existing tools or manage them on your behalf, depending on what’s most effective. You’ll always have full visibility, with the option for handover if required."
+    a: "You retain full ownership of the solution and how it’s used within your business. We build systems either within your existing tools or manage them on your behalf, depending on what’s most effective. You’ll always have full visibility, with the option for handover if required."
   },
   {
     q: "How does pricing work?",
